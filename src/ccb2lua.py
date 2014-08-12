@@ -2,12 +2,14 @@
 # coding=utf-8  
 # Python 2.7.3  
 from bs4 import BeautifulSoup
-import jinja2 as jj
 import pprint
+from jinja2.environment import Environment
+from jinja2.loaders import DictLoader
+
+
 pp = pprint.PrettyPrinter(indent=4)
 
 def cleanString(_s):
-	print "-->>",_s
 	try:
 		return _s.join(_s.split()) 
 	except:
@@ -46,8 +48,8 @@ def parseDict(_soup):
 			_dict[k] = parseArray(v)
 		elif v.name == "dict":
 			_dict[k] = parseDict(v)
-		elif v.name != "":
-			_dict[k] = v.string
+		elif v.name != "" and v.name != u"\n":
+			_dict[k] = cleanString(v.string)
 
 	return _dict
 
@@ -62,22 +64,25 @@ def parseArray(_soup):
 			_array.append(parseArray(v))
 		elif v.name == "dict":
 			_array.append(parseDict(v))
-		elif v.name != "":
+		elif v.name != "" and v.name != u'\n':
 			_array.append(v.string)
 
 	return _array
 
 
 
-tpl = open('CCLayer.lua.tpl')
-cclayer_tpl = tpl.read()
-tpl.close()
 
+env = Environment()
+pages = ('CCLayer.lua.jinja', 'CCNode.lua.jinja','CCSprite.lua.jinja')
+templates = dict((name, open(name, 'rb').read()) for name in pages)
+env.loader = DictLoader(templates)
+# tmpl = env.get_template('page.html')
 
 def parseNode(_dict):
 	baseClass = _dict["baseClass"]
 	if baseClass == "CCLayer":
-		template = jj.Template(cclayer_tpl)
+		template = env.get_template(cclayer_tpl)
+		# template = jj.Template(cclayer_tpl)
 		cclayer_out = template.render(data = _dict, super = baseClass.replace("CC",""))
 		print(cclayer_out)
 
@@ -88,8 +93,15 @@ def parseNode(_dict):
 
 classname = "BattleWinLayer1"
 
+def parseRootNode(_dict):
+	baseClass = _dict["baseClass"]
+	template = env.get_template('CCLayer.lua.jinja')
+	cclayer_out = template.render(data = _dict, super = baseClass.replace("CC",""), classname = classname+"_layout")
+	print(cclayer_out)
+
+
 # open ccb file
-ccbfile = open("../proj.ccb/ccb/BattleWinLayer1.ccb",'r')
+ccbfile = open("../proj.ccb/ccb/BattleWinLayer.ccb",'r')
 ccbfile_content = ccbfile.read()
 ccbfile.close()
 
@@ -102,14 +114,11 @@ nodeGraph = findAndGetValue(_,"nodeGraph")
 # parse all data
 data = parseDict(nodeGraph)
 
-# pp.pprint(data)
+pp.pprint(data)
 
-# parseNode(data)
+parseRootNode(data)
 
-baseClass = data["baseClass"]
-template = jj.Template(cclayer_tpl)
-cclayer_out = template.render(data = data, super = baseClass.replace("CC",""), classname = classname+"_layout")
-print(cclayer_out)
+
 
 
 

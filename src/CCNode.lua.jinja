@@ -1,0 +1,9 @@
+{% macro rennder(data,parent) -%}
+    {% if data.customClass != "" %}
+    local node = require("app.views.{{ data.customClass }}").new()
+    {% else %}
+    local node = display.newNode()
+    {% endif %}
+        :addTo({{parent}})
+    
+{%- endmacro %}
