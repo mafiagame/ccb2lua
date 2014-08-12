@@ -48,8 +48,13 @@ def parseDict(_soup):
 			_dict[k] = parseArray(v)
 		elif v.name == "dict":
 			_dict[k] = parseDict(v)
-		elif v.name != "" and v.name != u"\n":
-			_dict[k] = cleanString(v.string)
+		elif v.name != "":
+			if v.name == "true" or v.name == "false":
+				_dict[k] = v.name
+			else:
+				value = cleanString(v.string)
+			  	if value and value != "":
+			  		_dict[k] = v.string
 
 	return _dict
 
@@ -59,20 +64,26 @@ def parseArray(_soup):
 	print "----------------------------------parseArray----------------------------------"
 	_array = list()
 	for v in _soup.contents:
-		name = cleanString(v.next.name)
+		# name = cleanString(v.next.name)
 		if v.name == "array":
 			_array.append(parseArray(v))
 		elif v.name == "dict":
 			_array.append(parseDict(v))
-		elif v.name != "" and v.name != u'\n':
-			_array.append(v.string)
+		elif v.name != "":
+			if v.name == "true" or v.name == "false":
+				_array.append(v.name)
+			else:
+				value = cleanString(v.string)
+			  	if value and value != "\n":
+					_array.append(v.string)
+
 
 	return _array
 
 
 
 
-env = Environment()
+env = Environment(trim_blocks = True, line_statement_prefix = '$', line_comment_prefix = '#')
 pages = ('CCLayer.lua.jinja', 'CCNode.lua.jinja','CCSprite.lua.jinja')
 templates = dict((name, open(name, 'rb').read()) for name in pages)
 env.loader = DictLoader(templates)
@@ -99,6 +110,8 @@ def parseRootNode(_dict):
 	cclayer_out = template.render(data = _dict, super = baseClass.replace("CC",""), classname = classname+"_layout")
 	print(cclayer_out)
 
+	return cclayer_out
+
 
 # open ccb file
 ccbfile = open("../proj.ccb/ccb/BattleWinLayer.ccb",'r')
@@ -116,8 +129,11 @@ data = parseDict(nodeGraph)
 
 pp.pprint(data)
 
-parseRootNode(data)
+content = parseRootNode(data)
 
+lua = open("../scripts/app/scenes/BattleWinLayer_layout1.lua",'w')
+lua_content = lua.write(content)
+lua.close()
 
 
 

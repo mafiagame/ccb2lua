@@ -1,35 +1,44 @@
 
-{% if data.customClass != "" %}
+$ if data.customClass != ""
 local {{ classname }} = class("{{ classname }}",require("app.views.{{ data.customClass }}"))
-{% else %}
+$ else
 local {{ classname }} = class("{{ classname }}",function()
     return display.new{{ super }}()
 end)
-{% endif %}
+$ endif
 
-{% import 'CCNode.lua.jinja' as CCNode %}
-{% import 'CCSprite.lua.jinja' as CCSprite %}
+$ import 'CCNode.lua.jinja' as CCNode
+$ import 'CCSprite.lua.jinja' as CCSprite
+$ import 'CCLayerColor.lua.jinja' as CCSprite
+
+$ macro rennder_tree(data,parent)
+    $ for item in data.children
+        $ set testing = parent
+        $ if item.baseClass == "CCNode"
+{{ CCNode.rennder(item,parent) }}
+            $ set testing = "node"
+        $ elif item.baseClass == "CCSprite"
+{{ CCSprite.rennder(item,parent) }}
+            $ set testing = "sprite"
+        $ elif item.baseClass == "CCLayerColor"
+{{ CCLayerColor.rennder(item,parent) }}
+            $ set testing = "layer"
+        $ endif
+        $ if item.children
+            $ if item.memberVarAssignmentName != ""
+            $ endif
+{{ rennder_tree(item,testing) }}
+        $ endif
+    $ endfor
+{{'\n'}}
+$ endmacro
 
 
-{% macro rennder_tree(data,parent) -%}
-    {% for item in data.children -%}
-        {% set testing = parent %}
-        {% if item.baseClass == "CCNode" -%}
-            {{ CCNode.rennder(item,parent) -}}
-            {% set testing = "node" %}
-        {% elif item.baseClass == "CCSprite" -%}
-            {{ CCSprite.rennder(item,parent) -}}
-            {% set testing = "sprite" %}
-        {% endif %}
-        {% if item.children -%}
-            {{ rennder_tree(item,testing) -}}
-        {% endif %}
-    {%- endfor %}
-{%- endmacro %}
-
-
+{{'\n'}}
 function {{ classname }}:ctor()
+{{ CCNode.rennder_base_properties("self",data.properties) }}
     {{ rennder_tree(data,"self") }}
+
 end
 
 return {{ classname }}
