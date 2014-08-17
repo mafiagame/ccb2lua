@@ -1,15 +1,16 @@
 
-$ if data.customClass != ""
-local {{ classname }} = class("{{ classname }}",require("app.views.{{ data.customClass }}"))
+$ if data.customClass and data.customClass != ""
+local {{ classname }} = class("{{ classname }}",CCBNodeExtend.extend(require("app.views.{{ data.customClass }}")))
 $ else
 local {{ classname }} = class("{{ classname }}",function()
-    return display.new{{ super }}()
+    return CCBNodeExtend.extend(display.new{{ super }}())
 end)
 $ endif
 
-$ import 'CCNode.lua.jinja' as CCNode
-$ import 'CCSprite.lua.jinja' as CCSprite
-$ import 'CCLayerColor.lua.jinja' as CCSprite
+$ import 'CCNode.lua' as CCNode
+$ import 'CCSprite.lua' as CCSprite
+$ import 'CCLayerColor.lua' as CCLayerColor
+$ import 'CCLayer.lua' as CCLayer
 
 $ macro rennder_tree(data,parent)
     $ for item in data.children
@@ -23,6 +24,9 @@ $ macro rennder_tree(data,parent)
         $ elif item.baseClass == "CCLayerColor"
 {{ CCLayerColor.rennder(item,parent) }}
             $ set testing = "layer"
+        $ elif item.baseClass == "CCLayer"
+{{ CCLayer.rennder(item,parent) }}
+            $ set testing = "layer"            
         $ endif
         $ if item.children
             $ if item.memberVarAssignmentName != ""
@@ -37,7 +41,7 @@ $ endmacro
 {{'\n'}}
 function {{ classname }}:ctor()
 {{ CCNode.rennder_base_properties("self",data.properties) }}
-    {{ rennder_tree(data,"self") }}
+{{ rennder_tree(data,"self") }}
 
 end
 

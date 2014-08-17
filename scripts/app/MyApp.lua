@@ -4,6 +4,8 @@ require("framework.init")
 require("framework.shortcodes")
 require("framework.cc.init")
 
+require("app.CCBNodeExtend")
+
 local MyApp = class("MyApp", cc.mvc.AppBase)
 
 function MyApp:ctor()

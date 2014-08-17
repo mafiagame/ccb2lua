@@ -4,8 +4,7 @@ local MainScene = class("MainScene", function()
 end)
 
 function MainScene:ctor()
-    ui.newTTFLabel({text = "Hello, World", size = 64, align = ui.TEXT_ALIGN_CENTER})
-        :pos(display.cx, display.cy)
+    require("app.scenes.BattleWinLayer_layout").new()
         :addTo(self)
 end
 

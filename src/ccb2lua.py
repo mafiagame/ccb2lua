@@ -84,7 +84,13 @@ def parseArray(_soup):
 
 
 env = Environment(trim_blocks = True, line_statement_prefix = '$', line_comment_prefix = '#')
-pages = ('CCLayer.lua.jinja', 'CCNode.lua.jinja','CCSprite.lua.jinja')
+pages = (
+	'CCBFile.lua', 
+	'CCNode.lua',
+	'CCLayer.lua',
+	'CCSprite.lua',
+	'CCLayerColor.lua'
+)
 templates = dict((name, open(name, 'rb').read()) for name in pages)
 env.loader = DictLoader(templates)
 # tmpl = env.get_template('page.html')
@@ -106,7 +112,7 @@ classname = "BattleWinLayer1"
 
 def parseRootNode(_dict):
 	baseClass = _dict["baseClass"]
-	template = env.get_template('CCLayer.lua.jinja')
+	template = env.get_template('CCBFile.lua')
 	cclayer_out = template.render(data = _dict, super = baseClass.replace("CC",""), classname = classname+"_layout")
 	print(cclayer_out)
 
@@ -131,7 +137,7 @@ pp.pprint(data)
 
 content = parseRootNode(data)
 
-lua = open("../scripts/app/scenes/BattleWinLayer_layout1.lua",'w')
+lua = open("../scripts/app/scenes/BattleWinLayer_layout.lua",'w')
 lua_content = lua.write(content)
 lua.close()
 
