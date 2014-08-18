@@ -52,6 +52,16 @@ function BattleWinLayer1_layout:ctor()
 	self:addChild(sprite)
 
 
+	local sprite = CCBNodeExtend.extend(require("app.views.MySprite").new())
+	sprite:ccb_pos(312,420,0)
+	sprite:ccb_anchor(0.5,0.5)
+	sprite:ccb_scale(1,1,false,0)
+	sprite:ccb_ignore_anchor_for_position(false)
+	sprite:ccb_display_frame("battle_win/EXP.png")
+
+	self:addChild(sprite)
+
+
 
 
 
