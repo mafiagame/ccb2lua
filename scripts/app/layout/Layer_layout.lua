@@ -35,7 +35,7 @@ function Layer_layout:ctor(_owner)
 
 	local sprite = display.newSprite()
 	CCBNodeExtend.touchSprite(sprite,handler(_owner, _owner.onBtnReady),200)
-	sprite:setPosition(CCBNodeExtend.ccb_pos(1.4400002956390381,150,0,node))
+	sprite:setPosition(CCBNodeExtend.ccb_pos(-316.80007934570312,86.639984130859375,0,node))
 	sprite:setAnchorPoint(ccp(0.5,0.5))
 	sprite:setScaleX(0.69999998807907104)
 	sprite:setScaleY(0.69999998807907104)
@@ -166,6 +166,17 @@ function Layer_layout:ctor(_owner)
 
 
 
+
+
+	local scroll = CCScrollView:create()
+	scroll:setContainer(require("app.layout.Star_layout").new())
+	scroll:setDirection(kCCScrollViewDirectionVertical)
+	scroll:setContentSize(CCBNodeExtend.ccb_size(100,100,0,self))
+	scroll:setAnchorPoint(ccp(0.5,0.5))
+	scroll:setScale(1)
+	scroll:setIgnoreAnchorPointForPosition(true)
+
+	self:addChild(scroll)
 
 
 

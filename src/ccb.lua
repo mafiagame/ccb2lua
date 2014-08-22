@@ -16,6 +16,7 @@ end)
 -- import 'CCScale9Sprite.lua' as CCScale9Sprite
 -- import 'CCMenu.lua' as CCMenu
 -- import 'CCMenuItemImage.lua' as CCMenuItemImage
+-- import 'CCScrollView.lua' as CCScrollView
 
 -- macro rennder_tree(data,parent)
     -- for item in data.children
@@ -47,6 +48,9 @@ end)
         -- elif item.baseClass == "CCMenuItemImage"
 {{ CCMenuItemImage.rennder(item,temp_parent) }}
             -- set temp_parent = "menuitemimage"
+        -- elif item.baseClass == "CCScrollView"
+{{ CCScrollView.rennder(item,temp_parent,ccbdata) }}
+            -- set temp_parent = "scroll"
         -- endif
         -- if item.children
             -- if item.memberVarAssignmentName != ""

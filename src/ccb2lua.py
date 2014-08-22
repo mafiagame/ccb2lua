@@ -22,13 +22,12 @@ pages = (
 	'CCLabelTTF.lua',
 	'CCLayerColor.lua',
 	'CCScale9Sprite.lua',
+	'CCScrollView.lua',
 )
 templates = dict((name, open(name, 'rb').read()) for name in pages)
 
 def debug(text):
   print text
-  return ''
-env.filters['debug']=debug
 
 def getProperty(_data, _key):
 	for key in _data:
@@ -37,7 +36,7 @@ def getProperty(_data, _key):
 	print _key,"not find!"
 	return ""
 
-env.filters['debug']=debug
+env.globals['debug']=debug
 env.globals['getProperty']=getProperty
 
 env.loader = DictLoader(templates)

@@ -5,8 +5,12 @@
     	--elif item.name == "position"
 {{'\t'}}{{name}}:setPosition(CCBNodeExtend.ccb_pos({{item.value[0]}},{{item.value[1]}},{{item.value[2]}},{{parent}}))
     	--elif item.name == "scale"
+            -- if item.value[1]
 {{'\t'}}{{name}}:setScaleX({{item.value[0]}})
 {{'\t'}}{{name}}:setScaleY({{item.value[1]}})
+            -- else
+{{'\t'}}{{name}}:setScale({{item.value}})
+            -- endif
     	--elif item.name == "ignoreAnchorPointForPosition"
 {{'\t'}}{{name}}:setIgnoreAnchorPointForPosition({{item.value}})
 		--elif item.name == "displayFrame"
