@@ -1,10 +1,10 @@
 
-local BattleWinLayer1_layout = class("BattleWinLayer1_layout",function()
+local BattleWinLayer_layout = class("BattleWinLayer_layout",function()
     return CCBNodeExtend.extend(display.newLayer())
 end)
 
 
-function BattleWinLayer1_layout:ctor()
+function BattleWinLayer_layout:ctor()
 	self:ccb_sizs(100,100,1)
 	self:ccb_anchor(0.5,0.5)
 	self:ccb_scale(1,1,false,0)
@@ -68,4 +68,4 @@ function BattleWinLayer1_layout:ctor()
 
 end
 
-return BattleWinLayer1_layout
+return BattleWinLayer_layout

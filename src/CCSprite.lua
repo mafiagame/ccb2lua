@@ -1,15 +1,15 @@
-$ import 'CCNode.lua' as CCNode
+-- import 'CCNode.lua' as CCNode
 
 
 
-$ macro rennder(data,parent)
+-- macro rennder(data,parent)
 
-$ if data.customClass and data.customClass != "" 
+-- if data.customClass and data.customClass != "" 
 {{'\t'}}local sprite = CCBNodeExtend.extend(require("app.views.{{ data.customClass }}").new())
-$ else 
+-- else 
 {{'\t'}}local sprite = CCBNodeExtend.extend(display.newSprite())
-$ endif
+-- endif
 {{ CCNode.rennder_base_properties("sprite",data.properties) }}
 {{'\t'}}{{parent}}:addChild(sprite)
 
-$ endmacro 
+-- endmacro 

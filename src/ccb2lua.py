@@ -1,89 +1,13 @@
 #!/usr/bin/env python  
 # coding=utf-8  
 # Python 2.7.3  
-from bs4 import BeautifulSoup
-import pprint
 from jinja2.environment import Environment
 from jinja2.loaders import DictLoader
 
+import ccbreader
 
-pp = pprint.PrettyPrinter(indent=4)
-
-def cleanString(_s):
-	try:
-		return _s.join(_s.split()) 
-	except:
-		return ""	
-
-def getValue(_soup):
-	return _soup.findNextSibling()
-
-def getKeyString(_soup):
-	try:
-		return _soup.next
-	except:
-		return ""
-
-
-def getValueString(_soup):
-	try:
-		return _soup.findNextSibling().next
-	except:
-		return ""
-
-def findAndGetValue(_soup, _key):
-	_ = _soup.find(True,recursive=False,text=_key)
-	return _.findNextSibling()
-
-
-
-def parseDict(_soup):
-	print "----------------------------------parseDict----------------------------------"
-	_dict = dict()
-
-	for key in _soup.findAll("key",recursive=False):
-		k = cleanString(key.contents[0])
-		v = getValue(key)
-		if v.name == "array":
-			_dict[k] = parseArray(v)
-		elif v.name == "dict":
-			_dict[k] = parseDict(v)
-		elif v.name != "":
-			if v.name == "true" or v.name == "false":
-				_dict[k] = v.name
-			else:
-				value = cleanString(v.string)
-			  	if value and value != "":
-			  		_dict[k] = v.string
-
-	return _dict
-
-
-
-def parseArray(_soup):
-	print "----------------------------------parseArray----------------------------------"
-	_array = list()
-	for v in _soup.contents:
-		# name = cleanString(v.next.name)
-		if v.name == "array":
-			_array.append(parseArray(v))
-		elif v.name == "dict":
-			_array.append(parseDict(v))
-		elif v.name != "":
-			if v.name == "true" or v.name == "false":
-				_array.append(v.name)
-			else:
-				value = cleanString(v.string)
-			  	if value and value != "\n":
-					_array.append(v.string)
-
-
-	return _array
-
-
-
-
-env = Environment(trim_blocks = True, line_statement_prefix = '$', line_comment_prefix = '#')
+# 加载所有模板
+env = Environment(trim_blocks = True, line_statement_prefix = '--', line_comment_prefix = '#')
 pages = (
 	'CCBFile.lua', 
 	'CCNode.lua',
@@ -93,57 +17,35 @@ pages = (
 )
 templates = dict((name, open(name, 'rb').read()) for name in pages)
 env.loader = DictLoader(templates)
-# tmpl = env.get_template('page.html')
-
-def parseNode(_dict):
-	baseClass = _dict["baseClass"]
-	if baseClass == "CCLayer":
-		template = env.get_template(cclayer_tpl)
-		# template = jj.Template(cclayer_tpl)
-		cclayer_out = template.render(data = _dict, super = baseClass.replace("CC",""))
-		print(cclayer_out)
-
-	# for v in _dict["children"]:
-	# 	if isinstance(v, dict):
-	# 		parseNode(v)
 
 
-classname = "BattleWinLayer1"
+# 获取ccb对应的lua类名（文件名）
+def getClassName(_file, _data):
+	classname = _data["customClass"]
 
-def parseRootNode(_dict):
-	baseClass = _dict["baseClass"]
+	if not classname or classname == "":
+		classname = _file.replace(".ccb","_layout")
+
+	return classname
+
+# 转化
+def convertccb2lua(_in, _out, _name):
+	ccb_data = ccbreader.parseCCB(_in+"/"+_name)
+
+	# 获取文件名
+	classname = getClassName(_name, ccb_data)
+
+	# 渲染模板
+	baseClass = ccb_data["baseClass"]
 	template = env.get_template('CCBFile.lua')
-	cclayer_out = template.render(data = _dict, super = baseClass.replace("CC",""), classname = classname+"_layout")
-	print(cclayer_out)
+	content = template.render(data = ccb_data, super = baseClass.replace("CC",""), classname = classname)
 
-	return cclayer_out
-
-
-# open ccb file
-ccbfile = open("../proj.ccb/ccb/BattleWinLayer.ccb",'r')
-ccbfile_content = ccbfile.read()
-ccbfile.close()
-
-# find nodeGraph
-soup = BeautifulSoup(ccbfile_content, 'xml')
-_ = soup.dict
-
-nodeGraph = findAndGetValue(_,"nodeGraph")
-
-# parse all data
-data = parseDict(nodeGraph)
-
-pp.pprint(data)
-
-content = parseRootNode(data)
-
-lua = open("../scripts/app/scenes/BattleWinLayer_layout.lua",'w')
-lua_content = lua.write(content)
-lua.close()
+	# 写lua文件
+	lua = open(_out+"/"+classname+".lua",'w')
+	lua_content = lua.write(content)
+	lua.close()
 
 
+convertccb2lua("../proj.ccb/ccb/", "../scripts/app/scenes", "BattleWinLayer.ccb")
 
 
-# print data
-
-# print nodeGraph

@@ -1,34 +1,34 @@
-$ macro rennder_base_properties(name,properties) 
-    $ for item in properties
-    	$if item.name == "anchorPoint"
+-- macro rennder_base_properties(name,properties) 
+    -- for item in properties
+    	--if item.name == "anchorPoint"
 {{'\t'}}{{name}}:ccb_anchor({{item.value[0]}},{{item.value[1]}})
-    	$elif item.name == "position"
+    	--elif item.name == "position"
 {{'\t'}}{{name}}:ccb_pos({{item.value[0]}},{{item.value[1]}},{{item.value[2]}})
-    	$elif item.name == "scale"
+    	--elif item.name == "scale"
 {{'\t'}}{{name}}:ccb_scale({{item.value[0]}},{{item.value[1]}},{{item.value[2]}},{{item.value[3]}})
-    	$elif item.name == "ignoreAnchorPointForPosition"
+    	--elif item.name == "ignoreAnchorPointForPosition"
 {{'\t'}}{{name}}:ccb_ignore_anchor_for_position({{item.value}})
-		$elif item.name == "displayFrame"
+		--elif item.name == "displayFrame"
 {{'\t'}}{{name}}:ccb_display_frame("{{item.value[0]}}")
-		$elif item.name == "contentSize"
+		--elif item.name == "contentSize"
 {{'\t'}}{{name}}:ccb_sizs({{item.value[0]}},{{item.value[1]}},{{item.value[2]}})
-        $elif item.name == "color"
+        --elif item.name == "color"
 {{'\t'}}{{name}}:ccb_color({{item.value[0]}},{{item.value[1]}},{{item.value[2]}})
-        $elif item.name == "opacity"
+        --elif item.name == "opacity"
 {{'\t'}}{{name}}:ccb_opacity({{item.value}})
-    	$endif
+    	--endif
     	
-    $ endfor
-$ endmacro
+    -- endfor
+-- endmacro
 
 
-$ macro rennder(data,parent) 
-    $ if data.customClass and data.customClass != ""
+-- macro rennder(data,parent) 
+    -- if data.customClass and data.customClass != ""
 {{'\t'}}local node = CCBNodeExtend.extend(require("app.views.{{ data.customClass }}").new())
-    $ else
+    -- else
 {{'\t'}}local node = CCBNodeExtend.extend(display.newNode())
-    $ endif
+    -- endif
 {{ rennder_base_properties("node",data.properties) }}
 {{'\t'}}{{parent}}:addChild(node)
 
-$ endmacro
+-- endmacro
