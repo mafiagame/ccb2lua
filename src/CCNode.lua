@@ -1,21 +1,24 @@
--- macro rennder_base_properties(name,properties) 
+-- macro rennder_base_properties(name,properties,parent) 
     -- for item in properties
     	--if item.name == "anchorPoint"
-{{'\t'}}{{name}}:ccb_anchor({{item.value[0]}},{{item.value[1]}})
+{{'\t'}}{{name}}:setAnchorPoint(ccp({{item.value[0]}},{{item.value[1]}}))
     	--elif item.name == "position"
-{{'\t'}}{{name}}:ccb_pos({{item.value[0]}},{{item.value[1]}},{{item.value[2]}})
+{{'\t'}}{{name}}:setPosition(CCBNodeExtend.ccb_pos({{item.value[0]}},{{item.value[1]}},{{item.value[2]}},{{parent}}))
     	--elif item.name == "scale"
-{{'\t'}}{{name}}:ccb_scale({{item.value[0]}},{{item.value[1]}},{{item.value[2]}},{{item.value[3]}})
+{{'\t'}}{{name}}:setScaleX({{item.value[0]}})
+{{'\t'}}{{name}}:setScaleY({{item.value[1]}})
     	--elif item.name == "ignoreAnchorPointForPosition"
-{{'\t'}}{{name}}:ccb_ignore_anchor_for_position({{item.value}})
+{{'\t'}}{{name}}:setIgnoreAnchorPointForPosition({{item.value}})
 		--elif item.name == "displayFrame"
-{{'\t'}}{{name}}:ccb_display_frame("{{item.value[0]}}")
+{{'\t'}}{{name}}:setDisplayFrame(CCBNodeExtend.ccb_display_frame("{{item.value[0]}}"))
 		--elif item.name == "contentSize"
-{{'\t'}}{{name}}:ccb_sizs({{item.value[0]}},{{item.value[1]}},{{item.value[2]}})
+{{'\t'}}{{name}}:setContentSize(CCBNodeExtend.ccb_size({{item.value[0]}},{{item.value[1]}},{{item.value[2]}},{{parent}}))
+        --elif item.name == "preferedSize"
+{{'\t'}}{{name}}:setPreferredSize(CCBNodeExtend.ccb_size({{item.value[0]}},{{item.value[1]}},{{item.value[2]}},{{parent}}))
         --elif item.name == "color"
-{{'\t'}}{{name}}:ccb_color({{item.value[0]}},{{item.value[1]}},{{item.value[2]}})
+{{'\t'}}{{name}}:setColor(ccc3({{item.value[0]}},{{item.value[1]}},{{item.value[2]}}))
         --elif item.name == "opacity"
-{{'\t'}}{{name}}:ccb_opacity({{item.value}})
+{{'\t'}}{{name}}:setOpacity({{item.value}})
     	--endif
     	
     -- endfor
@@ -24,11 +27,11 @@
 
 -- macro rennder(data,parent) 
     -- if data.customClass and data.customClass != ""
-{{'\t'}}local node = CCBNodeExtend.extend(require("app.views.{{ data.customClass }}").new())
+{{'\t'}}local node = require("app.views.{{ data.customClass }}").new()
     -- else
-{{'\t'}}local node = CCBNodeExtend.extend(display.newNode())
+{{'\t'}}local node = display.newNode()
     -- endif
-{{ rennder_base_properties("node",data.properties) }}
+{{ rennder_base_properties("node",data.properties,parent) }}
 {{'\t'}}{{parent}}:addChild(node)
 
 -- endmacro

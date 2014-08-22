@@ -4,8 +4,20 @@ local MainScene = class("MainScene", function()
 end)
 
 function MainScene:ctor()
-    require("app.scenes.BattleWinLayer_layout").new()
+    require("app.layout.Layer_layout").new(self)
         :addTo(self)
+end
+
+function MainScene:onBtnReady()
+    print("onBtnReady!!!")
+end
+
+function MainScene:onBtnAgain()
+    print("onBtnAgain!!!")
+end
+
+function MainScene:onBtnNext()
+    print("onBtnNext!!!")
 end
 
 function MainScene:onEnter()
