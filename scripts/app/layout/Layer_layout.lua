@@ -46,6 +46,7 @@ function Layer_layout:ctor(_owner)
 	node:addChild(sprite)
 
 
+	_owner["_guang"] = sprite
 	local ccb = require("app.layout.Star_layout").new()
 	ccb:setPosition(CCBNodeExtend.ccb_pos(0.0,150,0,node))
 	ccb:setScaleX(1)
@@ -137,7 +138,7 @@ function Layer_layout:ctor(_owner)
 
 
 	local menuitemimage = CCMenuItemImage:create()
-CCBNodeExtend.addListener(menuitemimage, handler(_owner, _owner.onBtnNext))
+	CCBNodeExtend.addListener(menuitemimage, handler(_owner, _owner.onBtnNext))
 	menuitemimage:setNormalSpriteFrame(CCBNodeExtend.ccb_display_frame("battle_win/qianjin_1.png"))
 	menuitemimage:setSelectedSpriteFrame(CCBNodeExtend.ccb_display_frame("battle_win/qianjin_2.png"))
 	menuitemimage:setPosition(CCBNodeExtend.ccb_pos(120,0.0,0,menu))
@@ -150,7 +151,7 @@ CCBNodeExtend.addListener(menuitemimage, handler(_owner, _owner.onBtnNext))
 
 
 	local menuitemimage = CCMenuItemImage:create()
-CCBNodeExtend.addListener(menuitemimage, handler(_owner, _owner.onBtnAgain))
+	CCBNodeExtend.addListener(menuitemimage, handler(_owner, _owner.onBtnAgain))
 	menuitemimage:setNormalSpriteFrame(CCBNodeExtend.ccb_display_frame("fanhui_1.png", "button.plist"))
 	menuitemimage:setSelectedSpriteFrame(CCBNodeExtend.ccb_display_frame("battle_win/gognlai_2.png"))
 	menuitemimage:setPosition(CCBNodeExtend.ccb_pos(-120,0.0,0,menu))
@@ -211,6 +212,7 @@ CCBNodeExtend.addListener(menuitemimage, handler(_owner, _owner.onBtnAgain))
 	self:addChild(cccb)
 
 
+	_owner["_btnCCC"] = cccb
 
 
 

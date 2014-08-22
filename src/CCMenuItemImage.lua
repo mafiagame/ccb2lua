@@ -10,7 +10,7 @@
 {{'\t'}}local menuitemimage = CCMenuItemImage:create()
 -- endif
 -- set name = getProperty(data.properties,"block")[0]
-CCBNodeExtend.addListener(menuitemimage, handler(_owner, _owner.{{name}}))
+{{'\t'}}CCBNodeExtend.addListener(menuitemimage, handler(_owner, _owner.{{name}}))
 -- set name = getProperty(data.properties,"normalSpriteFrame")
 -- if name
 	-- if name[1]

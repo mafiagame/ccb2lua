@@ -6,6 +6,9 @@ end)
 function MainScene:ctor()
     require("app.layout.Layer_layout").new(self)
         :addTo(self)
+
+
+    self._guang:runAction(CCRepeatForever:create(CCRotateBy:create(1, 90)))
 end
 
 function MainScene:onBtnReady()

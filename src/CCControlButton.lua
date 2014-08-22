@@ -1,16 +1,5 @@
 -- import 'CCNode.lua' as CCNode
 
-
-    	local pBackgroundButton = CCScale9Sprite:create("extensions/button.png")
-    	local pBackgroundHighlightedButton = CCScale9Sprite:create("extensions/buttonHighlighted.png")
-
-    	pTitleButton = CCLabelTTF:create(pStrTitle, "Marker Felt", 30)
-
-    	pTitleButton:setColor(ccc3(159, 168, 176))
-
-    	local pButton = CCControlButton:create(pTitleButton, pBackgroundButton)
-    	return pButton
-
 -- macro rennder(data,parent,ccbdata)
 
 -- if data.customClass and data.customClass != "" 

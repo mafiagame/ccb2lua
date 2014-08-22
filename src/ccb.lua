@@ -56,6 +56,18 @@ end)
 {{ CCControlButton.rennder(item,temp_parent,ccbdata) }}
             -- set temp_parent = "cccb"
         -- endif
+
+        -- set var_name = item.memberVarAssignmentName
+        -- if not var_name or var_name == ""
+            -- set var_name = item.displayName
+            -- if not var_name or var_name.find("_") != 0
+                -- set var_name = ""
+            -- endif
+        -- endif
+        -- if var_name and var_name != ""
+{{'\t'}}_owner["{{var_name}}"] = {{temp_parent}}
+        -- endif
+
         -- if item.children
             -- if item.memberVarAssignmentName != ""
             -- endif
