@@ -20,6 +20,10 @@ function MainScene:onBtnNext()
     print("onBtnNext!!!")
 end
 
+function MainScene:onBtnCCC()
+    print("onBtnCCC!!!")
+end
+
 function MainScene:onEnter()
     if device.platform == "android" then
         -- avoid unmeant back

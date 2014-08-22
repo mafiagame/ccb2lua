@@ -41,6 +41,7 @@ function Layer_layout:ctor(_owner)
 	sprite:setScaleY(0.69999998807907104)
 	sprite:setIgnoreAnchorPointForPosition(false)
 	sprite:setDisplayFrame(CCBNodeExtend.ccb_display_frame("battle_win/guang.png"))
+	sprite:setDisplayFrame(CCBNodeExtend.ccb_display_frame("battle_win/guang.png"))
 
 	node:addChild(sprite)
 
@@ -120,6 +121,7 @@ function Layer_layout:ctor(_owner)
 	sprite:setScaleY(1)
 	sprite:setIgnoreAnchorPointForPosition(false)
 	sprite:setDisplayFrame(CCBNodeExtend.ccb_display_frame("battle_win/tiao.png"))
+	sprite:setDisplayFrame(CCBNodeExtend.ccb_display_frame("battle_win/tiao.png"))
 
 	self:addChild(sprite)
 
@@ -177,6 +179,38 @@ function Layer_layout:ctor(_owner)
 	scroll:setIgnoreAnchorPointForPosition(true)
 
 	self:addChild(scroll)
+
+
+	local cccb = CCControlButton:create()
+	cccb:setTitleForState(CCString:create("按我"),CCControlStateNormal)
+	cccb:setTitleTTFForState("Helvetica",CCControlStateNormal)
+	cccb:setTitleTTFSizeForState(20,CCControlStateNormal)
+	cccb:setTitleColorForState(ccc3(254,251,0),CCControlStateNormal)
+	cccb:setBackgroundSpriteFrameForState(CCBNodeExtend.ccb_display_frame("battle_win/luxietiao.png"),CCControlStateNormal)
+	cccb:setTitleColorForState(ccc3(255,38,0),CCControlStateSelected)
+	cccb:setBackgroundSpriteFrameForState(CCBNodeExtend.ccb_display_frame("battle_win/luxietiaodi.png"),CCControlStateSelected)
+	cccb:setTitleColorForState(ccc3(254,251,0),CCControlStateDisabled)
+
+	cccb:setPreferredSize(CCBNodeExtend.ccb_size(120,50,0,self))
+
+	cccb:setEnabled(true)
+	cccb:addHandleOfControlEvent(handler(_owner, _owner.onBtnCCC),CCControlEventTouchDown)
+	cccb:addHandleOfControlEvent(handler(_owner, _owner.onBtnCCC),CCControlEventTouchDragInside)
+	cccb:addHandleOfControlEvent(handler(_owner, _owner.onBtnCCC),CCControlEventTouchDragOutside)
+	cccb:addHandleOfControlEvent(handler(_owner, _owner.onBtnCCC),CCControlEventTouchDragEnter)
+	cccb:addHandleOfControlEvent(handler(_owner, _owner.onBtnCCC),CCControlEventTouchDragExit)
+	cccb:addHandleOfControlEvent(handler(_owner, _owner.onBtnCCC),CCControlEventTouchUpInside)
+	cccb:addHandleOfControlEvent(handler(_owner, _owner.onBtnCCC),CCControlEventTouchUpOutside)
+	cccb:addHandleOfControlEvent(handler(_owner, _owner.onBtnCCC),CCControlEventTouchCancel)
+
+	cccb:setPosition(CCBNodeExtend.ccb_pos(784.8001708984375,141.12002563476562,0,self))
+	cccb:setAnchorPoint(ccp(0.5,0.5))
+	cccb:setScaleX(1)
+	cccb:setScaleY(1)
+	cccb:setIgnoreAnchorPointForPosition(false)
+	cccb:setPreferredSize(CCBNodeExtend.ccb_size(120,50,0,self))
+
+	self:addChild(cccb)
 
 
 

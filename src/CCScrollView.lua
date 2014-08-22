@@ -1,7 +1,5 @@
 -- import 'CCNode.lua' as CCNode
 
-    self.scroll:setContentOffset(CCPoint(0,-self.scroll:getContentSize().height+self.scroll:getViewSize().height))
-
 -- macro rennder(data,parent,ccbdata)
 
 -- if data.customClass and data.customClass != "" 

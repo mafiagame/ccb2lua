@@ -17,6 +17,7 @@ end)
 -- import 'CCMenu.lua' as CCMenu
 -- import 'CCMenuItemImage.lua' as CCMenuItemImage
 -- import 'CCScrollView.lua' as CCScrollView
+-- import 'CCControlButton.lua' as CCControlButton
 
 -- macro rennder_tree(data,parent)
     -- for item in data.children
@@ -51,6 +52,9 @@ end)
         -- elif item.baseClass == "CCScrollView"
 {{ CCScrollView.rennder(item,temp_parent,ccbdata) }}
             -- set temp_parent = "scroll"
+        -- elif item.baseClass == "CCControlButton"
+{{ CCControlButton.rennder(item,temp_parent,ccbdata) }}
+            -- set temp_parent = "cccb"
         -- endif
         -- if item.children
             -- if item.memberVarAssignmentName != ""

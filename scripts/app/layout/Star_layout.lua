@@ -16,6 +16,7 @@ function Star_layout:ctor(_owner)
 	sprite:setScaleY(1)
 	sprite:setIgnoreAnchorPointForPosition(false)
 	sprite:setDisplayFrame(CCBNodeExtend.ccb_display_frame("battle_win/daxingxing_2.png"))
+	sprite:setDisplayFrame(CCBNodeExtend.ccb_display_frame("battle_win/daxingxing_2.png"))
 
 	self:addChild(sprite)
 
@@ -25,6 +26,7 @@ function Star_layout:ctor(_owner)
 	sprite:setScaleX(1)
 	sprite:setScaleY(1)
 	sprite:setIgnoreAnchorPointForPosition(false)
+	sprite:setDisplayFrame(CCBNodeExtend.ccb_display_frame("battle_win/daxingxing_1.png"))
 	sprite:setDisplayFrame(CCBNodeExtend.ccb_display_frame("battle_win/daxingxing_1.png"))
 
 	self:addChild(sprite)

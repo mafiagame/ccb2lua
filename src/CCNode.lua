@@ -14,6 +14,11 @@
     	--elif item.name == "ignoreAnchorPointForPosition"
 {{'\t'}}{{name}}:setIgnoreAnchorPointForPosition({{item.value}})
 		--elif item.name == "displayFrame"
+            -- if item.value[1]
+{{'\t'}}{{name}}:setDisplayFrame(CCBNodeExtend.ccb_display_frame("{{var[0]}}","{{var[1]}}"))
+            -- else
+{{'\t'}}{{name}}:setDisplayFrame(CCBNodeExtend.ccb_display_frame("{{item.value[0]}}"))
+            -- endif
 {{'\t'}}{{name}}:setDisplayFrame(CCBNodeExtend.ccb_display_frame("{{item.value[0]}}"))
 		--elif item.name == "contentSize"
 {{'\t'}}{{name}}:setContentSize(CCBNodeExtend.ccb_size({{item.value[0]}},{{item.value[1]}},{{item.value[2]}},{{parent}}))
