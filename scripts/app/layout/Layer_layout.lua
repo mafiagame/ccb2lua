@@ -136,11 +136,10 @@ function Layer_layout:ctor(_owner)
 	sprite:addChild(menu)
 
 
-	local menuitemimage = ui.newImageMenuItem({
-		image = "battle_win/qianjin_1.png",
-		imageSelected = "battle_win/qianjin_2.png",
-		listener = handler(_owner, _owner.onBtnNext),
-	})
+	local menuitemimage = CCMenuItemImage:create()
+CCBNodeExtend.addListener(menuitemimage, handler(_owner, _owner.onBtnNext))
+	menuitemimage:setNormalSpriteFrame(CCBNodeExtend.ccb_display_frame("battle_win/qianjin_1.png"))
+	menuitemimage:setSelectedSpriteFrame(CCBNodeExtend.ccb_display_frame("battle_win/qianjin_2.png"))
 	menuitemimage:setPosition(CCBNodeExtend.ccb_pos(120,0.0,0,menu))
 	menuitemimage:setAnchorPoint(ccp(0.5,0.5))
 	menuitemimage:setScaleX(1)
@@ -150,11 +149,10 @@ function Layer_layout:ctor(_owner)
 	menu:addChild(menuitemimage)
 
 
-	local menuitemimage = ui.newImageMenuItem({
-		image = "battle_win/gognlai_1.png",
-		imageSelected = "battle_win/gognlai_2.png",
-		listener = handler(_owner, _owner.onBtnAgain),
-	})
+	local menuitemimage = CCMenuItemImage:create()
+CCBNodeExtend.addListener(menuitemimage, handler(_owner, _owner.onBtnAgain))
+	menuitemimage:setNormalSpriteFrame(CCBNodeExtend.ccb_display_frame("fanhui_1.png", "button.plist"))
+	menuitemimage:setSelectedSpriteFrame(CCBNodeExtend.ccb_display_frame("battle_win/gognlai_2.png"))
 	menuitemimage:setPosition(CCBNodeExtend.ccb_pos(-120,0.0,0,menu))
 	menuitemimage:setAnchorPoint(ccp(0.5,0.5))
 	menuitemimage:setScaleX(1)

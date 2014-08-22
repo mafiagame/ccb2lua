@@ -21,7 +21,18 @@ function CCBNodeExtend.cap_insets(self, left, top, right, bottom)
 	return CCRect(0,0,0,0)
 end
 
-function CCBNodeExtend.ccb_display_frame(name)
+function CCBNodeExtend.addListener(self, listener)
+    CCNodeExtend.extend(self)
+    if type(listener) == "function" then
+        self:registerScriptTapHandler(listener)
+    end
+end
+
+
+function CCBNodeExtend.ccb_display_frame(name, plist)
+	if plist then
+		CCSpriteFrameCache:sharedSpriteFrameCache():addSpriteFramesWithFile(plist)
+	end
 	local frame = CCSpriteFrameCache:sharedSpriteFrameCache():spriteFrameByName(name)
 	if not frame then
 		local texture = CCTextureCache:sharedTextureCache():addImage(name)

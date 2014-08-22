@@ -53,7 +53,7 @@
 	-- set var = getProperty(data.properties,"backgroundSpriteFrame|"+tostr(x))
 	-- if var and var[0] != "ccbResources/ccbDefaultImages.plist"
 		-- if var[1]
-{{'\t'}}cccb:setBackgroundSpriteFrameForState(CCBNodeExtend.ccb_display_frame("{{var[0]}}","{{var[1]}}"),{{state}})
+{{'\t'}}cccb:setBackgroundSpriteFrameForState(CCBNodeExtend.ccb_display_frame("{{var[1]}}","{{var[0]}}"),{{state}})
 		-- else
 {{'\t'}}cccb:setBackgroundSpriteFrameForState(CCBNodeExtend.ccb_display_frame("{{var[0]}}"),{{state}})
 		-- endif
