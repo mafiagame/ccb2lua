@@ -4,6 +4,7 @@ local Star_layout = class("Star_layout",function()
 end)
 
 
+
 function Star_layout:ctor(_owner)
 	self:setAnchorPoint(ccp(0.0,0.0))
 	self:setScaleX(1)
@@ -21,7 +22,9 @@ function Star_layout:ctor(_owner)
 	self:addChild(sprite_1)
 
 
+	self._daxingxing_2 = sprite_1
 	local sprite_2 = display.newSprite()
+	CCBNodeExtend.touchSprite(sprite_2, self, _owner, "onBtnClick")
 	sprite_2:setAnchorPoint(ccp(0.5,0.5))
 	sprite_2:setScaleX(1)
 	sprite_2:setScaleY(1)
@@ -32,6 +35,7 @@ function Star_layout:ctor(_owner)
 	self:addChild(sprite_2)
 
 
+	self._daxingxing_1 = sprite_2
 
 
 end

@@ -9,7 +9,7 @@
 {{'\t'}}local {{name}} = display.newSprite()
 	-- endif
 	-- if data.customClass and data.customClass.find("on") == 0
-{{'\t'}}CCBNodeExtend.touchSprite({{name}},handler(_owner, _owner.{{data.customClass}}),200)
+{{'\t'}}CCBNodeExtend.touchSprite({{name}}, self, _owner, "{{data.customClass}}")
 	-- endif
 {{ CCNode.rennder_base_properties(name,data.properties,parent) }}
 -- endmacro 

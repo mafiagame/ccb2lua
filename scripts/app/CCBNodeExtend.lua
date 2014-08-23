@@ -18,13 +18,21 @@ function CCBNodeExtend.ccb_pos(x, y, flag, parent)
 end
 
 function CCBNodeExtend.cap_insets(self, left, top, right, bottom)
-	return CCRect(0,0,0,0)
+	self:setInsetLeft(left);
+	self:setInsetTop(top);
+	self:setInsetRight(right);
+	self:setInsetBottom(bottom);
 end
 
-function CCBNodeExtend.addListener(self, listener)
+
+
+function CCBNodeExtend.addListener(sprite, self, owner, name)
     CCNodeExtend.extend(self)
-    if type(listener) == "function" then
-        self:registerScriptTapHandler(listener)
+
+    if owner then
+		sprite:registerScriptTapHandler(handler(owner, assert(owner[name],"Owner don't have ["..name.."] function !")))
+    else
+		sprite:registerScriptTapHandler(handler(self, assert(self[name],"Self don't have ["..name.."] function !")))
     end
 end
 
@@ -53,19 +61,24 @@ function CCBNodeExtend.ccb_size(w, h, flag, parent)
 	end
 end
 
-function CCBNodeExtend.touchSprite(sprite,listener,opacity,params)
-    opacity = opacity or 150
+function CCBNodeExtend.touchSprite(sprite, self, owner, name)
+	local listener = nil
+    if owner then
+		listener = handler(owner, assert(owner[name],"Owner don't have ["..name.."] function !"))
+    else
+		listener = handler(self, assert(self[name],"Self don't have ["..name.."] function !"))
+    end
     sprite:setTouchEnabled(true)
     sprite:addTouchEventListener(function(event,x,y)
         if event == "began" then
-            sprite:setOpacity(opacity)
+            sprite:setOpacity(150)
             return 1
         elseif event == "moved" then
             sprite.isMoved = true
         elseif event == "ended" then
             sprite:setOpacity(255)
             if not sprite.isMoved then
-                listener(sprite,params)
+                listener(sprite)
             end
             sprite.isMoved = false
         end

@@ -6,11 +6,13 @@ import os
 import sys
 from jinja2.environment import Environment
 from jinja2.loaders import DictLoader
+import pprint
+pp = pprint.PrettyPrinter(indent=4)
 
 import ccbreader
 
 def debug(text):
-	print text
+	print(text)
 	return text
 
 
@@ -20,6 +22,11 @@ def getIndex():
 	global G_INDEX
 	G_INDEX+=1
 	return G_INDEX
+
+def resetIndex():
+	global G_INDEX
+	G_INDEX = 0
+
 
 
 def getProperty(_data, _key):
@@ -32,11 +39,36 @@ def getProperty(_data, _key):
 			else:
 				return key["value"]
 
-	print "warning: ",_key,"not find!"
+	print "warning: getProperty [",_key,"] not find!"
 	return ""
+
+def nilProperty(_data, _key):
+	for key in _data:
+		if key["name"] == _key:
+			key["value"] == ""
+			return ""
+
+	print "warning: nilProperty [",_key,"] not find!"
+	return ""
+
+
 
 def tostr(text):
 	return str(text)
+
+def getCustomClass(prototype):
+	prototype_data = prototype["data"]
+	classname = ""
+	if prototype_data["customClass"] and prototype_data["customClass"] != "":
+		classname = prototype_data["customClass"]
+	else:
+		if prototype_data["jsController"] and prototype_data["jsController"] != "":
+			classname = prototype_data["jsController"]
+		else:
+			if prototype_data["displayName"] and prototype_data["displayName"] != "" and prototype_data["displayName"].find("CC") == -1:
+				classname = prototype_data["displayName"]
+
+	return classname
 
 
  # 所有模板
@@ -57,8 +89,10 @@ pages = (
 )
 env.globals['debug']       = debug
 env.globals['getProperty'] = getProperty
+env.globals['nilProperty'] = nilProperty
 env.globals['tostr']       = tostr
 env.globals['getIndex']    = getIndex
+env.globals['getCustomClass']    = getCustomClass
 
 # 获取父类名字
 def getSuperName(_data):
@@ -113,6 +147,7 @@ def main():
 
 	# 生成所有layout文件
 	for key in data:
+		resetIndex()
 		convertccb2lua(data[key], data, opath)
 		print key,"done!"
 		

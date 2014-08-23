@@ -9,7 +9,7 @@
 {{'\t'}}local {{name}} = CCMenuItemImage:create()
 	-- endif
 	-- set var = getProperty(data.properties,"block")[0]
-{{'\t'}}CCBNodeExtend.addListener({{name}}, handler(_owner, _owner.{{var}}))
+{{'\t'}}CCBNodeExtend.addListener({{name}}, self, _owner, "{{var}}")
 	-- set var = getProperty(data.properties,"normalSpriteFrame")
 	-- if var
 		-- if var[1]

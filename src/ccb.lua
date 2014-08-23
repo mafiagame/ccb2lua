@@ -1,11 +1,7 @@
 
--- if data.customClass and data.customClass != ""
-local {{ classname }} = class("{{ classname }}",require("app.views.{{ data.customClass }}"))
--- else
 local {{ classname }} = class("{{ classname }}",function()
     return display.new{{ super }}()
 end)
--- endif
 
 -- import 'CCNode.lua' as CCNode
 -- import 'CCSprite.lua' as CCSprite
@@ -68,7 +64,7 @@ end)
             -- endif
         -- endif
         -- if var_name and var_name != ""
-{{'\t'}}_owner["{{var_name}}"] = {{name}}
+{{'\t'}}self.{{var_name}} = {{name}}
         -- endif
         -- if data.children
 {{ rennder_tree(data,name) }}

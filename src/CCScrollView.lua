@@ -7,9 +7,21 @@
 -- else 
 {{'\t'}}local {{name}} = CCScrollView:create()
 -- endif
+
+-- set item = getProperty(data.properties,"contentSize")
+	-- if item and item != ""
+{{'\t'}}{{name}}:setViewSize(CCBNodeExtend.ccb_size({{item[0]}},{{item[1]}},{{item[2]}},{{parent}}))
+	-- endif
+-- set _ = nilProperty(data.properties,"contentSize")
 -- set container = getProperty(data.properties,"container")
 -- if container and container != ""
-{{'\t'}}{{name}}:setContainer(require("app.layout.{{ccbdata[container].class}}").new())
+	-- set prototype = ccbdata[container]
+	-- set classname = getCustomClass(prototype)
+	-- if classname == ""
+{{'\t'}}{{name}}:setContainer(require("app.layout.{{prototype.class}}").new())
+	-- else
+{{'\t'}}{{name}}:setContainer(require("app.scenes.{{classname}}").new())
+	-- endif
 -- endif
 -- set direction = getProperty(data.properties,"direction")
 -- if direction == "2"
