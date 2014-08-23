@@ -10,28 +10,26 @@ function Star_layout:ctor(_owner)
 	self:setScaleY(1)
 	self:setIgnoreAnchorPointForPosition(false)
 
-	local sprite = display.newSprite()
-	sprite:setAnchorPoint(ccp(0.5,0.5))
-	sprite:setScaleX(1)
-	sprite:setScaleY(1)
-	sprite:setIgnoreAnchorPointForPosition(false)
-	sprite:setDisplayFrame(CCBNodeExtend.ccb_display_frame("battle_win/daxingxing_2.png"))
-	sprite:setDisplayFrame(CCBNodeExtend.ccb_display_frame("battle_win/daxingxing_2.png"))
-
-	self:addChild(sprite)
+	local sprite_1 = display.newSprite()
+	sprite_1:setAnchorPoint(ccp(0.5,0.5))
+	sprite_1:setScaleX(1)
+	sprite_1:setScaleY(1)
+	sprite_1:setIgnoreAnchorPointForPosition(false)
+	sprite_1:setDisplayFrame(CCBNodeExtend.ccb_display_frame("battle_win/daxingxing_2.png"))
 
 
-	local sprite = display.newSprite()
-	sprite:setAnchorPoint(ccp(0.5,0.5))
-	sprite:setScaleX(1)
-	sprite:setScaleY(1)
-	sprite:setIgnoreAnchorPointForPosition(false)
-	sprite:setDisplayFrame(CCBNodeExtend.ccb_display_frame("battle_win/daxingxing_1.png"))
-	sprite:setDisplayFrame(CCBNodeExtend.ccb_display_frame("battle_win/daxingxing_1.png"))
-
-	self:addChild(sprite)
+	self:addChild(sprite_1)
 
 
+	local sprite_2 = display.newSprite()
+	sprite_2:setAnchorPoint(ccp(0.5,0.5))
+	sprite_2:setScaleX(1)
+	sprite_2:setScaleY(1)
+	sprite_2:setIgnoreAnchorPointForPosition(false)
+	sprite_2:setDisplayFrame(CCBNodeExtend.ccb_display_frame("battle_win/daxingxing_1.png"))
+
+
+	self:addChild(sprite_2)
 
 
 

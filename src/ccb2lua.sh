@@ -1,0 +1,1 @@
+python ccb2lua.py "../proj.ccb/ccb" "../scripts/app/layout" "."

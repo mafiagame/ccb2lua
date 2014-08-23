@@ -2,40 +2,37 @@
 
 
 
--- macro rennder(data,parent)
-
--- if data.customClass and data.customClass != "" 
-{{'\t'}}local menuitemimage = require("app.views.{{ data.customClass }}").new()
--- else 
-{{'\t'}}local menuitemimage = CCMenuItemImage:create()
--- endif
--- set name = getProperty(data.properties,"block")[0]
-{{'\t'}}CCBNodeExtend.addListener(menuitemimage, handler(_owner, _owner.{{name}}))
--- set name = getProperty(data.properties,"normalSpriteFrame")
--- if name
-	-- if name[1]
-{{'\t'}}menuitemimage:setNormalSpriteFrame(CCBNodeExtend.ccb_display_frame("{{name[1]}}", "{{name[0]}}"))
-	-- else
-{{'\t'}}menuitemimage:setNormalSpriteFrame(CCBNodeExtend.ccb_display_frame("{{name[0]}}"))
+-- macro rennder(data,name,parent)
+	-- if data.customClass and data.customClass != "" 
+{{'\t'}}local {{name}} = require("app.views.{{ data.customClass }}").new()
+	-- else 
+{{'\t'}}local {{name}} = CCMenuItemImage:create()
 	-- endif
--- endif
--- set name = getProperty(data.properties,"selectedSpriteFrame")
--- if name
-	-- if name[1]
-{{'\t'}}menuitemimage:setSelectedSpriteFrame(CCBNodeExtend.ccb_display_frame("{{name[1]}}", "{{name[0]}}"))
-	-- else
-{{'\t'}}menuitemimage:setSelectedSpriteFrame(CCBNodeExtend.ccb_display_frame("{{name[0]}}"))
+	-- set var = getProperty(data.properties,"block")[0]
+{{'\t'}}CCBNodeExtend.addListener({{name}}, handler(_owner, _owner.{{var}}))
+	-- set var = getProperty(data.properties,"normalSpriteFrame")
+	-- if var
+		-- if var[1]
+{{'\t'}}{{name}}:setNormalSpriteFrame(CCBNodeExtend.ccb_display_frame("{{var[1]}}", "{{var[0]}}"))
+		-- else
+{{'\t'}}{{name}}:setNormalSpriteFrame(CCBNodeExtend.ccb_display_frame("{{var[0]}}"))
+		-- endif
 	-- endif
--- endif
--- set name = getProperty(data.properties,"disabledSpriteFrame")
--- if name
-	-- if name[1]
-{{'\t'}}menuitemimage:setDisabledSpriteFrame(CCBNodeExtend.ccb_display_frame("{{name[1]}}", "{{name[0]}}"))
-	-- else
-{{'\t'}}menuitemimage:setDisabledSpriteFrame(CCBNodeExtend.ccb_display_frame("{{name[0]}}"))
+	-- set var = getProperty(data.properties,"selectedSpriteFrame")
+	-- if var
+		-- if var[1]
+{{'\t'}}{{name}}:setSelectedSpriteFrame(CCBNodeExtend.ccb_display_frame("{{var[1]}}", "{{var[0]}}"))
+		-- else
+{{'\t'}}{{name}}:setSelectedSpriteFrame(CCBNodeExtend.ccb_display_frame("{{var[0]}}"))
+		-- endif
 	-- endif
--- endif
-{{ CCNode.rennder_base_properties("menuitemimage",data.properties,parent) }}
-{{'\t'}}{{parent}}:addChild(menuitemimage)
-
+	-- set var = getProperty(data.properties,"disabledSpriteFrame")
+	-- if var
+		-- if var[1]
+{{'\t'}}{{name}}:setDisabledSpriteFrame(CCBNodeExtend.ccb_display_frame("{{var[1]}}", "{{var[0]}}"))
+		-- else
+{{'\t'}}{{name}}:setDisabledSpriteFrame(CCBNodeExtend.ccb_display_frame("{{name[0]}}"))
+		-- endif
+	-- endif
+{{ CCNode.rennder_base_properties(name,data.properties,parent) }}
 -- endmacro 

@@ -80,7 +80,7 @@ def parseCCB(_name):
 	# 解析ccb
 	data = parseDict(nodeGraph)
 
-	pp.pprint(data)
+	# pp.pprint(data)
 
 	return data
 

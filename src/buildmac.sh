@@ -6,10 +6,13 @@ rm -rf *.spec
 
 rm -rf *.pyc
 
-mkdir mac
 
-cp *.lua ./mac
+target=../../../client/proj.ccb/ccb2lua
 
-cp ccb2lua mac/
+mkdir $target
+
+cp *.lua $target
+
+cp ccb2lua $target
 
 rm -rf ccb2lua

@@ -2,14 +2,12 @@
 
 
 
--- macro rennder(data,parent)
+-- macro rennder(data,name,parent)
 
 -- if data.customClass and data.customClass != "" 
-{{'\t'}}local menu = require("app.views.{{ data.customClass }}").new()
+{{'\t'}}local {{name}} = require("app.views.{{ data.customClass }}").new()
 -- else 
-{{'\t'}}local menu = CCMenu:create()
+{{'\t'}}local {{name}} = CCMenu:create()
 -- endif
-{{ CCNode.rennder_base_properties("menu",data.properties,parent) }}
-{{'\t'}}{{parent}}:addChild(menu)
-
+{{ CCNode.rennder_base_properties(name,data.properties,parent) }}
 -- endmacro 

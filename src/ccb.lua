@@ -19,62 +19,61 @@ end)
 -- import 'CCScrollView.lua' as CCScrollView
 -- import 'CCControlButton.lua' as CCControlButton
 
--- macro rennder_tree(data,parent)
-    -- for item in data.children
-        -- set temp_parent = parent
-        -- if item.baseClass == "CCNode"
-{{ CCNode.rennder(item,temp_parent) }}
-            -- set temp_parent = "node"
-        -- elif item.baseClass == "CCSprite"
-{{ CCSprite.rennder(item,temp_parent) }}
-            -- set temp_parent = "sprite"
-        -- elif item.baseClass == "CCLayerColor"
-{{ CCLayerColor.rennder(item,temp_parent) }}
-            -- set temp_parent = "mask"
-        -- elif item.baseClass == "CCLayer"
-{{ CCLayer.rennder(item,temp_parent) }}
-            -- set temp_parent = "layer"            
-        -- elif item.baseClass == "CCBFile"
-{{ CCBFile.rennder(item,temp_parent,ccbdata) }}
-            -- set temp_parent = "ccb"            
-        -- elif item.baseClass == "CCLabelTTF"
-{{ CCLabelTTF.rennder(item,temp_parent) }}
-            -- set temp_parent = "ttf"            
-        -- elif item.baseClass == "CCScale9Sprite"
-{{ CCScale9Sprite.rennder(item,temp_parent) }}
-            -- set temp_parent = "sprite9"
-        -- elif item.baseClass == "CCMenu"
-{{ CCMenu.rennder(item,temp_parent) }}
-            -- set temp_parent = "menu"
-        -- elif item.baseClass == "CCMenuItemImage"
-{{ CCMenuItemImage.rennder(item,temp_parent) }}
-            -- set temp_parent = "menuitemimage"
-        -- elif item.baseClass == "CCScrollView"
-{{ CCScrollView.rennder(item,temp_parent,ccbdata) }}
-            -- set temp_parent = "scroll"
-        -- elif item.baseClass == "CCControlButton"
-{{ CCControlButton.rennder(item,temp_parent,ccbdata) }}
-            -- set temp_parent = "cccb"
-        -- endif
 
-        -- set var_name = item.memberVarAssignmentName
+-- macro rennder_tree(data,parent)
+    -- for data in data.children
+        -- set item_count = getIndex()
+        -- set name = ""
+        -- if data.baseClass == "CCNode"
+            -- set name = "node"+ "_" +tostr(item_count)
+{{ CCNode.rennder(data,name,parent) }}
+        -- elif data.baseClass == "CCSprite"
+            -- set name = "sprite"+ "_" +tostr(item_count)
+{{ CCSprite.rennder(data,name,parent) }}
+        -- elif data.baseClass == "CCLayerColor"
+            -- set name = "mask"+ "_" +tostr(item_count)
+{{ CCLayerColor.rennder(data,name,parent) }}
+        -- elif data.baseClass == "CCLayer"
+            -- set name = "layer" + "_" +tostr(item_count)
+{{ CCLayer.rennder(data,name,parent) }}
+        -- elif data.baseClass == "CCBFile"
+            -- set name = "ccb" + "_" +tostr(item_count)
+{{ CCBFile.rennder(data,name,parent,ccbdata) }}
+        -- elif data.baseClass == "CCLabelTTF"
+            -- set name = "ttf" + "_" +tostr(item_count)
+{{ CCLabelTTF.rennder(data,name,parent) }}
+        -- elif data.baseClass == "CCScale9Sprite"
+            -- set name = "sprite9"+ "_" +tostr(item_count)
+{{ CCScale9Sprite.rennder(data,name,parent) }}
+        -- elif data.baseClass == "CCMenu"
+            -- set name = "menu"+ "_" +tostr(item_count)
+{{ CCMenu.rennder(data,name,parent) }}
+        -- elif data.baseClass == "CCMenuItemImage"
+            -- set name = "menuitemimage"+ "_" +tostr(item_count)
+{{ CCMenuItemImage.rennder(data,name,parent) }}
+        -- elif data.baseClass == "CCScrollView"
+            -- set name = "scroll"+ "_" +tostr(item_count)
+{{ CCScrollView.rennder(data,name,parent,ccbdata) }}
+        -- elif data.baseClass == "CCControlButton"
+            -- set name = "cccb"+ "_" +tostr(item_count)
+{{ CCControlButton.rennder(data,name,parent,ccbdata) }}
+        -- endif
+{{'\t'}}{{parent}}:addChild({{name}})
+{{'\n'}}
+        -- set var_name = data.memberVarAssignmentName
         -- if not var_name or var_name == ""
-            -- set var_name = item.displayName
+            -- set var_name = data.displayName
             -- if not var_name or var_name.find("_") != 0
                 -- set var_name = ""
             -- endif
         -- endif
         -- if var_name and var_name != ""
-{{'\t'}}_owner["{{var_name}}"] = {{temp_parent}}
+{{'\t'}}_owner["{{var_name}}"] = {{name}}
         -- endif
-
-        -- if item.children
-            -- if item.memberVarAssignmentName != ""
-            -- endif
-{{ rennder_tree(item,temp_parent) }}
+        -- if data.children
+{{ rennder_tree(data,name) }}
         -- endif
     -- endfor
-{{'\n'}}
 -- endmacro
 
 

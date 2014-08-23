@@ -2,17 +2,14 @@
 
 
 
--- macro rennder(data,parent)
-
+-- macro rennder(data,name,parent)
 	-- if data.customClass and data.customClass != "" and data.customClass.find("on") != 0
-{{'\t'}}local sprite = require("app.views.{{ data.customClass }}").new()
+{{'\t'}}local {{name}} = require("app.views.{{ data.customClass }}").new()
 	-- else 
-{{'\t'}}local sprite = display.newSprite()
+{{'\t'}}local {{name}} = display.newSprite()
 	-- endif
 	-- if data.customClass and data.customClass.find("on") == 0
-{{'\t'}}CCBNodeExtend.touchSprite(sprite,handler(_owner, _owner.{{data.customClass}}),200)
+{{'\t'}}CCBNodeExtend.touchSprite({{name}},handler(_owner, _owner.{{data.customClass}}),200)
 	-- endif
-{{ CCNode.rennder_base_properties("sprite",data.properties,parent) }}
-{{'\t'}}{{parent}}:addChild(sprite)
-
+{{ CCNode.rennder_base_properties(name,data.properties,parent) }}
 -- endmacro 
