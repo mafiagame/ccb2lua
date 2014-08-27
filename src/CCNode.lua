@@ -27,7 +27,13 @@
 {{'\t'}}{{name}}:setColor(ccc3({{item.value[0]}},{{item.value[1]}},{{item.value[2]}}))
         --elif item.name == "opacity"
 {{'\t'}}{{name}}:setOpacity({{item.value}})
-    	--endif
+        --elif item.name == "tag"
+{{'\t'}}{{name}}:setTag({{item.value}})
+        --elif item.name == "rotation"
+{{'\t'}}{{name}}:setRotation({{item.value}})
+        --elif item.name == "visible"
+{{'\t'}}{{name}}:setVisible({{item.value}})
+        --endif
     -- endfor
 -- endmacro
 

@@ -30,9 +30,9 @@ function CCBNodeExtend.addListener(sprite, self, owner, name)
     CCNodeExtend.extend(self)
 
     if owner then
-		sprite:registerScriptTapHandler(handler(owner, assert(owner[name],"Owner don't have ["..name.."] function !")))
+		sprite:registerScriptTapHandler(handler(owner, assert(owner[name], owner.__cname.." no function named ["..name.."] !")))
     else
-		sprite:registerScriptTapHandler(handler(self, assert(self[name],"Self don't have ["..name.."] function !")))
+		sprite:registerScriptTapHandler(handler(self, assert(self[name], self.__cname.." no function named ["..name.."] !")))
     end
 end
 
@@ -64,20 +64,25 @@ end
 function CCBNodeExtend.touchSprite(sprite, self, owner, name)
 	local listener = nil
     if owner then
-		listener = handler(owner, assert(owner[name],"Owner don't have ["..name.."] function !"))
+		listener = handler(owner, assert(owner[name], owner.__cname.." no function named ["..name.."] !"))
     else
-		listener = handler(self, assert(self[name],"Self don't have ["..name.."] function !"))
+		listener = handler(self, assert(self[name], self.__cname.." no function named ["..name.."] !"))
     end
+    return CCBNodeExtend.touchSprite2(sprite, listener)
+end
+
+function CCBNodeExtend.touchSprite2(sprite, listener)
     sprite:setTouchEnabled(true)
     sprite:addTouchEventListener(function(event,x,y)
         if event == "began" then
             sprite:setOpacity(150)
+            time = os.clock()
             return 1
         elseif event == "moved" then
-            sprite.isMoved = true
+            sprite.isMoved =true 
         elseif event == "ended" then
             sprite:setOpacity(255)
-            if not sprite.isMoved then
+            if not sprite.isMoved or os.clock() - time <= 0.03 then
                 listener(sprite)
             end
             sprite.isMoved = false
@@ -85,3 +90,4 @@ function CCBNodeExtend.touchSprite(sprite, self, owner, name)
     end)
     return sprite
 end
+

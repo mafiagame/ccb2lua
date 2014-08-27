@@ -140,7 +140,7 @@
 				<key>children</key>
 				<array/>
 				<key>customClass</key>
-				<string></string>
+				<string>onBtnBack</string>
 				<key>displayName</key>
 				<string>CCScale9Sprite</string>
 				<key>memberVarAssignmentName</key>
@@ -156,7 +156,7 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>50</real>
+							<real>328</real>
 							<real>0.0</real>
 							<integer>0</integer>
 						</array>
@@ -189,8 +189,8 @@
 						<string>SpriteFrame</string>
 						<key>value</key>
 						<array>
-							<string></string>
-							<string>battle_win/luxietiao.png</string>
+							<string>button.plist</string>
+							<string>jia.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -200,8 +200,8 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>300</real>
-							<real>42</real>
+							<real>200</real>
+							<real>116</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -258,8 +258,6 @@
 						<real>0.0</real>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>baseClass</key>
@@ -288,8 +286,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>-316.80007934570312</real>
-									<real>86.639984130859375</real>
+									<real>-296.80007934570312</real>
+									<real>96.639984130859375</real>
 									<integer>0</integer>
 								</array>
 							</dict>
@@ -337,6 +335,8 @@
 								</array>
 							</dict>
 						</array>
+						<key>selected</key>
+						<true/>
 					</dict>
 					<dict>
 						<key>baseClass</key>
@@ -380,6 +380,14 @@
 							</dict>
 							<dict>
 								<key>name</key>
+								<string>tag</string>
+								<key>type</key>
+								<string>Integer</string>
+								<key>value</key>
+								<integer>1</integer>
+							</dict>
+							<dict>
+								<key>name</key>
 								<string>ccbFile</string>
 								<key>type</key>
 								<string>CCBFile</string>
@@ -403,6 +411,14 @@
 						<integer>0</integer>
 						<key>properties</key>
 						<array>
+							<dict>
+								<key>name</key>
+								<string>visible</string>
+								<key>type</key>
+								<string>Check</string>
+								<key>value</key>
+								<false/>
+							</dict>
 							<dict>
 								<key>name</key>
 								<string>position</string>
@@ -430,6 +446,14 @@
 							</dict>
 							<dict>
 								<key>name</key>
+								<string>tag</string>
+								<key>type</key>
+								<string>Integer</string>
+								<key>value</key>
+								<integer>2</integer>
+							</dict>
+							<dict>
+								<key>name</key>
 								<string>ccbFile</string>
 								<key>type</key>
 								<string>CCBFile</string>
@@ -480,6 +504,14 @@
 							</dict>
 							<dict>
 								<key>name</key>
+								<string>tag</string>
+								<key>type</key>
+								<string>Integer</string>
+								<key>value</key>
+								<integer>3</integer>
+							</dict>
+							<dict>
+								<key>name</key>
 								<string>ccbFile</string>
 								<key>type</key>
 								<string>CCBFile</string>
@@ -510,8 +542,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>0.0</real>
-									<real>40</real>
+									<real>393</real>
+									<real>85</real>
 									<integer>0</integer>
 								</array>
 							</dict>
@@ -612,7 +644,9 @@
 								<key>type</key>
 								<string>Text</string>
 								<key>value</key>
-								<string>您赢了</string>
+								<string>您
+赢
+了</string>
 							</dict>
 						</array>
 					</dict>
@@ -1222,9 +1256,9 @@
 								<string>ScaleLock</string>
 								<key>value</key>
 								<array>
-									<real>1</real>
-									<real>1</real>
-									<false/>
+									<real>0.5</real>
+									<real>0.5</real>
+									<true/>
 									<integer>0</integer>
 								</array>
 							</dict>

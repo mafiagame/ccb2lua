@@ -63,8 +63,27 @@ def parseArray(_soup):
 	return _array
 
 
+# 解析字典
+def parseBaseInfo(_soup):
+	_dict = dict()
+
+	for key in _soup.findAll("key",recursive=False):
+		k = cleanString(key.contents[0])
+		v = getValue(key)
+		if v.name == "array":
+			pass #_dict[k] = parseArray(v)
+		elif v.name == "dict":
+			pass #_dict[k] = parseDict(v)
+		elif v.name != "":
+			if v.name == "true" or v.name == "false":
+				_dict[k] = v.name
+			else:
+			  	_dict[k] = v.string
+
+	return _dict
+
 # 解析ccb文件
-def parseCCB(_name):
+def parseCCB(_name, _mini):
 	# 打开ccb文件
 	ccbfile = open(_name,'r')
 	ccbfile_content = ccbfile.read()
@@ -78,7 +97,10 @@ def parseCCB(_name):
 	nodeGraph = findAndGetValue(_,"nodeGraph")
 
 	# 解析ccb
-	data = parseDict(nodeGraph)
+	if _mini:
+		data = parseBaseInfo(nodeGraph)
+	else:
+		data = parseDict(nodeGraph)
 
 	# pp.pprint(data)
 

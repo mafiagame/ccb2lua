@@ -9,5 +9,10 @@
 -- else 
 {{'\t'}}local {{name}} = CCMenu:create()
 -- endif
+
+--set size = getProperty(data.properties,"contentSize")
+-- if not size
+{{'\t'}}{{name}}:setContentSize(CCSize(0,0))
+-- endif
 {{ CCNode.rennder_base_properties(name,data.properties,parent) }}
 -- endmacro 

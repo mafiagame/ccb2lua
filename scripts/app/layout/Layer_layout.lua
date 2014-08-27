@@ -25,14 +25,15 @@ function Layer_layout:ctor(_owner)
 	self:addChild(mask_1)
 
 
-	local sprite9_2 = CCScale9Sprite:create("battle_win/luxietiao.png")
+	local sprite9_2 = CCScale9Sprite:createWithSpriteFrame(CCBNodeExtend.ccb_display_frame("jia.png", "button.plist"))
+	CCBNodeExtend.touchSprite(sprite9_2, self, _owner, "onBtnBack")
 	sprite9_2:setAnchorPoint(ccp(0,0))
 	CCBNodeExtend.cap_insets(sprite9_2,0.0,0.0,0.0,0.0)
-	sprite9_2:setPosition(CCBNodeExtend.ccb_pos(50,0.0,0,self))
+	sprite9_2:setPosition(CCBNodeExtend.ccb_pos(328,0.0,0,self))
 	sprite9_2:setScaleX(1)
 	sprite9_2:setScaleY(1)
 	sprite9_2:setIgnoreAnchorPointForPosition(false)
-	sprite9_2:setPreferredSize(CCBNodeExtend.ccb_size(300,42,0,self))
+	sprite9_2:setPreferredSize(CCBNodeExtend.ccb_size(200,116,0,self))
 	sprite9_2:setOpacity(255)
 	sprite9_2:setColor(ccc3(255,255,255))
 
@@ -53,7 +54,7 @@ function Layer_layout:ctor(_owner)
 
 	local sprite_4 = display.newSprite()
 	CCBNodeExtend.touchSprite(sprite_4, self, _owner, "onBtnReady")
-	sprite_4:setPosition(CCBNodeExtend.ccb_pos(-316.80007934570312,86.639984130859375,0,node_3))
+	sprite_4:setPosition(CCBNodeExtend.ccb_pos(-296.80007934570312,96.639984130859375,0,node_3))
 	sprite_4:setAnchorPoint(ccp(0.5,0.5))
 	sprite_4:setScaleX(0.69999998807907104)
 	sprite_4:setScaleY(0.69999998807907104)
@@ -69,15 +70,18 @@ function Layer_layout:ctor(_owner)
 	ccb_5:setPosition(CCBNodeExtend.ccb_pos(0.0,150,0,node_3))
 	ccb_5:setScaleX(1)
 	ccb_5:setScaleY(1)
+	ccb_5:setTag(1)
 
 
 	node_3:addChild(ccb_5)
 
 
 	local ccb_6 = require("app.scenes.Star").new()
+	ccb_6:setVisible(false)
 	ccb_6:setPosition(CCBNodeExtend.ccb_pos(-150,230,0,node_3))
 	ccb_6:setScaleX(1)
 	ccb_6:setScaleY(1)
+	ccb_6:setTag(2)
 
 
 	node_3:addChild(ccb_6)
@@ -87,13 +91,14 @@ function Layer_layout:ctor(_owner)
 	ccb_7:setPosition(CCBNodeExtend.ccb_pos(150,230,0,node_3))
 	ccb_7:setScaleX(1)
 	ccb_7:setScaleY(1)
+	ccb_7:setTag(3)
 
 
 	node_3:addChild(ccb_7)
 
 
-	local ttf_8 = CCLabelTTF:create("您赢了", "Helvetica", 80)
-	ttf_8:setPosition(CCBNodeExtend.ccb_pos(0.0,40,0,node_3))
+	local ttf_8 = CCLabelTTF:create("您\n赢\n了", "Helvetica", 80)
+	ttf_8:setPosition(CCBNodeExtend.ccb_pos(393,85,0,node_3))
 	ttf_8:setAnchorPoint(ccp(0.5,0.5))
 	ttf_8:setScaleX(1)
 	ttf_8:setScaleY(1)
@@ -148,10 +153,11 @@ function Layer_layout:ctor(_owner)
 
 
 	local menu_12 = CCMenu:create()
+	menu_12:setContentSize(CCSize(0,0))
 	menu_12:setPosition(CCBNodeExtend.ccb_pos(50.092079162597656,-6500,4,sprite_11))
 	menu_12:setAnchorPoint(ccp(0.5,0.5))
-	menu_12:setScaleX(1)
-	menu_12:setScaleY(1)
+	menu_12:setScaleX(0.5)
+	menu_12:setScaleY(0.5)
 	menu_12:setIgnoreAnchorPointForPosition(true)
 
 
