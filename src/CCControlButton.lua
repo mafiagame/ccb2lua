@@ -1,5 +1,30 @@
 -- import 'CCNode.lua' as CCNode
 
+
+
+#-- if var[1] == "1"
+#{{'\t'}}{{name}}:addHandleOfControlEvent(handler(_owner, assert(_owner.{{var[0]}},"{{var[0]}}")),CCControlEventTouchDown)
+#{{'\t'}}{{name}}:addHandleOfControlEvent(handler(_owner, assert(_owner.{{var[0]}})),CCControlEventTouchDragInside)
+#{{'\t'}}{{name}}:addHandleOfControlEvent(handler(_owner, assert(_owner.{{var[0]}})),CCControlEventTouchDragOutside)
+#{{'\t'}}{{name}}:addHandleOfControlEvent(handler(_owner, assert(_owner.{{var[0]}})),CCControlEventTouchDragEnter)
+#{{'\t'}}{{name}}:addHandleOfControlEvent(handler(_owner, assert(_owner.{{var[0]}})),CCControlEventTouchDragExit)
+#{{'\t'}}{{name}}:addHandleOfControlEvent(handler(_owner, assert(_owner.{{var[0]}})),CCControlEventTouchUpInside)
+#{{'\t'}}{{name}}:addHandleOfControlEvent(handler(_owner, assert(_owner.{{var[0]}})),CCControlEventTouchUpOutside)
+#{{'\t'}}{{name}}:addHandleOfControlEvent(handler(_owner, assert(_owner.{{var[0]}})),CCControlEventTouchCancel)
+#-- else
+#{{'\t'}}{{name}}:addHandleOfControlEvent(handler(self, assert(self.{{var[0]}},"{{var[0]}}")),CCControlEventTouchDown)
+#{{'\t'}}{{name}}:addHandleOfControlEvent(handler(self, assert(self.{{var[0]}})),CCControlEventTouchDragInside)
+#{{'\t'}}{{name}}:addHandleOfControlEvent(handler(self, assert(self.{{var[0]}})),CCControlEventTouchDragOutside)
+#{{'\t'}}{{name}}:addHandleOfControlEvent(handler(self, assert(self.{{var[0]}})),CCControlEventTouchDragEnter)
+#{{'\t'}}{{name}}:addHandleOfControlEvent(handler(self, assert(self.{{var[0]}})),CCControlEventTouchDragExit)
+#{{'\t'}}{{name}}:addHandleOfControlEvent(handler(self, assert(self.{{var[0]}})),CCControlEventTouchUpInside)
+#{{'\t'}}{{name}}:addHandleOfControlEvent(handler(self, assert(self.{{var[0]}})),CCControlEventTouchUpOutside)
+#{{'\t'}}{{name}}:addHandleOfControlEvent(handler(self, assert(self.{{var[0]}})),CCControlEventTouchCancel)
+#-- endif
+
+
+
+
 -- macro rennder(data,name,parent,ccbdata)
 
 -- if data.customClass and data.customClass != "" 
@@ -56,14 +81,11 @@
 #{{'\t'}}{{name}}:setLabelAnchorPoint(ccp({{var[0]}},{{var[1]}}))
 {{'\t'}}{{name}}:setEnabled({{getProperty(data.properties,"enabled")}})
 -- set var = getProperty(data.properties,"ccControl")
-{{'\t'}}{{name}}:addHandleOfControlEvent(handler(_owner, _owner.{{var[0]}}),CCControlEventTouchDown)
-{{'\t'}}{{name}}:addHandleOfControlEvent(handler(_owner, _owner.{{var[0]}}),CCControlEventTouchDragInside)
-{{'\t'}}{{name}}:addHandleOfControlEvent(handler(_owner, _owner.{{var[0]}}),CCControlEventTouchDragOutside)
-{{'\t'}}{{name}}:addHandleOfControlEvent(handler(_owner, _owner.{{var[0]}}),CCControlEventTouchDragEnter)
-{{'\t'}}{{name}}:addHandleOfControlEvent(handler(_owner, _owner.{{var[0]}}),CCControlEventTouchDragExit)
-{{'\t'}}{{name}}:addHandleOfControlEvent(handler(_owner, _owner.{{var[0]}}),CCControlEventTouchUpInside)
-{{'\t'}}{{name}}:addHandleOfControlEvent(handler(_owner, _owner.{{var[0]}}),CCControlEventTouchUpOutside)
-{{'\t'}}{{name}}:addHandleOfControlEvent(handler(_owner, _owner.{{var[0]}}),CCControlEventTouchCancel)
+-- if var[1] == "1"
+{{'\t'}}{{name}}:addHandleOfControlEvent(handler(_owner, assert(_owner.{{var[0]}},"{{var[0]}}")),CCControlEventTouchDown)
+-- else
+{{'\t'}}{{name}}:addHandleOfControlEvent(handler(self, assert(self.{{var[0]}},"{{var[0]}}")),CCControlEventTouchDown)
+-- endif
 
 {{ CCNode.rennder_base_properties(name,data.properties,parent) }}
 -- endmacro 

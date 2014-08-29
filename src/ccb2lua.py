@@ -115,6 +115,9 @@ def convertccb2lua(_data, ccbdata,  _out):
 
 #判断文件的最后修改时间  
 def checkNeedDeal(_name, _out):
+	# 暂时取消这个优化
+	return True
+
 	if not os.path.isfile(_out):
 		return True
 

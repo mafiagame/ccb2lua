@@ -11,6 +11,11 @@ function MainScene:ctor()
     ui._guang:runAction(CCRepeatForever:create(CCRotateBy:create(1, 90)))
 end
 
+
+function MainScene:onBtnClick()
+    print("MainScene:onBtnClick !!!")
+end
+
 function MainScene:onBtnBack()
     print("onBtnBack!!!")
 end

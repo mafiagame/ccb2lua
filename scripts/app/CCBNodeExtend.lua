@@ -24,19 +24,6 @@ function CCBNodeExtend.cap_insets(self, left, top, right, bottom)
 	self:setInsetBottom(bottom);
 end
 
-
-
-function CCBNodeExtend.addListener(sprite, self, owner, name)
-    CCNodeExtend.extend(self)
-
-    if owner then
-		sprite:registerScriptTapHandler(handler(owner, assert(owner[name], owner.__cname.." no function named ["..name.."] !")))
-    else
-		sprite:registerScriptTapHandler(handler(self, assert(self[name], self.__cname.." no function named ["..name.."] !")))
-    end
-end
-
-
 function CCBNodeExtend.ccb_display_frame(name, plist)
 	if plist then
 		CCSpriteFrameCache:sharedSpriteFrameCache():addSpriteFramesWithFile(plist)
@@ -61,17 +48,7 @@ function CCBNodeExtend.ccb_size(w, h, flag, parent)
 	end
 end
 
-function CCBNodeExtend.touchSprite(sprite, self, owner, name)
-	local listener = nil
-    if owner then
-		listener = handler(owner, assert(owner[name], owner.__cname.." no function named ["..name.."] !"))
-    else
-		listener = handler(self, assert(self[name], self.__cname.." no function named ["..name.."] !"))
-    end
-    return CCBNodeExtend.touchSprite2(sprite, listener)
-end
-
-function CCBNodeExtend.touchSprite2(sprite, listener)
+function CCBNodeExtend.addTouchListener(sprite, listener)
     sprite:setTouchEnabled(true)
     sprite:addTouchEventListener(function(event,x,y)
         if event == "began" then

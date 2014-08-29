@@ -26,8 +26,7 @@ function Layer_layout:ctor(_owner)
 
 
 	local sprite9_2 = CCScale9Sprite:createWithSpriteFrame(CCBNodeExtend.ccb_display_frame("jia.png", "button.plist"))
-	CCBNodeExtend.touchSprite(sprite9_2, self, _owner, "onBtnBack")
-	sprite9_2:setAnchorPoint(ccp(0,0))
+	CCBNodeExtend.addTouchListener(sprite9_2, handler(_owner, assert(_owner.onBtnBack,"onBtnBack")))
 	CCBNodeExtend.cap_insets(sprite9_2,0.0,0.0,0.0,0.0)
 	sprite9_2:setPosition(CCBNodeExtend.ccb_pos(328,0.0,0,self))
 	sprite9_2:setScaleX(1)
@@ -53,8 +52,8 @@ function Layer_layout:ctor(_owner)
 
 
 	local sprite_4 = display.newSprite()
-	CCBNodeExtend.touchSprite(sprite_4, self, _owner, "onBtnReady")
-	sprite_4:setPosition(CCBNodeExtend.ccb_pos(-296.80007934570312,96.639984130859375,0,node_3))
+	CCBNodeExtend.addTouchListener(sprite_4, handler(_owner, assert(_owner.onBtnReady),"onBtnReady"))
+	sprite_4:setPosition(CCBNodeExtend.ccb_pos(-295.36007690429688,117.19998168945312,0,node_3))
 	sprite_4:setAnchorPoint(ccp(0.5,0.5))
 	sprite_4:setScaleX(0.69999998807907104)
 	sprite_4:setScaleY(0.69999998807907104)
@@ -66,7 +65,7 @@ function Layer_layout:ctor(_owner)
 
 
 	self._guang = sprite_4
-	local ccb_5 = require("app.scenes.Star").new()
+	local ccb_5 = require("app.scenes.Star").new(_owner)
 	ccb_5:setPosition(CCBNodeExtend.ccb_pos(0.0,150,0,node_3))
 	ccb_5:setScaleX(1)
 	ccb_5:setScaleY(1)
@@ -76,7 +75,7 @@ function Layer_layout:ctor(_owner)
 	node_3:addChild(ccb_5)
 
 
-	local ccb_6 = require("app.scenes.Star").new()
+	local ccb_6 = require("app.scenes.Star").new(_owner)
 	ccb_6:setVisible(false)
 	ccb_6:setPosition(CCBNodeExtend.ccb_pos(-150,230,0,node_3))
 	ccb_6:setScaleX(1)
@@ -87,7 +86,7 @@ function Layer_layout:ctor(_owner)
 	node_3:addChild(ccb_6)
 
 
-	local ccb_7 = require("app.scenes.Star").new()
+	local ccb_7 = require("app.scenes.Star").new(_owner)
 	ccb_7:setPosition(CCBNodeExtend.ccb_pos(150,230,0,node_3))
 	ccb_7:setScaleX(1)
 	ccb_7:setScaleY(1)
@@ -165,7 +164,7 @@ function Layer_layout:ctor(_owner)
 
 
 	local menuitemimage_13 = CCMenuItemImage:create()
-	CCBNodeExtend.addListener(menuitemimage_13, self, _owner, "onBtnNext")
+	menuitemimage_13:registerScriptTapHandler(handler(_owner, assert(_owner.onBtnNext,"onBtnNext")))
 	menuitemimage_13:setNormalSpriteFrame(CCBNodeExtend.ccb_display_frame("battle_win/qianjin_1.png"))
 	menuitemimage_13:setSelectedSpriteFrame(CCBNodeExtend.ccb_display_frame("battle_win/qianjin_2.png"))
 	menuitemimage_13:setPosition(CCBNodeExtend.ccb_pos(120,0.0,0,menu_12))
@@ -179,7 +178,7 @@ function Layer_layout:ctor(_owner)
 
 
 	local menuitemimage_14 = CCMenuItemImage:create()
-	CCBNodeExtend.addListener(menuitemimage_14, self, _owner, "onBtnAgain")
+	menuitemimage_14:registerScriptTapHandler(handler(_owner, assert(_owner.onBtnAgain,"onBtnAgain")))
 	menuitemimage_14:setNormalSpriteFrame(CCBNodeExtend.ccb_display_frame("fanhui_1.png", "button.plist"))
 	menuitemimage_14:setSelectedSpriteFrame(CCBNodeExtend.ccb_display_frame("battle_win/gognlai_2.png"))
 	menuitemimage_14:setPosition(CCBNodeExtend.ccb_pos(-120,0.0,0,menu_12))
@@ -196,7 +195,7 @@ function Layer_layout:ctor(_owner)
 
 	local scroll_15 = CCScrollView:create()
 	scroll_15:setViewSize(CCBNodeExtend.ccb_size(100,100,0,self))
-	scroll_15:setContainer(require("app.scenes.Star").new())
+	scroll_15:setContainer(require("app.scenes.Star").new(_owner))
 	scroll_15:setDirection(kCCScrollViewDirectionVertical)
 	scroll_15:setContentSize(CCBNodeExtend.ccb_size(100,100,0,self))
 	scroll_15:setAnchorPoint(ccp(0.0,0.0))
@@ -220,16 +219,8 @@ function Layer_layout:ctor(_owner)
 	cccb_16:setPreferredSize(CCBNodeExtend.ccb_size(120,50,0,self))
 
 	cccb_16:setEnabled(true)
-	cccb_16:addHandleOfControlEvent(handler(_owner, _owner.onBtnCCC),CCControlEventTouchDown)
-	cccb_16:addHandleOfControlEvent(handler(_owner, _owner.onBtnCCC),CCControlEventTouchDragInside)
-	cccb_16:addHandleOfControlEvent(handler(_owner, _owner.onBtnCCC),CCControlEventTouchDragOutside)
-	cccb_16:addHandleOfControlEvent(handler(_owner, _owner.onBtnCCC),CCControlEventTouchDragEnter)
-	cccb_16:addHandleOfControlEvent(handler(_owner, _owner.onBtnCCC),CCControlEventTouchDragExit)
-	cccb_16:addHandleOfControlEvent(handler(_owner, _owner.onBtnCCC),CCControlEventTouchUpInside)
-	cccb_16:addHandleOfControlEvent(handler(_owner, _owner.onBtnCCC),CCControlEventTouchUpOutside)
-	cccb_16:addHandleOfControlEvent(handler(_owner, _owner.onBtnCCC),CCControlEventTouchCancel)
-
-	cccb_16:setPosition(CCBNodeExtend.ccb_pos(784.8001708984375,141.12002563476562,0,self))
+	cccb_16:addHandleOfControlEvent(handler(_owner, assert(_owner.onBtnCCC,"onBtnCCC")),CCControlEventTouchDown)
+	cccb_16:setPosition(CCBNodeExtend.ccb_pos(786.24017333984375,141.12002563476562,0,self))
 	cccb_16:setAnchorPoint(ccp(0.5,0.5))
 	cccb_16:setScaleX(1)
 	cccb_16:setScaleY(1)
@@ -240,7 +231,6 @@ function Layer_layout:ctor(_owner)
 	self:addChild(cccb_16)
 
 
-	self._btnCCC = cccb_16
 
 
 end

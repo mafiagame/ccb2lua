@@ -56,12 +56,9 @@ end)
         -- endif
 {{'\t'}}{{parent}}:addChild({{name}})
 {{'\n'}}
-        -- set var_name = data.memberVarAssignmentName
-        -- if not var_name or var_name == ""
-            -- set var_name = data.displayName
-            -- if not var_name or var_name.find("_") != 0
-                -- set var_name = ""
-            -- endif
+        -- set var_name = data.displayName
+        -- if not var_name or var_name.find("_") != 0
+            -- set var_name = ""
         -- endif
         -- if var_name and var_name != ""
 {{'\t'}}self.{{var_name}} = {{name}}

@@ -18,9 +18,9 @@
 	-- set prototype = ccbdata[container]
 	-- set classname = getCustomClass(prototype)
 	-- if classname == ""
-{{'\t'}}{{name}}:setContainer(require("app.layout.{{prototype.class}}").new())
+{{'\t'}}{{name}}:setContainer(require("app.layout.{{prototype.class}}").new(_owner))
 	-- else
-{{'\t'}}{{name}}:setContainer(require("app.scenes.{{classname}}").new())
+{{'\t'}}{{name}}:setContainer(require("app.scenes.{{classname}}").new(_owner))
 	-- endif
 -- endif
 -- set direction = getProperty(data.properties,"direction")
