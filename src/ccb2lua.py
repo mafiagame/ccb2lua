@@ -8,6 +8,7 @@ import time
 from jinja2.environment import Environment
 from jinja2.loaders import DictLoader
 import pprint
+import thread
 pp = pprint.PrettyPrinter(indent=4)
 
 import ccbreader
@@ -18,6 +19,7 @@ def debug(text):
 
 
 G_INDEX = 0
+G_THREAD_COUNT = 0
 
 def getIndex():
 	global G_INDEX
@@ -101,13 +103,13 @@ def getSuperName(_data):
 	return _data["baseClass"].replace("CC","")
 
 # 转化
-def convertccb2lua(_data, ccbdata,  _out):
+def convertccb2lua(_data, ccbdata):
 	# 渲染模板
 	template = env.get_template('ccb.lua')
 	content = template.render(data = _data["data"], ccbdata = ccbdata, super = _data["super"], classname = _data["class"])
 
 	# 写lua文件
-	lua = open(_out+"/"+_data["class"]+".lua",'w')
+	lua = open(_data["out"],'w')
 	lua.write(content)
 	lua.close()
 
@@ -126,6 +128,40 @@ def checkNeedDeal(_name, _out):
 
 	return (now_time-mod_time)/60 <= 10
 
+
+# 生成所有layout文件
+def output(_data):
+	for key in _data:
+		resetIndex()
+		ccb = _data[key]
+		if not ccb["mini"]:
+			convertccb2lua(ccb, _data)
+			print key,"done!"
+
+	print "\nSuccess!"
+
+
+def readCCBData(_data, _name, _opath, _pathname):
+	ccb = dict()
+	# 类名
+	ccb["class"] = _name.replace(".ccb","_layout")
+	# lua文件
+	ccb["out"] = _opath+"/"+ccb["class"]+".lua"
+	# 数据
+	if checkNeedDeal(_pathname, ccb["out"]):
+		ccb["data"] = ccbreader.parseCCB(_pathname, False)
+		ccb["mini"] = False
+	else:
+		ccb["data"] = ccbreader.parseCCB(_pathname, True)
+		ccb["mini"] = True
+	# 父类
+	ccb["super"] = getSuperName(ccb["data"])
+	_data[_name] = ccb
+
+	global G_THREAD_COUNT
+	G_THREAD_COUNT = G_THREAD_COUNT - 1
+
+
 def main():
 	reload(sys)
 	sys.setdefaultencoding('utf-8')
@@ -142,9 +178,16 @@ def main():
 	templates = dict((name, open(tpath+"/"+name, 'rb').read()) for name in pages)
 	env.loader = DictLoader(templates)
 
-
+	# 生成目标目录
+	if not os.path.isdir(opath):
+		os.mkdir(opath)
 
 	data = dict()
+
+	global G_THREAD_COUNT
+	G_THREAD_COUNT = 0
+
+	file_list = list()
 
 	# 加载所有ccb文件
 	for name in os.listdir(ipath):
@@ -152,36 +195,25 @@ def main():
 		if os.path.isdir(path_name): 
 			pass
 		elif os.path.isfile(path_name) and name.find(".ccb") != -1:
-			ccb = dict()
-			# 类名
-			ccb["class"] = name.replace(".ccb","_layout")
-			# lua文件
-			ccb["out"] = opath+"/"+ccb["class"]+".lua"
-			# 数据
-			if checkNeedDeal(path_name, ccb["out"]):
-				ccb["data"] = ccbreader.parseCCB(path_name, False)
-				ccb["mini"] = False
-			else:
-				ccb["data"] = ccbreader.parseCCB(path_name, True)
-				ccb["mini"] = True
-			# 父类
-			ccb["super"] = getSuperName(ccb["data"])
-			data[name] = ccb
+			file_data = dict()
+			file_data["name"] = name
+			file_data["path_name"] = path_name
+			file_list.append(file_data)
 
-	# 生成目录
-	if not os.path.isdir(opath):
-		os.mkdir(opath)
 
-	# 生成所有layout文件
-	for key in data:
-		resetIndex()
-		ccb = data[key]
-		if not ccb["mini"]:
-			convertccb2lua(ccb, data, opath)
-			print key,"done!"
-		
-		
-	print "\nSuccess!"
+	G_THREAD_COUNT = len(file_list)
+	# 解析ccb数据
+	for fi in file_list:
+		thread.start_new_thread(readCCBData,(data, fi["name"], opath, fi["path_name"]))
+		# readCCBData(data, fi["name"], opath, fi["path_name"])
+
+	while G_THREAD_COUNT > 0:
+		print "G_THREAD_COUNT :",G_THREAD_COUNT
+		time.sleep(1)
+
+	# 输出
+	output(data)
+
 
 if __name__ == '__main__':
     main()

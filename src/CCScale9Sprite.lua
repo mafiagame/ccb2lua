@@ -21,6 +21,10 @@
 {{'\t'}}CCBNodeExtend.addTouchListener({{name}}, handler(self, assert(self.{{data.memberVarAssignmentName}},"{{data.memberVarAssignmentName}}")))
 		-- endif
 	-- endif
+	-- if not getProperty(data.properties,"anchorPoint")
+{{'\t'}}{{name}}:setAnchorPoint(ccp(0,0))
+	-- endif
+
 {{'\t'}}CCBNodeExtend.cap_insets({{name}},{{getProperty(data.properties,"insetLeft")}},{{getProperty(data.properties,"insetTop")}},{{getProperty(data.properties,"insetRight")}},{{getProperty(data.properties,"insetBottom")}})
 {{ CCNode.rennder_base_properties(name,data.properties,parent) }}
 -- endmacro 
