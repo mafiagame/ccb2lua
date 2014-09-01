@@ -27,6 +27,7 @@ function Layer_layout:ctor(_owner)
 
 	local sprite9_2 = CCScale9Sprite:createWithSpriteFrame(CCBNodeExtend.ccb_display_frame("jia.png", "button.plist"))
 	CCBNodeExtend.addTouchListener(sprite9_2, handler(_owner, assert(_owner.onBtnBack,"onBtnBack")))
+	sprite9_2:setAnchorPoint(ccp(0,0))
 	CCBNodeExtend.cap_insets(sprite9_2,0.0,0.0,0.0,0.0)
 	sprite9_2:setPosition(CCBNodeExtend.ccb_pos(328,0.0,0,self))
 	sprite9_2:setScaleX(1)
@@ -53,7 +54,7 @@ function Layer_layout:ctor(_owner)
 
 	local sprite_4 = display.newSprite()
 	CCBNodeExtend.addTouchListener(sprite_4, handler(_owner, assert(_owner.onBtnReady),"onBtnReady"))
-	sprite_4:setPosition(CCBNodeExtend.ccb_pos(-295.36007690429688,117.19998168945312,0,node_3))
+	sprite_4:setPosition(CCBNodeExtend.ccb_pos(-283.36007690429688,153.19998168945312,0,node_3))
 	sprite_4:setAnchorPoint(ccp(0.5,0.5))
 	sprite_4:setScaleX(0.69999998807907104)
 	sprite_4:setScaleY(0.69999998807907104)
@@ -87,7 +88,7 @@ function Layer_layout:ctor(_owner)
 
 
 	local ccb_7 = require("app.scenes.Star").new(_owner)
-	ccb_7:setPosition(CCBNodeExtend.ccb_pos(150,230,0,node_3))
+	ccb_7:setPosition(CCBNodeExtend.ccb_pos(151,230,0,node_3))
 	ccb_7:setScaleX(1)
 	ccb_7:setScaleY(1)
 	ccb_7:setTag(3)
@@ -97,12 +98,12 @@ function Layer_layout:ctor(_owner)
 
 
 	local ttf_8 = CCLabelTTF:create("您\n赢\n了", "Helvetica", 80)
-	ttf_8:setPosition(CCBNodeExtend.ccb_pos(393,85,0,node_3))
+	ttf_8:setPosition(CCBNodeExtend.ccb_pos(409.3599853515625,40.520008087158203,0,node_3))
 	ttf_8:setAnchorPoint(ccp(0.5,0.5))
 	ttf_8:setScaleX(1)
 	ttf_8:setScaleY(1)
 	ttf_8:setIgnoreAnchorPointForPosition(false)
-	ttf_8:setColor(ccc3(0,0,0))
+	ttf_8:setColor(ccc3(0,249,0))
 
 
 	node_3:addChild(ttf_8)
@@ -138,97 +139,109 @@ function Layer_layout:ctor(_owner)
 	node_3:addChild(sprite9_10)
 
 
-
-	local sprite_11 = display.newSprite()
-	sprite_11:setPosition(CCBNodeExtend.ccb_pos(50,48.4375,4,self))
-	sprite_11:setAnchorPoint(ccp(0.5,0.5))
-	sprite_11:setScaleX(1)
-	sprite_11:setScaleY(1)
-	sprite_11:setIgnoreAnchorPointForPosition(false)
-	sprite_11:setDisplayFrame(CCBNodeExtend.ccb_display_frame("battle_win/tiao.png"))
-
-
-	self:addChild(sprite_11)
+	local ttf_11 = CCLabelTTF:create("1如果实在要买电脑，旧电脑怎么处理才比较安全？拿了硬盘？拿了主板？还是？2win8能装03的office么？不要烧死，我试过用07的做，一些功能我用07的做出来效果不一样了，不是我要的那种。","Helvetica", 25, CCBNodeExtend.ccb_size(500,200,0,node_3), 2, 0)
+	ttf_11:setPosition(CCBNodeExtend.ccb_pos(-228.56004333496094,220.92001342773438,0,node_3))
+	ttf_11:setAnchorPoint(ccp(0.5,0.5))
+	ttf_11:setScaleX(1)
+	ttf_11:setScaleY(1)
+	ttf_11:setIgnoreAnchorPointForPosition(false)
+	ttf_11:setColor(ccc3(0,0,0))
 
 
-	local menu_12 = CCMenu:create()
-	menu_12:setContentSize(CCSize(0,0))
-	menu_12:setPosition(CCBNodeExtend.ccb_pos(50.092079162597656,-6500,4,sprite_11))
-	menu_12:setAnchorPoint(ccp(0.5,0.5))
-	menu_12:setScaleX(0.5)
-	menu_12:setScaleY(0.5)
-	menu_12:setIgnoreAnchorPointForPosition(true)
+	node_3:addChild(ttf_11)
 
 
-	sprite_11:addChild(menu_12)
+
+	local sprite_12 = display.newSprite()
+	sprite_12:setPosition(CCBNodeExtend.ccb_pos(50,48.4375,4,self))
+	sprite_12:setAnchorPoint(ccp(0.5,0.5))
+	sprite_12:setScaleX(1)
+	sprite_12:setScaleY(1)
+	sprite_12:setIgnoreAnchorPointForPosition(false)
+	sprite_12:setDisplayFrame(CCBNodeExtend.ccb_display_frame("battle_win/tiao.png"))
 
 
-	local menuitemimage_13 = CCMenuItemImage:create()
-	menuitemimage_13:registerScriptTapHandler(handler(_owner, assert(_owner.onBtnNext,"onBtnNext")))
-	menuitemimage_13:setNormalSpriteFrame(CCBNodeExtend.ccb_display_frame("battle_win/qianjin_1.png"))
-	menuitemimage_13:setSelectedSpriteFrame(CCBNodeExtend.ccb_display_frame("battle_win/qianjin_2.png"))
-	menuitemimage_13:setPosition(CCBNodeExtend.ccb_pos(120,0.0,0,menu_12))
-	menuitemimage_13:setAnchorPoint(ccp(0.5,0.5))
-	menuitemimage_13:setScaleX(1)
-	menuitemimage_13:setScaleY(1)
-	menuitemimage_13:setIgnoreAnchorPointForPosition(false)
+	self:addChild(sprite_12)
 
 
-	menu_12:addChild(menuitemimage_13)
+	local menu_13 = CCMenu:create()
+	menu_13:setContentSize(CCSize(0,0))
+	menu_13:setPosition(CCBNodeExtend.ccb_pos(50.092079162597656,-6500,4,sprite_12))
+	menu_13:setAnchorPoint(ccp(0.5,0.5))
+	menu_13:setScaleX(0.5)
+	menu_13:setScaleY(0.5)
+	menu_13:setIgnoreAnchorPointForPosition(true)
+
+
+	sprite_12:addChild(menu_13)
 
 
 	local menuitemimage_14 = CCMenuItemImage:create()
-	menuitemimage_14:registerScriptTapHandler(handler(_owner, assert(_owner.onBtnAgain,"onBtnAgain")))
-	menuitemimage_14:setNormalSpriteFrame(CCBNodeExtend.ccb_display_frame("fanhui_1.png", "button.plist"))
-	menuitemimage_14:setSelectedSpriteFrame(CCBNodeExtend.ccb_display_frame("battle_win/gognlai_2.png"))
-	menuitemimage_14:setPosition(CCBNodeExtend.ccb_pos(-120,0.0,0,menu_12))
+	menuitemimage_14:registerScriptTapHandler(handler(_owner, assert(_owner.onBtnNext,"onBtnNext")))
+	menuitemimage_14:setNormalSpriteFrame(CCBNodeExtend.ccb_display_frame("battle_win/qianjin_1.png"))
+	menuitemimage_14:setSelectedSpriteFrame(CCBNodeExtend.ccb_display_frame("battle_win/qianjin_2.png"))
+	menuitemimage_14:setPosition(CCBNodeExtend.ccb_pos(120,0.0,0,menu_13))
 	menuitemimage_14:setAnchorPoint(ccp(0.5,0.5))
 	menuitemimage_14:setScaleX(1)
 	menuitemimage_14:setScaleY(1)
 	menuitemimage_14:setIgnoreAnchorPointForPosition(false)
 
 
-	menu_12:addChild(menuitemimage_14)
+	menu_13:addChild(menuitemimage_14)
+
+
+	local menuitemimage_15 = CCMenuItemImage:create()
+	menuitemimage_15:registerScriptTapHandler(handler(_owner, assert(_owner.onBtnAgain,"onBtnAgain")))
+	menuitemimage_15:setNormalSpriteFrame(CCBNodeExtend.ccb_display_frame("fanhui_1.png", "button.plist"))
+	menuitemimage_15:setSelectedSpriteFrame(CCBNodeExtend.ccb_display_frame("battle_win/gognlai_2.png"))
+	menuitemimage_15:setPosition(CCBNodeExtend.ccb_pos(482,414,0,menu_13))
+	menuitemimage_15:setAnchorPoint(ccp(0.5,0.5))
+	menuitemimage_15:setScaleX(1)
+	menuitemimage_15:setScaleY(1)
+	menuitemimage_15:setIgnoreAnchorPointForPosition(false)
+
+
+	menu_13:addChild(menuitemimage_15)
 
 
 
 
-	local scroll_15 = CCScrollView:create()
-	scroll_15:setViewSize(CCBNodeExtend.ccb_size(100,100,0,self))
-	scroll_15:setContainer(require("app.scenes.Star").new(_owner))
-	scroll_15:setDirection(kCCScrollViewDirectionVertical)
-	scroll_15:setContentSize(CCBNodeExtend.ccb_size(100,100,0,self))
-	scroll_15:setAnchorPoint(ccp(0.0,0.0))
-	scroll_15:setScale(1)
-	scroll_15:setIgnoreAnchorPointForPosition(true)
+	local scroll_16 = CCScrollView:create()
+	scroll_16:setViewSize(CCBNodeExtend.ccb_size(100,100,0,self))
+	scroll_16:setContainer(require("app.scenes.Star").new(_owner))
+	scroll_16:setDirection(kCCScrollViewDirectionVertical)
+	scroll_16:setContentSize(CCBNodeExtend.ccb_size(100,100,0,self))
+	scroll_16:setAnchorPoint(ccp(0.0,0.0))
+	scroll_16:setScale(1)
+	scroll_16:setIgnoreAnchorPointForPosition(true)
 
 
-	self:addChild(scroll_15)
+	self:addChild(scroll_16)
 
 
-	local cccb_16 = CCControlButton:create()
-	cccb_16:setTitleForState(CCString:create("按我"),CCControlStateNormal)
-	cccb_16:setTitleTTFForState("Helvetica",CCControlStateNormal)
-	cccb_16:setTitleTTFSizeForState(20,CCControlStateNormal)
-	cccb_16:setTitleColorForState(ccc3(254,251,0),CCControlStateNormal)
-	cccb_16:setBackgroundSpriteFrameForState(CCBNodeExtend.ccb_display_frame("battle_win/luxietiao.png"),CCControlStateNormal)
-	cccb_16:setTitleColorForState(ccc3(255,38,0),CCControlStateSelected)
-	cccb_16:setBackgroundSpriteFrameForState(CCBNodeExtend.ccb_display_frame("battle_win/luxietiaodi.png"),CCControlStateSelected)
-	cccb_16:setTitleColorForState(ccc3(254,251,0),CCControlStateDisabled)
+	local cccb_17 = CCControlButton:create()
+	cccb_17:setTitleForState(CCString:create("按我"),CCControlStateNormal)
+	cccb_17:setTitleTTFForState("Helvetica",CCControlStateNormal)
+	cccb_17:setTitleTTFSizeForState(20,CCControlStateNormal)
+	cccb_17:setTitleColorForState(ccc3(254,251,0),CCControlStateNormal)
+	cccb_17:setBackgroundSpriteFrameForState(CCBNodeExtend.ccb_display_frame("battle_win/luxietiao.png"),CCControlStateNormal)
+	cccb_17:setTitleColorForState(ccc3(255,38,0),CCControlStateSelected)
+	cccb_17:setBackgroundSpriteFrameForState(CCBNodeExtend.ccb_display_frame("battle_win/luxietiaodi.png"),CCControlStateSelected)
+	cccb_17:setTitleColorForState(ccc3(254,251,0),CCControlStateDisabled)
 
-	cccb_16:setPreferredSize(CCBNodeExtend.ccb_size(120,50,0,self))
+	cccb_17:setPreferredSize(CCBNodeExtend.ccb_size(120,50,0,self))
 
-	cccb_16:setEnabled(true)
-	cccb_16:addHandleOfControlEvent(handler(_owner, assert(_owner.onBtnCCC,"onBtnCCC")),CCControlEventTouchDown)
-	cccb_16:setPosition(CCBNodeExtend.ccb_pos(786.24017333984375,141.12002563476562,0,self))
-	cccb_16:setAnchorPoint(ccp(0.5,0.5))
-	cccb_16:setScaleX(1)
-	cccb_16:setScaleY(1)
-	cccb_16:setIgnoreAnchorPointForPosition(false)
-	cccb_16:setPreferredSize(CCBNodeExtend.ccb_size(120,50,0,self))
+	cccb_17:setEnabled(true)
+	cccb_17:addHandleOfControlEvent(function() _owner:onBtnCCC(cccb_17:getTag(), cccb_17) end,CCControlEventTouchDown)
+	cccb_17:setPosition(CCBNodeExtend.ccb_pos(786.24017333984375,141.12002563476562,0,self))
+	cccb_17:setAnchorPoint(ccp(0.5,0.5))
+	cccb_17:setScaleX(1)
+	cccb_17:setScaleY(1)
+	cccb_17:setIgnoreAnchorPointForPosition(false)
+	cccb_17:setPreferredSize(CCBNodeExtend.ccb_size(120,50,0,self))
 
 
-	self:addChild(cccb_16)
+	self:addChild(cccb_17)
 
 
 

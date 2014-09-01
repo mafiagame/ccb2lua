@@ -82,9 +82,9 @@
 {{'\t'}}{{name}}:setEnabled({{getProperty(data.properties,"enabled")}})
 -- set var = getProperty(data.properties,"ccControl")
 -- if var[1] == "1"
-{{'\t'}}{{name}}:addHandleOfControlEvent(handler(_owner, assert(_owner.{{var[0]}},"{{var[0]}}")),CCControlEventTouchDown)
+{{'\t'}}{{name}}:addHandleOfControlEvent(function() _owner:{{var[0]}}({{name}}:getTag(), {{name}}) end,CCControlEventTouchDown)
 -- else
-{{'\t'}}{{name}}:addHandleOfControlEvent(handler(self, assert(self.{{var[0]}},"{{var[0]}}")),CCControlEventTouchDown)
+{{'\t'}}{{name}}:addHandleOfControlEvent(function() self:{{var[0]}}({{name}}:getTag(), {{name}}) end,CCControlEventTouchDown)
 -- endif
 
 {{ CCNode.rennder_base_properties(name,data.properties,parent) }}

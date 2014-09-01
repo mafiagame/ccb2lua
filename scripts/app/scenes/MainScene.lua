@@ -33,8 +33,8 @@ function MainScene:onBtnNext()
     print("onBtnNext!!!")
 end
 
-function MainScene:onBtnCCC()
-    print("onBtnCCC!!!")
+function MainScene:onBtnCCC(_tag,_control)
+    print("onBtnCCC!!!",_tag, _control)
 end
 
 function MainScene:onEnter()

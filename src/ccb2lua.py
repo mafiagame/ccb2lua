@@ -10,6 +10,10 @@ from jinja2.loaders import DictLoader
 import pprint
 import thread
 pp = pprint.PrettyPrinter(indent=4)
+import logging
+from watchdog.observers import Observer
+from watchdog.events import FileSystemEventHandler
+
 
 import ccbreader
 
@@ -19,7 +23,11 @@ def debug(text):
 
 
 G_INDEX = 0
-G_THREAD_COUNT = 0
+G_IPATH = ""
+G_OPATH = ""
+G_TPATH = ""
+G_DATAS = dict()
+
 
 def getIndex():
 	global G_INDEX
@@ -40,7 +48,7 @@ def getProperty(_data, _key):
 			else:
 				return key["value"]
 
-	print "warning: getProperty [",_key,"] not find!"
+	print "WARNING: getProperty [",_key,"] not find!"
 	return ""
 
 def nilProperty(_data, _key):
@@ -114,55 +122,77 @@ def convertccb2lua(_data, ccbdata):
 	lua.close()
 
 
-
-#判断文件的最后修改时间  
-def checkNeedDeal(_name, _out):
-	# 暂时取消这个优化
-	return True
-
-	if not os.path.isfile(_out):
-		return True
-
-	now_time = time.time()
-	mod_time = os.path.getmtime(_name)
-
-	return (now_time-mod_time)/60 <= 10
-
-
 # 生成所有layout文件
 def output(_data):
 	for key in _data:
-		resetIndex()
-		ccb = _data[key]
-		if not ccb["mini"]:
-			convertccb2lua(ccb, _data)
-			print key,"done!"
-
-	print "\nSuccess!"
+		output_single(_data,key)
 
 
-def readCCBData(_data, _name, _opath, _pathname):
+def output_single(_data, _name):
+	resetIndex()
+	ccb = _data[_name]
+	convertccb2lua(ccb, _data)
+	print "OUTPUT: ",_name,"done!"
+
+
+def loadCCBData(_data, _name, _pathname):
+	print "READING: ",_pathname
+
+	customClass = ""
+	if _data.has_key(_name) :
+		customClass = _data[_name]["data"]["customClass"]
+
+	print "customClass: ",customClass
+
 	ccb = dict()
 	# 类名
 	ccb["class"] = _name.replace(".ccb","_layout")
 	# lua文件
-	ccb["out"] = _opath+"/"+ccb["class"]+".lua"
+	ccb["out"] = G_OPATH+"/"+ccb["class"]+".lua"
+	# 读取ccb文件
+	data, dependents = ccbreader.parseCCB(_pathname, False)
 	# 数据
-	if checkNeedDeal(_pathname, ccb["out"]):
-		ccb["data"] = ccbreader.parseCCB(_pathname, False)
-		ccb["mini"] = False
-	else:
-		ccb["data"] = ccbreader.parseCCB(_pathname, True)
-		ccb["mini"] = True
+	ccb["data"] = data
+	# 依赖
+	dep = dict()
+
+	for key in dependents:
+		path,name = os.path.split(key)
+		dep[name]=True
+
+	ccb["dependents"] = dep
 	# 父类
 	ccb["super"] = getSuperName(ccb["data"])
+
 	_data[_name] = ccb
 
-	global G_THREAD_COUNT
-	G_THREAD_COUNT = G_THREAD_COUNT - 1
+	return ccb["data"]["customClass"] != customClass
+
+
+class MyEventHandler(FileSystemEventHandler):
+
+	def on_created(self,event):
+		global G_DATAS
+
+		print "\nFILE CREATED : ", event.src_path
+		path_name = event.src_path
+		path,name = os.path.split(path_name)
+		if name.find(".ccb") != -1:
+			# customClass 有无改变,有改变的话检测有无ccb依赖此ccb
+			if loadCCBData(G_DATAS, name, path_name):
+				for key in G_DATAS:
+					if G_DATAS[key]["dependents"].has_key(name):
+						output_single(G_DATAS,key)
+
+			output_single(G_DATAS, name)
 
 
 def main():
+	global G_OPATH
+	global G_IPATH
+	global G_TPATH
+	global G_DATAS
+	
 	reload(sys)
 	sys.setdefaultencoding('utf-8')
 
@@ -170,50 +200,58 @@ def main():
 		print "Invalide args! <ccb_path, output_path, template_path>"
 		return
 
-	ipath = sys.argv[1]
-	opath = sys.argv[2]
-	tpath = sys.argv[3]
+	G_IPATH = sys.argv[1]
+	G_OPATH = sys.argv[2]
+	G_TPATH = sys.argv[3]
+	print "---------------------------------------------------------------"
+	print "IPATH :",G_IPATH
+	print "OPATH :",G_OPATH
+	print "TPATH :",G_TPATH
+	print "---------------------------------------------------------------"
 
 	# 加载所有模板
-	templates = dict((name, open(tpath+"/"+name, 'rb').read()) for name in pages)
+	templates = dict((name, open(G_TPATH+"/"+name, 'rb').read()) for name in pages)
 	env.loader = DictLoader(templates)
 
 	# 生成目标目录
-	if not os.path.isdir(opath):
-		os.mkdir(opath)
+	if not os.path.isdir(G_OPATH):
+		os.mkdir(G_OPATH)
 
-	data = dict()
-
-	global G_THREAD_COUNT
-	G_THREAD_COUNT = 0
-
-	file_list = list()
-
-	# 加载所有ccb文件
-	for name in os.listdir(ipath):
-		path_name = os.path.join(ipath, name) 
+	# 第一次加载所有ccb文件
+	for name in os.listdir(G_IPATH):
+		path_name = os.path.join(G_IPATH, name) 
 		if os.path.isdir(path_name): 
 			pass
 		elif os.path.isfile(path_name) and name.find(".ccb") != -1:
-			file_data = dict()
-			file_data["name"] = name
-			file_data["path_name"] = path_name
-			file_list.append(file_data)
+			loadCCBData(G_DATAS, name, path_name)
 
+	# 输出下
+	output(G_DATAS)
 
-	G_THREAD_COUNT = len(file_list)
-	# 解析ccb数据
-	for fi in file_list:
-		thread.start_new_thread(readCCBData,(data, fi["name"], opath, fi["path_name"]))
-		# readCCBData(data, fi["name"], opath, fi["path_name"])
+	# 监控ccb文件变化
+	logging.basicConfig(level=logging.INFO,
+						format='%(asctime)s - %(message)s',
+						datefmt='%Y-%m-%d %H:%M:%S')
+	path = G_IPATH
+	event_handler = MyEventHandler()
+	observer = Observer()
+	observer.schedule(event_handler, path, recursive=False)
+	observer.start()
 
-	while G_THREAD_COUNT > 0:
-		print "G_THREAD_COUNT :",G_THREAD_COUNT
-		time.sleep(1)
+	print "\n"
+	try:
+		while True:
+			time.sleep(1)
+			sys.stdout.write(".")
+			sys.stdout.flush()
 
-	# 输出
-	output(data)
+	except KeyboardInterrupt:
+		print "\n"
+		observer.stop()
+	observer.join()
 
 
 if __name__ == '__main__':
-    main()
+	main()
+
+
