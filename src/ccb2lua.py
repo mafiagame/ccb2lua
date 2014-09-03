@@ -88,16 +88,19 @@ pages = (
 	'ccb.lua',
 	'CCMenu.lua',
 	'CCMenuItemImage.lua',
+	'CCButton.lua',
 	'CCBFile.lua', 
 	'CCNode.lua',
 	'CCLayer.lua',
 	'CCSprite.lua',
 	'CCLabelTTF.lua',
+	'CCLabelBMFont.lua',
 	'CCLayerColor.lua',
 	'CCScale9Sprite.lua',
 	'CCScrollView.lua',
 	'CCControlButton.lua',
 )
+
 env.globals['debug']       = debug
 env.globals['getProperty'] = getProperty
 env.globals['nilProperty'] = nilProperty

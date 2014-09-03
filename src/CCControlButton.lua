@@ -46,7 +46,7 @@
 
 	-- set var = getProperty(data.properties,"title|"+tostr(x))
 	-- if var and var != "" 
-{{'\t'}}{{name}}:setTitleForState(CCString:create("{{var}}"),{{state}})
+{{'\t'}}{{name}}:setTitleForState(CCString:create("{{serializeString(var)}}"),{{state}})
 	-- endif
 
 	-- set var = getProperty(data.properties,"titleTTF|"+tostr(x))
@@ -82,9 +82,9 @@
 {{'\t'}}{{name}}:setEnabled({{getProperty(data.properties,"enabled")}})
 -- set var = getProperty(data.properties,"ccControl")
 -- if var[1] == "1"
-{{'\t'}}{{name}}:addHandleOfControlEvent(function() _owner:{{var[0]}}({{name}}:getTag(), {{name}}) end,CCControlEventTouchDown)
+{{'\t'}}{{name}}:addHandleOfControlEvent(function() _owner:{{var[0]}}({{name}}:getTag(), {{name}}) end,CCControlEventTouchUpInside)
 -- else
-{{'\t'}}{{name}}:addHandleOfControlEvent(function() self:{{var[0]}}({{name}}:getTag(), {{name}}) end,CCControlEventTouchDown)
+{{'\t'}}{{name}}:addHandleOfControlEvent(function() self:{{var[0]}}({{name}}:getTag(), {{name}}) end,CCControlEventTouchUpInside)
 -- endif
 
 {{ CCNode.rennder_base_properties(name,data.properties,parent) }}

@@ -24,7 +24,9 @@
 	-- if not getProperty(data.properties,"anchorPoint")
 {{'\t'}}{{name}}:setAnchorPoint(ccp(0,0))
 	-- endif
-
+	-- if data.displayName and data.displayName.find("banTouch") != -1
+{{'\t'}}CCBNodeExtend.banTouch({{name}})
+	-- endif
 {{'\t'}}CCBNodeExtend.cap_insets({{name}},{{getProperty(data.properties,"insetLeft")}},{{getProperty(data.properties,"insetTop")}},{{getProperty(data.properties,"insetRight")}},{{getProperty(data.properties,"insetBottom")}})
 {{ CCNode.rennder_base_properties(name,data.properties,parent) }}
 -- endmacro 

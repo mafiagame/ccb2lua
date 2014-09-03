@@ -9,9 +9,11 @@ end)
 -- import 'CCLayer.lua' as CCLayer
 -- import 'CCBFile.lua' as CCBFile
 -- import 'CCLabelTTF.lua' as CCLabelTTF
+-- import 'CCLabelBMFont.lua' as CCLabelBMFont
 -- import 'CCScale9Sprite.lua' as CCScale9Sprite
 -- import 'CCMenu.lua' as CCMenu
 -- import 'CCMenuItemImage.lua' as CCMenuItemImage
+-- import 'CCButton.lua' as CCButton
 -- import 'CCScrollView.lua' as CCScrollView
 -- import 'CCControlButton.lua' as CCControlButton
 
@@ -38,15 +40,18 @@ end)
         -- elif data.baseClass == "CCLabelTTF"
             -- set name = "ttf" + "_" +tostr(item_count)
 {{ CCLabelTTF.rennder(data,name,parent) }}
+        -- elif data.baseClass == "CCLabelBMFont"
+            -- set name = "ttf" + "_" +tostr(item_count)
+{{ CCLabelBMFont.rennder(data,name,parent) }}
         -- elif data.baseClass == "CCScale9Sprite"
             -- set name = "sprite9"+ "_" +tostr(item_count)
 {{ CCScale9Sprite.rennder(data,name,parent) }}
         -- elif data.baseClass == "CCMenu"
             -- set name = "menu"+ "_" +tostr(item_count)
-{{ CCMenu.rennder(data,name,parent) }}
+{{ CCNode.rennder(data,name,parent) }}
         -- elif data.baseClass == "CCMenuItemImage"
             -- set name = "menuitemimage"+ "_" +tostr(item_count)
-{{ CCMenuItemImage.rennder(data,name,parent) }}
+{{ CCButton.rennder(data,name,parent) }}
         -- elif data.baseClass == "CCScrollView"
             -- set name = "scroll"+ "_" +tostr(item_count)
 {{ CCScrollView.rennder(data,name,parent,ccbdata) }}
