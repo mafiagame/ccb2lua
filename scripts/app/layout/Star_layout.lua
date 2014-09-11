@@ -6,6 +6,7 @@ end)
 
 
 function Star_layout:ctor(_owner)
+	 _owner = _owner or self
 	self:setAnchorPoint(ccp(0.0,0.0))
 	self:setScaleX(1)
 	self:setScaleY(1)
@@ -24,7 +25,7 @@ function Star_layout:ctor(_owner)
 
 	self._daxingxing_2 = sprite_1
 	local sprite_2 = display.newSprite()
-	CCBNodeExtend.addTouchListener(sprite_2, handler(_owner, assert(_owner.onBtnClick),"onBtnClick"))
+	CCBNodeExtend.addTouchListener(sprite_2, handler(_owner, assert(_owner.onBtnClick,"onBtnClick")))
 	sprite_2:setAnchorPoint(ccp(0.5,0.5))
 	sprite_2:setScaleX(1)
 	sprite_2:setScaleY(1)

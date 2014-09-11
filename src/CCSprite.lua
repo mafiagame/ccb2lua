@@ -10,7 +10,7 @@
 	-- endif
 	-- if data.memberVarAssignmentName and data.memberVarAssignmentName != ""
 		-- if data.memberVarAssignmentType == "1"
-{{'\t'}}CCBNodeExtend.addTouchListener({{name}}, handler(_owner, assert(_owner.{{data.memberVarAssignmentName}}),"{{data.memberVarAssignmentName}}"))
+{{'\t'}}CCBNodeExtend.addTouchListener({{name}}, handler(_owner, assert(_owner.{{data.memberVarAssignmentName}},"{{data.memberVarAssignmentName}}")))
 		-- else
 {{'\t'}}CCBNodeExtend.addTouchListener({{name}}, handler(self, assert(self.{{data.memberVarAssignmentName}},"{{data.memberVarAssignmentName}}")))
 		-- endif

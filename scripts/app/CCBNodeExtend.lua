@@ -68,6 +68,108 @@ function CCBNodeExtend.addTouchListener(sprite, listener)
     return sprite
 end
 
+function CCBNodeExtend.newEditBox(_params)
+    local pos = ccp(_params.scale9:getPosition())
+    local anchor = ccp(_params.scale9:getAnchorPoint())
+
+    local editbox = CCEditBox:create(_params.scale9:getPreferredSize(), _params.scale9,nil,nil)
+
+    if editbox then
+        CCNodeExtend.extend(editbox)
+        if _params.listener then editbox:addEditBoxEventListener(_params.listener) end
+        print(_params.scale9:getPosition())
+        editbox:setPosition(pos)
+        editbox:setAnchorPoint(anchor)
+    end
+    return editbox
+end
+
+function CCBNodeExtend.newProgressBar(_scale9)
+    CCNodeExtend.extend(_scale9)
+
+    _scale9.full = _scale9:getPreferredSize().width
+    _scale9.precentage = 100
+    _scale9.min = _scale9:getInsetLeft() + _scale9:getInsetRight()
+    
+    function _scale9:getPercentage(precentage)
+        return self.precentage
+    end
+
+    function _scale9:setProgress(precentage)
+        self.precentage = precentage
+        local value = self.full*(precentage/100)
+        self:setVisible(value > 0)
+        self:setPreferredSize(CCSize(math.max(self.min,value), self:getContentSize().height))
+    end
+
+    function _scale9:progressFromTo(from,to,time,callfunc)
+        from = from or self.precentage
+        local pre = to - from
+        local cur_time = 0
+        self:scheduleUpdate(function(dt)
+            cur_time = cur_time + dt
+            if cur_time >= time then
+                self:unscheduleUpdate()
+                if callfunc then callfunc() end
+            end
+            from = from + (dt/time)*pre
+            self:setProgress(from)
+        end)
+    end
+
+
+    return _scale9
+end
+
+function CCBNodeExtend.newSwitchButton(params)
+    local states = {params.normal, params.select, params.disable}
+    for k,v in pairs(states) do v:retain() end
+
+    local button = CCNodeExtend.extend(CCSprite:createWithSpriteFrame(states[1]))
+    button.state = 1
+    button.state_count = #(states)
+    button.enable = true
+    button:setTouchEnabled(true)
+    button:addTouchEventListener(function(event,x,y)
+        if not button.enable then
+            return
+        end
+        if event == "began" then
+            time = os.clock()
+            button:setOpacity(200)
+            return 1
+        elseif event == "moved" then
+            button.isMoved =true
+        elseif event == "ended" then
+            if (not button.isMoved or os.clock() - time <= 0.03) then
+                button:setOpacity(255)
+                local new_state = button.state + 1
+                if new_state > button.state_count then new_state = 1 end
+                button:setState(new_state)
+            end
+            button.isMoved = false
+        end
+    end)
+
+    function button:setState(_state)
+        assert(_state>=1 and _state<=self.state_count)
+        if self.state ~= _state then
+            self.state = _state
+            self:setDisplayFrame(states[self.state])
+            if params.listener then params.listener(button, button.state) end
+        end
+    end
+
+    function button:getState()
+        return self.state
+    end
+
+    function button:setEnabled(enable)
+        self.enable = enable
+    end
+
+    return button
+end
 
 function CCBNodeExtend.newButton(params)
     local normal  = params.normal
@@ -146,7 +248,8 @@ function CCBNodeExtend.addBanSpriteLayer(target,opacity,zorder,pos,callfunc)
     assert(target._____banTouch == nil, "Target already have ban layer!!!")
     target._____banTouch = display.newScale9Sprite("mask.png", 0, 0, CCSize(display.width,display.height))
     target._____banTouch:setOpacity(opacity)
-    CCBNodeExtend.banTouch(target._____banTouch, _callfunc)
+    target._____banTouch:setPosition(pos)
+    CCBNodeExtend.banTouch(target._____banTouch, callfunc)
     target:addChild(target._____banTouch,zorder)
 
     return target._____banTouch

@@ -36,9 +36,13 @@
 		-- endif
 	-- endif
 {{'\t'}}}
-	-- if data.customClass and data.customClass != "" 
+	-- if data.customClass and data.customClass != ""
+		-- if data.customClass == "SwitchButton"
+{{'\t'}}local {{name}} = CCBNodeExtend.newSwitchButton(params)
+		-- else
 {{'\t'}}local {{name}} = require("app.views.{{ data.customClass }}").new(params)
-	-- else 
+		-- endif
+	-- else
 {{'\t'}}local {{name}} = CCBNodeExtend.newButton(params)
 	-- endif
 	-- set var = getProperty(data.properties,"isEnabled")

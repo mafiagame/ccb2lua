@@ -77,6 +77,7 @@ end)
 
 {{'\n'}}
 function {{ classname }}:ctor(_owner)
+{{'\t'}} _owner = _owner or self
 {{ CCNode.rennder_base_properties("self",data.properties,"nil") }}
 {{ rennder_tree(data,"self") }}
 

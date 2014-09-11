@@ -7,10 +7,13 @@ function MainScene:ctor()
     local ui = require("app.layout.Layer_layout").new(self)
         :addTo(self)
 
-
+    ui._progress:progressFromTo(nil,10,10,function() print("Done.....") end)
     ui._guang:runAction(CCRepeatForever:create(CCRotateBy:create(1, 90)))
 end
 
+function MainScene:onEditBoxEvent(event, editbox)
+    print(event, editbox)
+end
 
 function MainScene:onBtnClick()
     print("MainScene:onBtnClick !!!")

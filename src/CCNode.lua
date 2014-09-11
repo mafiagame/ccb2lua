@@ -13,7 +13,7 @@
             -- endif
     	--elif item.name == "ignoreAnchorPointForPosition"
 {{'\t'}}{{name}}:setIgnoreAnchorPointForPosition({{item.value}})
-		--elif item.name == "displayFrame"
+		--elif item.name == "displayFrame" and item.value[0] and item.value[0] != ""
             -- if item.value[1]
 {{'\t'}}{{name}}:setDisplayFrame(CCBNodeExtend.ccb_display_frame("{{item.value[1]}}","{{item.value[0]}}"))
             -- else
