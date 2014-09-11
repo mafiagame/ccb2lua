@@ -53,16 +53,14 @@ function CCBNodeExtend.addTouchListener(sprite, listener)
     sprite:addTouchEventListener(function(event,x,y)
         if event == "began" then
             sprite:setOpacity(150)
-            time = os.clock()
+            sprite.____pos = ccp(x,y)
             return 1
         elseif event == "moved" then
-            sprite.isMoved =true 
         elseif event == "ended" then
             sprite:setOpacity(255)
-            if not sprite.isMoved or os.clock() - time <= 0.03 then
+            if ccpDistance( sprite.____pos, ccp(x,y)) < 10 then
                 listener(sprite)
             end
-            sprite.isMoved = false
         end
     end)
     return sprite
@@ -135,19 +133,17 @@ function CCBNodeExtend.newSwitchButton(params)
             return
         end
         if event == "began" then
-            time = os.clock()
             button:setOpacity(200)
+            button.____pos = ccp(x,y)
             return 1
         elseif event == "moved" then
-            button.isMoved =true
         elseif event == "ended" then
-            if (not button.isMoved or os.clock() - time <= 0.03) then
+            if ccpDistance( button.____pos, ccp(x,y)) < 10 then
                 button:setOpacity(255)
                 local new_state = button.state + 1
                 if new_state > button.state_count then new_state = 1 end
                 button:setState(new_state)
             end
-            button.isMoved = false
         end
     end)
 
@@ -195,20 +191,18 @@ function CCBNodeExtend.newButton(params)
             else
                 button:setOpacity(200)
             end
-            time = os.clock()
+            button.____pos = ccp(x,y)
             return 1
         elseif event == "moved" then
-            button.isMoved =true
         elseif event == "ended" then
             if select then
                 button:setDisplayFrame(normal)
             else
                 button:setOpacity(255)
             end
-            if listener and (not button.isMoved or os.clock() - time <= 0.03) then
+            if listener and ccpDistance( button.____pos, ccp(x,y)) < 10 then
                 listener(button)
             end
-            button.isMoved = false
         end
     end)
 
