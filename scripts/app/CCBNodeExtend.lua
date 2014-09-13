@@ -142,17 +142,17 @@ function CCBNodeExtend.newSwitchButton(params)
                 button:setOpacity(255)
                 local new_state = button.state + 1
                 if new_state > button.state_count then new_state = 1 end
-                button:setState(new_state)
+                button:setState(new_state, true)
             end
         end
     end)
 
-    function button:setState(_state)
+    function button:setState(_state, _auto)
         assert(_state>=1 and _state<=self.state_count)
         if self.state ~= _state then
             self.state = _state
             self:setDisplayFrame(states[self.state])
-            if params.listener then params.listener(button, button.state) end
+            if params.listener then params.listener(button, button.state, _auto) end
         end
     end
 
