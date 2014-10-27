@@ -55,12 +55,15 @@ def nilProperty(_data, _key):
 	for key in _data:
 		if key["name"] == _key:
 			key["value"] == ""
-			return ""
+			return _data
 
 	print "warning: nilProperty [",_key,"] not find!"
 	return ""
 
 def serializeString(_string):
+	if not _string:
+		return ""
+		
 	return _string.replace("\n","\\n")
 
 

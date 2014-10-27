@@ -9,6 +9,14 @@ function MainScene:ctor()
 
     ui._progress:progressFromTo(nil,10,10,function() print("Done.....") end)
     ui._guang:runAction(CCRepeatForever:create(CCRotateBy:create(1, 90)))
+
+
+    ui._radial:runAction(CCRepeatForever:create(transition.sequence({
+            CCProgressFromTo:create(5, 100, 0),
+            CCProgressFromTo:create(5, 0, 100),
+        })))
+
+    ui._labelTest:setString("1如果实在要买电脑，旧电脑怎么处理才比较安全？拿了硬盘？拿了主板？还是？2win8能装03的office么？不要烧死，我试过用07的做，一些功能我用07的做出来效果不一样了，不是我要的那种。")
 end
 
 function MainScene:onEditBoxEvent(event, editbox)

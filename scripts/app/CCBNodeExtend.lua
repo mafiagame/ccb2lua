@@ -48,7 +48,8 @@ function CCBNodeExtend.ccb_size(w, h, flag, parent)
     end
 end
 
-function CCBNodeExtend.addTouchListener(sprite, listener)
+function CCBNodeExtend.addTouchListener(sprite, listener, opacity)
+    opacity = opacity or 200
     sprite:setTouchEnabled(true)
     sprite:addTouchEventListener(function(event,x,y)
         if event == "began" then
@@ -58,12 +59,26 @@ function CCBNodeExtend.addTouchListener(sprite, listener)
         elseif event == "moved" then
         elseif event == "ended" then
             sprite:setOpacity(255)
-            if ccpDistance( sprite.____pos, ccp(x,y)) < 10 then
+            if ccpDistance( sprite.____pos, ccp(x,y)) < 20 then
                 listener(sprite)
             end
         end
     end)
     return sprite
+end
+
+function CCBNodeExtend.addTouchEventListener(sprite, listener, opacity)
+    opacity = opacity or 200
+    sprite:setTouchEnabled(true)
+    sprite:addTouchEventListener(function(event,x,y)
+        if event == "began" then
+            sprite:setOpacity(150)
+        elseif event == "ended" then
+            sprite:setOpacity(255)
+        end
+    
+        return listener(event,x,y)
+    end)
 end
 
 function CCBNodeExtend.newEditBox(_params)
@@ -128,6 +143,7 @@ function CCBNodeExtend.newSwitchButton(params)
     button.state_count = #(states)
     button.enable = true
     button:setTouchEnabled(true)
+    button:setNodeEventEnabled(true)
     button:addTouchEventListener(function(event,x,y)
         if not button.enable then
             return
@@ -164,6 +180,12 @@ function CCBNodeExtend.newSwitchButton(params)
         self.enable = enable
     end
 
+    function button:onCleanup()
+        for i,v in ipairs(states) do
+            v:release()
+        end
+    end
+
     return button
 end
 
@@ -181,6 +203,7 @@ function CCBNodeExtend.newButton(params)
     local button = CCNodeExtend.extend(CCSprite:createWithSpriteFrame(normal))
     button.enable = true
     button:setTouchEnabled(true)
+    button:setNodeEventEnabled(true)
     button:addTouchEventListener(function(event,x,y)
         if not button.enable then
             return
@@ -217,7 +240,20 @@ function CCBNodeExtend.newButton(params)
         self.enable = enable
     end
 
+    function button:onCleanup()
+        if normal then normal:release() end
+        if select then select:release() end
+        if disable then disable:release() end
+    end
+
     return button
+end
+
+function CCBNodeExtend.newProgressRadial(_frame)
+    local progress = CCNodeExtend.extend(CCProgressTimer:create(CCSprite:createWithSpriteFrame(_frame)))
+    progress:setType(kCCProgressTimerTypeRadial)
+    progress:setPercentage(100)
+    return progress
 end
 
 function CCBNodeExtend.banTouch(_scale9, _callfunc)

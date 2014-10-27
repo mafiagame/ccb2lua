@@ -275,7 +275,7 @@ function Layer_layout:ctor(_owner)
 
 
 	local ccb_19 = require("app.scenes.Star").new(_owner)
-	ccb_19:setPosition(CCBNodeExtend.ccb_pos(641,207,0,self))
+	ccb_19:setPosition(CCBNodeExtend.ccb_pos(699.75201416015625,341.78402709960938,0,self))
 	ccb_19:setScaleX(1)
 	ccb_19:setScaleY(1)
 	ccb_19:setTag(1)
@@ -301,6 +301,31 @@ function Layer_layout:ctor(_owner)
 
 
 	self._banTouch2 = sprite9_20
+	local ttf_21 = CCLabelTTF:create("1111","Helvetica", 25, CCBNodeExtend.ccb_size(500,0.0,0,self), 2, 0)
+	ttf_21:setPosition(CCBNodeExtend.ccb_pos(0.0,390.92001342773438,0,self))
+	ttf_21:setAnchorPoint(ccp(0.0,1))
+	ttf_21:setScaleX(1)
+	ttf_21:setScaleY(1)
+	ttf_21:setIgnoreAnchorPointForPosition(false)
+	ttf_21:setColor(ccc3(0,0,0))
+
+
+	self:addChild(ttf_21)
+
+
+	self._labelTest = ttf_21
+	local sprite_22 = CCBNodeExtend.newProgressRadial(CCBNodeExtend.ccb_display_frame("battle_win/daxingxing_1.png"))
+	sprite_22:setPosition(CCBNodeExtend.ccb_pos(516.67205810546875,540.86407470703125,0,self))
+	sprite_22:setAnchorPoint(ccp(0.5,0.5))
+	sprite_22:setScaleX(1)
+	sprite_22:setScaleY(1)
+	sprite_22:setIgnoreAnchorPointForPosition(false)
+
+
+	self:addChild(sprite_22)
+
+
+	self._radial = sprite_22
 
 
 end
