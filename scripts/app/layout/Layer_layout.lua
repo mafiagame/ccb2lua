@@ -117,7 +117,14 @@ function Layer_layout:ctor(_owner)
 
 
 	self._progress = sprite9_8
-	local ttf_9 = CCLabelTTF:create("1如果实在要买电脑，旧电脑怎么处理才比较安全？拿了硬盘？拿了主板？还是？2win8能装03的office么？不要烧死，我试过用07的做，一些功能我用07的做出来效果不一样了，不是我要的那种。","Helvetica", 25, CCBNodeExtend.ccb_size(500,200,0,node_2), 2, 0)
+	local ttf_9 = require("app.scenes.MyTTF").new({
+		text = "1如果实在要买电脑，旧电脑怎么处理才比较安全？拿了硬盘？拿了主板？还是？2win8能装03的office么？不要烧死，我试过用07的做，一些功能我用07的做出来效果不一样了，不是我要的那种。",
+		font = "Helvetica",
+		size = 25,
+		align = 2,
+		valign = 0,
+		dimensions = CCBNodeExtend.ccb_size(500,200,0,node_2),
+	})
 	ttf_9:setPosition(CCBNodeExtend.ccb_pos(-228.56004333496094,220.92001342773438,0,node_2))
 	ttf_9:setAnchorPoint(ccp(0.5,0.5))
 	ttf_9:setScaleX(1)

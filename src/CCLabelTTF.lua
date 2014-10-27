@@ -5,7 +5,17 @@
 -- macro rennder(data,name,parent)
 
 -- if data.customClass and data.customClass != "" 
-{{'\t'}}local {{name}} = require("app.views.{{ data.customClass }}").new()
+{{'\t'}}local {{name}} = require("app.scenes.{{ data.customClass }}").new({
+{{'\t'}}{{'\t'}}text = "{{serializeString(getProperty(data.properties,"string"))}}",
+{{'\t'}}{{'\t'}}font = "{{getProperty(data.properties,"fontName")}}",
+{{'\t'}}{{'\t'}}size = {{getProperty(data.properties,"fontSize")[0]}},
+{{'\t'}}{{'\t'}}align = {{getProperty(data.properties,"horizontalAlignment")}},
+{{'\t'}}{{'\t'}}valign = {{getProperty(data.properties,"verticalAlignment")}},
+	-- set var = getProperty(data.properties, "dimensions")
+	-- if var[0] != "0.0" or var[1] != "0.0"
+{{'\t'}}{{'\t'}}dimensions = CCBNodeExtend.ccb_size({{var[0]}},{{var[1]}},{{var[2]}},{{parent}}),
+	-- endif
+{{'\t'}}})
 -- else
 	-- set var = getProperty(data.properties, "dimensions")
 	-- if var[0] != "0.0" or var[1] != "0.0"
