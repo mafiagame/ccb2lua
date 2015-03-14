@@ -1,15 +1,20 @@
-#!/usr/bin/env python  
+	#!/usr/bin/env python  
 # coding=utf-8  
 # Python 2.7.3  
 
 import os
 import sys
 import time
+
+# jinja2
 from jinja2.environment import Environment
 from jinja2.loaders import DictLoader
+
+# pprint
 import pprint
-import thread
 pp = pprint.PrettyPrinter(indent=4)
+
+# watchdog
 import logging
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
@@ -23,10 +28,8 @@ def debug(text):
 
 
 G_INDEX = 0
-G_IPATH = ""
-G_OPATH = ""
-G_TPATH = ""
 G_DATAS = dict()
+G_TEMPLATES = list()
 
 
 def getIndex():
@@ -38,24 +41,63 @@ def resetIndex():
 	global G_INDEX
 	G_INDEX = 0
 
-def getProperty(_data, _key):
-	for key in _data:
-		if key["name"] == _key:
-			if _key == "ccbFile":
-				path,name = os.path.split(key["value"])
-				print "info: ",path,name
-				return name
-			else:
-				return key["value"]
+def getListener(_owner, _name):
+	return "handler(_owner, assert(_owner."+ _name +",\""+ _name +"\"))"
 
-	print "WARNING: getProperty [",_key,"] not find!"
-	return ""
+
+def getDisplayFrameName(_value):
+	count = len(_value)
+	if count == 0:
+		return "nil"
+	elif count == 1:
+		return "\""+_value[0]+"\""
+	elif count == 2:
+		return "\"#"+_value[1]+"\""
+
+
+def getDisplayFrame(_value):
+	print(_value)
+	count = len(_value)
+	if count == 0:
+		return "nil"
+	elif count == 1:
+		return "CCBNodeExtend.ccb_display_frame(\""+_value[0]+"\")"
+	elif count == 2:
+		return "CCBNodeExtend.ccb_display_frame(\""+_value[1]+"\",\""+_value[0]+"\")"
+
+
+def checkPropertyInvalide(_name, _value):
+	print "_name:",_name, _value
+	pp.pprint(_value)
+	if not _value:
+		return False
+
+	if _name == "scale":
+		if len(_value) == 1:
+			return _value != "1"
+		else:
+			return _value[0] != "1" or _value[1] != "1"
+	elif _name == "opacity":
+		return _value != "255"
+	elif _name == "color":
+		print _value
+		return _value[0] != "255" or _value[1] != "255" or _value[2] != "255"
+	# elif _name == "ignoreAnchorPointForPosition":
+	# 	return _value != "false"
+	elif _name == "tag":
+		return _value != "-1"
+
+	return True
+
+
+def isDefaultVarName(_name):
+	global G_TEMPLATES
+	return _name in G_TEMPLATES
 
 def nilProperty(_data, _key):
-	for key in _data:
-		if key["name"] == _key:
-			key["value"] == ""
-			return _data
+	if _data.has_key(_key):
+		_data[_key] = None
+		return _data
 
 	print "warning: nilProperty [",_key,"] not find!"
 	return ""
@@ -87,30 +129,19 @@ def getCustomClass(prototype):
 
  # 所有模板
 env = Environment(trim_blocks = True, line_statement_prefix = '--', line_comment_prefix = '#')
-pages = (
-	'ccb.lua',
-	'CCMenu.lua',
-	'CCMenuItemImage.lua',
-	'CCButton.lua',
-	'CCBFile.lua', 
-	'CCNode.lua',
-	'CCLayer.lua',
-	'CCSprite.lua',
-	'CCLabelTTF.lua',
-	'CCLabelBMFont.lua',
-	'CCLayerColor.lua',
-	'CCScale9Sprite.lua',
-	'CCScrollView.lua',
-	'CCControlButton.lua',
-)
 
-env.globals['debug']       = debug
-env.globals['getProperty'] = getProperty
-env.globals['nilProperty'] = nilProperty
-env.globals['tostr']       = tostr
-env.globals['getIndex']    = getIndex
-env.globals['getCustomClass']    = getCustomClass
-env.globals['serializeString']    = serializeString
+env.globals['debug']                 = debug
+env.globals['nilProperty']           = nilProperty
+env.globals['tostr']                 = tostr
+env.globals['getIndex']              = getIndex
+env.globals['getCustomClass']        = getCustomClass
+env.globals['serializeString']       = serializeString
+env.globals['isDefaultVarName']      = isDefaultVarName
+env.globals['checkPropertyInvalide'] = checkPropertyInvalide
+env.globals['getDisplayFrame']       = getDisplayFrame
+env.globals['getDisplayFrameName']   = getDisplayFrameName
+env.globals['getListener']           = getListener
+
 
 # 获取父类名字
 def getSuperName(_data):
@@ -154,7 +185,7 @@ def loadCCBData(_data, _name, _pathname):
 	# 类名
 	ccb["class"] = _name.replace(".ccb","_layout")
 	# lua文件
-	ccb["out"] = G_OPATH+"/"+ccb["class"]+".lua"
+	ccb["out"] = output_path+"/"+ccb["class"]+".lua"
 	# 读取ccb文件
 	data, dependents = ccbreader.parseCCB(_pathname, False)
 	# 数据
@@ -194,38 +225,43 @@ class MyEventHandler(FileSystemEventHandler):
 
 
 def main():
-	global G_OPATH
-	global G_IPATH
-	global G_TPATH
+	global output_path
 	global G_DATAS
+	global G_TEMPLATES
 	
+	# 支持中文
 	reload(sys)
 	sys.setdefaultencoding('utf-8')
 
+	# 读取参数
 	if len(sys.argv) < 4:
 		print "Invalide args! <ccb_path, output_path, template_path>"
 		return
 
-	G_IPATH = sys.argv[1]
-	G_OPATH = sys.argv[2]
-	G_TPATH = sys.argv[3]
+	ccb_path = sys.argv[1]
+	output_path = sys.argv[2]
+	template_path = sys.argv[3]
 	print "---------------------------------------------------------------"
-	print "IPATH :",G_IPATH
-	print "OPATH :",G_OPATH
-	print "TPATH :",G_TPATH
+	print "ccb_path      : ",ccb_path
+	print "output_path   : ",output_path
+	print "template_path : ",template_path
 	print "---------------------------------------------------------------"
 
+
+
 	# 加载所有模板
-	templates = dict((name, open(G_TPATH+"/"+name, 'rb').read()) for name in pages)
+	G_TEMPLATES = os.listdir(template_path)
+
+	templates = dict((name, open(template_path+"/"+name, 'rb').read()) for name in G_TEMPLATES)
 	env.loader = DictLoader(templates)
 
 	# 生成目标目录
-	if not os.path.isdir(G_OPATH):
-		os.mkdir(G_OPATH)
+	if not os.path.isdir(output_path):
+		os.mkdir(output_path)
 
 	# 第一次加载所有ccb文件
-	for name in os.listdir(G_IPATH):
-		path_name = os.path.join(G_IPATH, name) 
+	for name in os.listdir(ccb_path):
+		path_name = os.path.join(ccb_path, name) 
 		if os.path.isdir(path_name): 
 			pass
 		elif os.path.isfile(path_name) and name.find(".ccb") != -1:
@@ -238,10 +274,9 @@ def main():
 	logging.basicConfig(level=logging.INFO,
 						format='%(asctime)s - %(message)s',
 						datefmt='%Y-%m-%d %H:%M:%S')
-	path = G_IPATH
 	event_handler = MyEventHandler()
 	observer = Observer()
-	observer.schedule(event_handler, path, recursive=False)
+	observer.schedule(event_handler, ccb_path, recursive=False)
 	observer.start()
 
 	print "\n"

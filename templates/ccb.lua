@@ -62,7 +62,7 @@ end)
 {{'\t'}}{{parent}}:addChild({{name}})
 {{'\n'}}
         -- set var_name = data.displayName
-        -- if not var_name or var_name.find("_") != 0
+        -- if not var_name or isDefaultVarName(var_name)
             -- set var_name = ""
         -- endif
         -- if var_name and var_name != ""

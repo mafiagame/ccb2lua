@@ -8,7 +8,7 @@ function MainScene:ctor()
         :addTo(self)
 
     ui._progress:progressFromTo(nil,10,10,function() print("Done.....") end)
-    ui._guang:runAction(CCRepeatForever:create(CCRotateBy:create(1, 90)))
+    ui.guang:runAction(CCRepeatForever:create(CCRotateBy:create(1, 90)))
 
 
     ui._radial:runAction(CCRepeatForever:create(transition.sequence({
@@ -17,6 +17,8 @@ function MainScene:ctor()
         })))
 
     ui._labelTest:setString("1如果实在要买电脑，旧电脑怎么处理才比较安全？拿了硬盘？拿了主板？还是？2win8能装03的office么？不要烧死，我试过用07的做，一些功能我用07的做出来效果不一样了，不是我要的那种。")
+
+    ui._richlabel:init("<div color=#FF00FF>如果实在要买电脑，旧电脑怎么处理才比较安全？</div><img>battle_win/EXP.png</img><bmf font='fonts/hurtnumbers.fnt'>+100</bmf><div size=50 oc=#FF00FF>如果实在要买电脑，旧电脑怎么处理才比较安全？</div>")
 end
 
 function MainScene:onEditBoxEvent(event, editbox)
@@ -45,7 +47,7 @@ function MainScene:onBtnNext()
 end
 
 function MainScene:onBtnCCC(_tag,_control)
-    print("onBtnCCC!!!",_tag, _control)
+    app:enterScene("LayoutTestScene")
 end
 
 function MainScene:onEnter()

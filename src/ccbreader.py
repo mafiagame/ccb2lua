@@ -5,7 +5,6 @@ from bs4 import BeautifulSoup
 import pprint
 pp = pprint.PrettyPrinter(indent=4)
 
-
 # 清理字符串
 def cleanString(_s):
 	try:
@@ -24,6 +23,18 @@ def findAndGetValue(_soup, _key):
 	return _.findNextSibling()
 
 
+def parseProperties(properties):
+	# pp.pprint(properties)
+
+	new_properties = dict()
+	for ppt in properties :
+		new_properties[ppt["name"]] = ppt["value"]
+
+	# pp.pprint(new_properties)
+
+	return new_properties
+
+
 # 解析字典
 def parseDict(_soup, _dependents):
 	_dict = dict()
@@ -32,7 +43,11 @@ def parseDict(_soup, _dependents):
 		k = cleanString(key.contents[0])
 		v = getValue(key)
 		if v.name == "array":
-			_dict[k] = parseArray(v, _dependents)
+			dic = parseArray(v, _dependents)
+			if k == "properties":
+				dic = parseProperties(dic)
+			_dict[k] = dic
+
 		elif v.name == "dict":
 			_dict[k] = parseDict(v, _dependents)
 		elif v.name != "":
@@ -43,7 +58,7 @@ def parseDict(_soup, _dependents):
 				if value and value.find(".ccb") != -1 :
 					_dependents[v.string] = True
 
-			  	_dict[k] = v.string
+				_dict[k] = v.string
 
 	return _dict
 
@@ -61,7 +76,7 @@ def parseArray(_soup, _dependents):
 				_array.append(v.name)
 			else:
 				value = cleanString(v.string)
-			  	if value and value != "\n":
+				if value and value != "\n":
 					_array.append(v.string)
 
 	return _array
@@ -82,19 +97,25 @@ def parseBaseInfo(_soup):
 			if v.name == "true" or v.name == "false":
 				_dict[k] = v.name
 			else:
-			  	_dict[k] = v.string
+				_dict[k] = v.string
 
 	return _dict
 
-# 解析ccb文件
-def parseCCB(_name, _mini):
+
+def loadCCB(_name):
 	# 打开ccb文件
 	ccbfile = open(_name,'r')
 	ccbfile_content = ccbfile.read()
 	ccbfile.close()
 
 	# 创建soup
-	soup = BeautifulSoup(ccbfile_content, 'xml')
+	return BeautifulSoup(ccbfile_content, 'xml')
+	
+
+
+# 解析ccb文件
+def parseCCB(_name, _mini):
+	soup = loadCCB(_name)
 	_ = soup.dict
 
 	# 获取跟节点

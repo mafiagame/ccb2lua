@@ -11,8 +11,8 @@ function Star:ctor(_owner)
 
 	Star.super.ctor(self, _owner)
 
-	self._daxingxing_1:setScale(0.5)
-	self._daxingxing_1:runAction(CCScaleTo:create(1, 1))
+	-- self._daxingxing_1:setScale(0.5)
+	-- self._daxingxing_1:runAction(CCScaleTo:create(1, 1))
 end
 
 

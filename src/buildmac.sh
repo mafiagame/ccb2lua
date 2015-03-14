@@ -11,7 +11,7 @@ target=../../../client/proj.ccb/ccb2lua
 
 mkdir $target
 
-cp *.lua $target
+cp ../templates/*.lua $target
 
 cp ccb2lua $target
 

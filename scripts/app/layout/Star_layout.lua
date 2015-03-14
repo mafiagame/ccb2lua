@@ -8,35 +8,34 @@ end)
 function Star_layout:ctor(_owner)
 	 _owner = _owner or self
 	self:setAnchorPoint(ccp(0.0,0.0))
-	self:setScaleX(1)
-	self:setScaleY(1)
 	self:setIgnoreAnchorPointForPosition(false)
 
-	local sprite_1 = display.newSprite()
-	sprite_1:setAnchorPoint(ccp(0.5,0.5))
-	sprite_1:setScaleX(1)
-	sprite_1:setScaleY(1)
-	sprite_1:setIgnoreAnchorPointForPosition(false)
-	sprite_1:setDisplayFrame(CCBNodeExtend.ccb_display_frame("battle_win/daxingxing_2.png"))
+	local menu_1 = display.newNode()
+	menu_1:setAnchorPoint(ccp(0.5,0.5))
+	menu_1:setPosition(CCBNodeExtend.ccb_pos(0.0,0.0,0,self))
+	menu_1:setIgnoreAnchorPointForPosition(true)
 
 
-	self:addChild(sprite_1)
+	self:addChild(menu_1)
 
 
-	self._daxingxing_2 = sprite_1
-	local sprite_2 = display.newSprite()
-	CCBNodeExtend.addTouchListener(sprite_2, handler(_owner, assert(_owner.onBtnClick,"onBtnClick")))
-	sprite_2:setAnchorPoint(ccp(0.5,0.5))
-	sprite_2:setScaleX(1)
-	sprite_2:setScaleY(1)
-	sprite_2:setIgnoreAnchorPointForPosition(false)
-	sprite_2:setDisplayFrame(CCBNodeExtend.ccb_display_frame("battle_win/daxingxing_1.png"))
+	self.CCMenu = menu_1
+	local params = {
+		normal = CCBNodeExtend.ccb_display_frame("battle_win/daxingxing_1.png"),
+		select = CCBNodeExtend.ccb_display_frame("battle_win/daxingxing_2.png"),
+		disable = nil,
+		listener = handler(_owner, assert(_owner.onBtnClick,"onBtnClick")),
+	}
+	local menuitemimage_2 = CCBNodeExtend.newButton(params)
+	menuitemimage_2:setAnchorPoint(ccp(0.5,0.5))
+	menuitemimage_2:setIgnoreAnchorPointForPosition(false)
 
 
-	self:addChild(sprite_2)
+	menu_1:addChild(menuitemimage_2)
 
 
-	self._daxingxing_1 = sprite_2
+	self.CCMenuItemImage = menuitemimage_2
+
 
 
 end

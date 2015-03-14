@@ -10,7 +10,7 @@
 {{'\t'}}local {{name}} = CCMenu:create()
 -- endif
 
---set size = getProperty(data.properties,"contentSize")
+--set size = data.properties.contentSize
 -- if not size
 {{'\t'}}{{name}}:setContentSize(CCSize(0,0))
 -- endif

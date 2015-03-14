@@ -3,17 +3,21 @@
 -- macro rennder(data,name,parent,ccbdata)
 
 -- if data.customClass and data.customClass != "" 
+	-- if data.customClass == "AutoLayout"
+{{'\t'}}local {{name}} = AutoLayout.new()
+	-- else
 {{'\t'}}local {{name}} = require("app.views.{{ data.customClass }}").new()
+	-- endif
 -- else 
 {{'\t'}}local {{name}} = CCScrollView:create()
 -- endif
 
--- set item = getProperty(data.properties,"contentSize")
+-- set item = data.properties.contentSize
 	-- if item and item != ""
 {{'\t'}}{{name}}:setViewSize(CCBNodeExtend.ccb_size({{item[0]}},{{item[1]}},{{item[2]}},{{parent}}))
 	-- endif
 -- set _ = nilProperty(data.properties,"contentSize")
--- set container = getProperty(data.properties,"container")
+-- set container = data.properties.container
 -- if container and container != ""
 	-- set prototype = ccbdata[container]
 	-- set classname = getCustomClass(prototype)
@@ -23,7 +27,7 @@
 {{'\t'}}{{name}}:setContainer(require("app.scenes.{{classname}}").new(_owner))
 	-- endif
 -- endif
--- set direction = getProperty(data.properties,"direction")
+-- set direction = data.properties.direction
 -- if direction == "2"
 {{'\t'}}{{name}}:setDirection(kCCScrollViewDirectionBoth)
 -- elif direction == "1"

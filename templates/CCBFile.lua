@@ -3,7 +3,7 @@
 
 
 -- macro rennder(data,name,parent,ccbdata)
-	-- set prototype = ccbdata[getProperty(data.properties,"ccbFile")]
+	-- set prototype = ccbdata[data.properties.ccbFile]
 	-- set classname = getCustomClass(prototype)
 	-- if classname and classname != ""
 {{'\t'}}local {{name}} = require("app.scenes.{{classname}}").new(_owner)
