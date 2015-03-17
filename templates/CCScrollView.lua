@@ -2,15 +2,7 @@
 
 -- macro rennder(data,name,parent,ccbdata)
 
--- if data.customClass and data.customClass != "" 
-	-- if data.customClass == "AutoLayout"
-{{'\t'}}local {{name}} = AutoLayout.new()
-	-- else
-{{'\t'}}local {{name}} = require("app.views.{{ data.customClass }}").new()
-	-- endif
--- else 
-{{'\t'}}local {{name}} = CCScrollView:create()
--- endif
+{{'\t'}}local {{name}} = cc.ScrollView:create()
 
 -- set item = data.properties.contentSize
 	-- if item and item != ""
@@ -24,16 +16,16 @@
 	-- if classname == ""
 {{'\t'}}{{name}}:setContainer(require("app.layout.{{prototype.class}}").new(_owner))
 	-- else
-{{'\t'}}{{name}}:setContainer(require("app.scenes.{{classname}}").new(_owner))
+{{'\t'}}{{name}}:setContainer(require("app.widgets.{{classname}}").new(_owner))
 	-- endif
 -- endif
 -- set direction = data.properties.direction
 -- if direction == "2"
-{{'\t'}}{{name}}:setDirection(kCCScrollViewDirectionBoth)
+{{'\t'}}{{name}}:setDirection(cc.SCROLLVIEW_DIRECTION_BOTH)
 -- elif direction == "1"
-{{'\t'}}{{name}}:setDirection(kCCScrollViewDirectionVertical)
+{{'\t'}}{{name}}:setDirection(cc.SCROLLVIEW_DIRECTION_VERTICAL)
 -- elif direction == "0"
-{{'\t'}}{{name}}:setDirection(kCCScrollViewDirectionHorizontal)
+{{'\t'}}{{name}}:setDirection(cc.SCROLLVIEW_DIRECTION_HORIZONTAL)
 -- endif
 {{ CCNode.rennder_base_properties(name,data.properties,parent) }}
 -- endmacro 

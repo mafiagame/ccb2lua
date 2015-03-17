@@ -55,13 +55,23 @@ def getDisplayFrameName(_value):
 		return "\"#"+_value[1]+"\""
 
 
-def getDisplayFrame(_value):
+def getDisplayFrame2(_value):
 	print(_value)
 	count = len(_value)
 	if count == 0:
 		return "nil"
 	elif count == 1:
 		return "CCBNodeExtend.ccb_display_frame(\""+_value[0]+"\")"
+	elif count == 2:
+		return "CCBNodeExtend.ccb_display_frame(\""+_value[1]+"\",\""+_value[0]+"\")"
+
+def getDisplayFrame(_value):
+	print(_value)
+	count = len(_value)
+	if count == 0:
+		return "nil"
+	elif count == 1:
+		return "\""+_value[0]+"\""
 	elif count == 2:
 		return "CCBNodeExtend.ccb_display_frame(\""+_value[1]+"\",\""+_value[0]+"\")"
 
@@ -139,6 +149,7 @@ env.globals['serializeString']       = serializeString
 env.globals['isDefaultVarName']      = isDefaultVarName
 env.globals['checkPropertyInvalide'] = checkPropertyInvalide
 env.globals['getDisplayFrame']       = getDisplayFrame
+env.globals['getDisplayFrame2']       = getDisplayFrame2
 env.globals['getDisplayFrameName']   = getDisplayFrameName
 env.globals['getListener']           = getListener
 

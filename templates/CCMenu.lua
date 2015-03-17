@@ -12,7 +12,7 @@
 
 --set size = data.properties.contentSize
 -- if not size
-{{'\t'}}{{name}}:setContentSize(CCSize(0,0))
+{{'\t'}}{{name}}:setContentSize(cc.size(0,0))
 -- endif
 {{ CCNode.rennder_base_properties(name,data.properties,parent) }}
 -- endmacro 

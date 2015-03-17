@@ -4,69 +4,50 @@ local MainScene = class("MainScene", function()
 end)
 
 function MainScene:ctor()
-    local ui = require("app.layout.Layer_layout").new(self)
-        :addTo(self)
-
-    ui._progress:progressFromTo(nil,10,10,function() print("Done.....") end)
-    ui.guang:runAction(CCRepeatForever:create(CCRotateBy:create(1, 90)))
-
-
-    ui._radial:runAction(CCRepeatForever:create(transition.sequence({
-            CCProgressFromTo:create(5, 100, 0),
-            CCProgressFromTo:create(5, 0, 100),
-        })))
-
-    ui._labelTest:setString("1如果实在要买电脑，旧电脑怎么处理才比较安全？拿了硬盘？拿了主板？还是？2win8能装03的office么？不要烧死，我试过用07的做，一些功能我用07的做出来效果不一样了，不是我要的那种。")
-
-    ui._richlabel:init("<div color=#FF00FF>如果实在要买电脑，旧电脑怎么处理才比较安全？</div><img>battle_win/EXP.png</img><bmf font='fonts/hurtnumbers.fnt'>+100</bmf><div size=50 oc=#FF00FF>如果实在要买电脑，旧电脑怎么处理才比较安全？</div>")
+    self:addChild(self:createMenu({
+        "CCB",
+        "Layer",
+        "LabelLayer",
+        "ButtonLayer",
+        "Scale9SpriteLayer",
+        "SpriteLayer",
+    }, function(v)
+        local scene = display.newScene()
+        require("app.scenes."..v).new()
+            :addTo(scene)
+        display.replaceScene(scene)
+    end))
 end
 
-function MainScene:onEditBoxEvent(event, editbox)
-    print(event, editbox)
-end
-
-function MainScene:onBtnClick()
-    print("MainScene:onBtnClick !!!")
-end
-
-function MainScene:onBtnBack()
-    print("onBtnBack!!!")
-end
-
-
-function MainScene:onBtnReady()
-    print("onBtnReady!!!")
-end
-
-function MainScene:onBtnAgain()
-    print("onBtnAgain!!!")
-end
-
-function MainScene:onBtnNext()
-    print("onBtnNext!!!")
-end
-
-function MainScene:onBtnCCC(_tag,_control)
-    app:enterScene("LayoutTestScene")
-end
-
-function MainScene:onEnter()
-    if device.platform == "android" then
-        -- avoid unmeant back
-        self:performWithDelay(function()
-            -- keypad layer, for android
-            local layer = display.newLayer()
-            layer:addKeypadEventListener(function(event)
-                if event == "back" then app.exit() end
+function MainScene:createMenu(items, callback)
+    local menu = cc.ui.UIListView.new {
+        viewRect = cc.rect(display.cx - 200, display.bottom + 100, 400, display.height - 200),
+        direction = cc.ui.UIScrollView.DIRECTION_VERTICAL}
+        :onScroll(function(event)
+                if "moved" == event.name then
+                elseif "ended" == event.name then
+                end
             end)
-            self:addChild(layer)
 
-            layer:setKeypadEnabled(true)
-        end, 0.5)
+    for i, v in ipairs(items) do
+        local item = menu:newItem()
+        local content
+
+        content = cc.ui.UIPushButton.new()
+            :setButtonSize(200, 40)
+            :setButtonLabel(cc.ui.UILabel.new({text = v, size = 24, color = display.COLOR_BLUE}))
+            :onButtonClicked(function(event)
+                callback(v)
+            end)
+        content:setTouchSwallowEnabled(false)
+        item:addContent(content)
+        item:setItemSize(120, 40)
+
+        menu:addItem(item)
     end
-end
+    menu:reload()
 
-function MainScene:onExit()
+    return menu
 end
 
 return MainScene

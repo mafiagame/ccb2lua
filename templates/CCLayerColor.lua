@@ -3,11 +3,10 @@
 
 
 -- macro rennder(data,name,parent)
-
--- if data.customClass and data.customClass != "" 
-{{'\t'}}local {{name}} = require("app.views.{{ data.customClass }}").new()
--- else 
-{{'\t'}}local {{name}} = CCLayerColor:create()
--- endif
+	-- set color = data.properties.color
+	-- set opacity = data.properties.opacity
+	-- set _ = nilProperty(data.properties, "color")
+	-- set _ = nilProperty(data.properties, "opacity")
+{{'\t'}}local {{name}} = cc.LayerColor:create(cc.c4b({{color[0]}},{{color[1]}},{{color[2]}},{{opacity}}))
 {{ CCNode.rennder_base_properties(name,data.properties,parent) }}
 -- endmacro 

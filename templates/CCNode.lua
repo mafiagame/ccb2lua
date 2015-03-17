@@ -4,7 +4,7 @@
         -- set value = properties[key]
         -- if checkPropertyInvalide(key, value)
             -- if key == "anchorPoint":
-{{'\t'}}{{name}}:setAnchorPoint(ccp({{value[0]}},{{value[1]}}))
+{{'\t'}}{{name}}:setAnchorPoint(cc.p({{value[0]}},{{value[1]}}))
         	--elif key == "position"
 {{'\t'}}{{name}}:setPosition(CCBNodeExtend.ccb_pos({{value[0]}},{{value[1]}},{{value[2]}},{{parent}}))
         	--elif key == "scale"
@@ -15,15 +15,15 @@
 {{'\t'}}{{name}}:setScaleY({{value[1]}})
                 -- endif
         	--elif key == "ignoreAnchorPointForPosition"
-{{'\t'}}{{name}}:setIgnoreAnchorPointForPosition({{value}})
+{{'\t'}}{{name}}:ignoreAnchorPointForPosition({{value}})
     		--elif key == "displayFrame" and value[0] and value[0] != ""
-{{'\t'}}{{name}}:setDisplayFrame({{getDisplayFrame(value)}})
+{{'\t'}}{{name}}:setSpriteFrame({{getDisplayFrame2(value)}})
     		--elif key == "contentSize"
 {{'\t'}}{{name}}:setContentSize(CCBNodeExtend.ccb_size({{value[0]}},{{value[1]}},{{value[2]}},{{parent}}))
             --elif key == "preferedSize"
 {{'\t'}}{{name}}:setPreferredSize(CCBNodeExtend.ccb_size({{value[0]}},{{value[1]}},{{value[2]}},{{parent}}))
             --elif key == "color"
-{{'\t'}}{{name}}:setColor(ccc3({{value[0]}},{{value[1]}},{{value[2]}}))
+{{'\t'}}{{name}}:setColor(cc.c3b({{value[0]}},{{value[1]}},{{value[2]}}))
             --elif key == "opacity"
 {{'\t'}}{{name}}:setOpacity({{value}})
             --elif key == "tag"

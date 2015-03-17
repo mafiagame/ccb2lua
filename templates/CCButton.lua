@@ -2,33 +2,34 @@
 
 
 -- macro rennder(data,name,parent)
-	-- set block = data.properties.block
-	-- if data.customClass and data.customClass == "SwitchButton"
-{{'\t'}}local {{name}} = cc.ui.UICheckBoxButton.new({on = {{getDisplayFrameName(data.properties.normalSpriteFrame)}},off = {{getDisplayFrameName(data.properties.selectedSpriteFrame)}}})
-		-- if block and block[0]
-{{'\t'}}{{name}}:onButtonClicked({{getListener(block[1] == "1",block[0])}})
+	-- if data.customClass and data.customClass == "UICheckBoxButton"
+{{'\t'}}local {{name}} = cc.ui.UICheckBoxButton.new({
+{{'\t'}}{{'\t'}}on = {{getDisplayFrameName(data.properties.normalSpriteFrame)}},
+{{'\t'}}{{'\t'}}off = {{getDisplayFrameName(data.properties.selectedSpriteFrame)}}
+		-- set disable = data.properties.disabledSpriteFrame
+		-- if disable and disable != ""
+{{'\t'}}{{'\t'}}on_disabled = {{getDisplayFrame(data.properties.disabledSpriteFrame)}},
+{{'\t'}}{{'\t'}}off_disabled = {{getDisplayFrame(data.properties.disabledSpriteFrame)}},
 		-- endif
-		-- if data.properties.isEnabled == "false"
-{{'\t'}}{{name}}:setButtonEnabled(false)
-		-- endif
+{{'\t'}}})
 	-- else
-{{'\t'}}local params = {
+{{'\t'}}local {{name}} = cc.ui.UIPushButton.new({
 {{'\t'}}{{'\t'}}normal = {{getDisplayFrame(data.properties.normalSpriteFrame)}},
-{{'\t'}}{{'\t'}}select = {{getDisplayFrame(data.properties.selectedSpriteFrame)}},
-{{'\t'}}{{'\t'}}disable = {{getDisplayFrame(data.properties.disabledSpriteFrame)}},
-		-- if block and block[0]
-{{'\t'}}{{'\t'}}listener = {{getListener(block[1] == "1",block[0])}},
+{{'\t'}}{{'\t'}}pressed = {{getDisplayFrame(data.properties.selectedSpriteFrame)}},
+		-- set disable = data.properties.disabledSpriteFrame
+		-- if disable and disable != ""
+{{'\t'}}{{'\t'}}disabled = {{getDisplayFrame(data.properties.disabledSpriteFrame)}},
 		-- endif
-{{'\t'}}}
-		-- if data.customClass and data.customClass != ""
-{{'\t'}}local {{name}} = require("app.views.{{ data.customClass }}").new(params)
-		-- else
-{{'\t'}}local {{name}} = CCBNodeExtend.newButton(params)
-		-- endif
-		-- if data.properties.isEnabled == "false"
-{{'\t'}}{{name}}:setEnabled(false)
-		-- endif
-	
+{{'\t'}}})
+	-- endif
+
+	-- set block = data.properties.block
+	-- if block and block[0]
+{{'\t'}}:onButtonClicked({{getListener(block[1] == "1",block[0])}})
+	-- endif
+
+	-- if data.properties.isEnabled == "false"
+{{'\t'}}{{name}}:setButtonEnabled(false)
 	-- endif
 {{ CCNode.rennder_base_properties(name,data.properties,parent) }}
 -- endmacro 
