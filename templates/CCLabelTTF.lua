@@ -13,7 +13,7 @@
 {{'\t'}}{{'\t'}}font = "{{properties.fontName}}",
 {{'\t'}}{{'\t'}}fontSize = {{properties.fontSize[0]}},
 	-- if data.memberVarAssignmentName and data.memberVarAssignmentName != ""
-{{'\t'}}{{'\t'}}listener = handler(_owner,assert(_owner.{{data.memberVarAssignmentName}},"{{data.memberVarAssignmentName}}")),
+{{'\t'}}{{'\t'}}listener = {{getListener("_owner",data.memberVarAssignmentName)}},
 	-- endif
 
 	-- set var = properties.tag

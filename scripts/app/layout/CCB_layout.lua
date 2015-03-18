@@ -58,7 +58,8 @@ function CCB_layout:ctor(_owner)
 
 	self._num4 = ccb_5
 
-
 end
+
+
 
 return CCB_layout

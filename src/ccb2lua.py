@@ -28,6 +28,7 @@ def debug(text):
 
 
 G_INDEX = 0
+G_FUNCTION = dict()
 G_DATAS = dict()
 G_TEMPLATES = list()
 
@@ -41,8 +42,19 @@ def resetIndex():
 	global G_INDEX
 	G_INDEX = 0
 
-def getListener(_owner, _name):
-	return "handler(_owner, assert(_owner."+ _name +",\""+ _name +"\"))"
+def resetFunction():
+	global G_FUNCTION
+	G_FUNCTION = dict()
+
+
+def getFunction():
+	global G_FUNCTION
+	return G_FUNCTION
+
+def getListener(_target, _name):
+	global G_INDEX
+	G_FUNCTION[_name]=True
+	return "handler({target}, assert({target}.{name},\"{name}\"))".format(target="_owner",name=_name)
 
 
 def getDisplayFrameName(_value):
@@ -152,6 +164,7 @@ env.globals['getDisplayFrame']       = getDisplayFrame
 env.globals['getDisplayFrame2']       = getDisplayFrame2
 env.globals['getDisplayFrameName']   = getDisplayFrameName
 env.globals['getListener']           = getListener
+env.globals['getFunction']           = getFunction
 
 
 # 获取父类名字
@@ -178,6 +191,7 @@ def output(_data):
 
 def output_single(_data, _name):
 	resetIndex()
+	resetFunction()
 	ccb = _data[_name]
 	convertccb2lua(ccb, _data)
 	print "OUTPUT: ",_name,"done!"

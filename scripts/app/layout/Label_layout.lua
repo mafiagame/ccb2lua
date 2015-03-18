@@ -59,7 +59,7 @@ function Label_layout:ctor(_owner)
 		text = "这是一个UIInput",
 		font = "Helvetica",
 		fontSize = 30,
-		listener = handler(_owner,assert(_owner.onBtnClick,"onBtnClick")),
+		listener = handler(_owner, assert(_owner.onBtnClick,"onBtnClick")),
 	})
 	ttf_4:setAnchorPoint(cc.p(0.0,0.5))
 	ttf_4:setPosition(CCBNodeExtend.ccb_pos(5,44.375,4,self))
@@ -102,7 +102,11 @@ function Label_layout:ctor(_owner)
 
 	self.CCLabelTTF = ttf_6
 
-
 end
+
+function Label_layout:onBtnClick(_tag, _sprite)
+	print("You should override this methed: <onBtnClick>",_tag)
+end
+
 
 return Label_layout

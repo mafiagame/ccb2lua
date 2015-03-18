@@ -103,7 +103,11 @@ function Sprite_layout:ctor(_owner)
 
 	self._title = ttf_7
 
-
 end
+
+function Sprite_layout:onBtnClick(_tag, _sprite)
+	print("You should override this methed: <onBtnClick>",_tag)
+end
+
 
 return Sprite_layout

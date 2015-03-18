@@ -133,7 +133,8 @@ function Layer_layout:ctor(_owner)
 
 	self.CCLabelTTF = ttf_9
 
-
 end
+
+
 
 return Layer_layout

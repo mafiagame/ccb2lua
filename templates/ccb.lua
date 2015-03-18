@@ -75,12 +75,22 @@ end)
 -- endmacro
 
 
+-- macro rennder_function(_function)
+    -- for func in _function
+function {{ classname }}:{{func}}(_tag, _sprite)
+{{'\t'}}print("You should override this methed: <{{func}}>",_tag)
+end
+    -- endfor
+
+-- endmacro
+
 {{'\n'}}
 function {{ classname }}:ctor(_owner)
 {{'\t'}} _owner = _owner or self
-{{ CCNode.rennder_base_properties("self",data.properties,"nil") }}
-{{ rennder_tree(data,"self") }}
-
+{{CCNode.rennder_base_properties("self",data.properties,"nil") }}
+{{rennder_tree(data,"self") }}
 end
+
+{{rennder_function(getFunction())}}
 
 return {{ classname }}

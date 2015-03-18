@@ -42,7 +42,8 @@ function Myccb_layout:ctor(_owner)
 
 	self._score = ttf_2
 
-
 end
+
+
 
 return Myccb_layout

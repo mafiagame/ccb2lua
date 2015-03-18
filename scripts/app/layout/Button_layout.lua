@@ -131,7 +131,11 @@ function Button_layout:ctor(_owner)
 
 	self.CCLabelTTF = ttf_8
 
-
 end
+
+function Button_layout:onBtnClick(_tag, _sprite)
+	print("You should override this methed: <onBtnClick>",_tag)
+end
+
 
 return Button_layout
