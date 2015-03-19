@@ -12,12 +12,12 @@ function ButtonLayer:ctor()
 	self.count = 0
 end
 
-function ButtonLayer:onBtnClick()
-	print("ButtonLayer:onBtnClick")
+-- function ButtonLayer:onBtnClick()
+-- 	print("ButtonLayer:onBtnClick")
 
-	self.count = self.count + 1
+-- 	self.count = self.count + 1
 
-	self._title:setString("onBtnClick"..self.count)
-end
+-- 	self._title:setString("onBtnClick"..self.count)
+-- end
 
 return ButtonLayer

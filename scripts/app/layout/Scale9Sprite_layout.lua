@@ -52,7 +52,7 @@ function Scale9Sprite_layout:ctor(_owner)
 
 	self.CCLabelTTF = ttf_3
 	local sprite9_4 = display.newScale9Sprite("diban.png")
-	CCBNodeExtend.addTouchListener(sprite9_4, handler(_owner, assert(_owner.onBtnClick,"onBtnClick")))
+	CCBNodeExtend.addTouchListener(sprite9_4, handler(_owner, _owner.onBtnClick))
 	CCBNodeExtend.cap_insets(sprite9_4,0.0,0.0,0.0,0.0)
 	sprite9_4:setAnchorPoint(cc.p(0.5,0.5))
 	sprite9_4:setPosition(CCBNodeExtend.ccb_pos(50,78.125,4,self))
@@ -79,7 +79,7 @@ function Scale9Sprite_layout:ctor(_owner)
 
 	self.CCLabelTTF = ttf_5
 	local sprite9_6 = display.newScale9Sprite("diban.png")
-	CCBNodeExtend.addTouchListenerEx(sprite9_6, handler(_owner, assert(_owner.onBtnClick,"onBtnClick")))
+	CCBNodeExtend.addTouchListenerEx(sprite9_6, handler(_owner, _owner.onBtnClick))
 	CCBNodeExtend.cap_insets(sprite9_6,0.0,0.0,0.0,0.0)
 	sprite9_6:setAnchorPoint(cc.p(0.5,0.5))
 	sprite9_6:setPosition(CCBNodeExtend.ccb_pos(80,78.125,4,self))

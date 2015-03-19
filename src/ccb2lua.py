@@ -54,7 +54,7 @@ def getFunction():
 def getListener(_target, _name):
 	global G_INDEX
 	G_FUNCTION[_name]=True
-	return "handler({target}, assert({target}.{name},\"{name}\"))".format(target="_owner",name=_name)
+	return "handler({target}, {target}.{name})".format(target="_owner",name=_name)
 
 
 def getDisplayFrameName(_value):

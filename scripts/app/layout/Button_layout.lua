@@ -39,7 +39,7 @@ function Button_layout:ctor(_owner)
 		normal = "qianjin_1.png",
 		pressed = "qianjin_2.png",
 	})
-	:onButtonClicked(handler(_owner, assert(_owner.onBtnClick,"onBtnClick")))
+	:onButtonClicked(handler(_owner, _owner.onBtnClick))
 	menuitemimage_3:setAnchorPoint(cc.p(0.5,0.5))
 	menuitemimage_3:setPosition(CCBNodeExtend.ccb_pos(96.768013000488281,402.62405395507812,0,menu_2))
 	menuitemimage_3:ignoreAnchorPointForPosition(false)
@@ -53,7 +53,7 @@ function Button_layout:ctor(_owner)
 		on = "CheckBoxButton2On.png",
 		off = "CheckBoxButton2Off.png"
 	})
-	:onButtonClicked(handler(_owner, assert(_owner.onBtnClick,"onBtnClick")))
+	:onButtonClicked(handler(_owner, _owner.onBtnClick))
 	menuitemimage_4:setAnchorPoint(cc.p(0.5,0.5))
 	menuitemimage_4:setPosition(CCBNodeExtend.ccb_pos(356.76800537109375,402.62405395507812,0,menu_2))
 	menuitemimage_4:ignoreAnchorPointForPosition(false)
@@ -97,7 +97,7 @@ function Button_layout:ctor(_owner)
 		pressed = "Button01Pressed.png"
 	},{scale9 = true})
 	:setButtonSize(200,50)
-	:onButtonClicked(handler(_owner, assert(_owner.onBtnClick,"onBtnClick")))
+	:onButtonClicked(handler(_owner, _owner.onBtnClick))
 	local label = cc.ui.UILabel.new({
             UILabelType = 2,
             font = "Helvetica",

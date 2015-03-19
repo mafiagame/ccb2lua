@@ -37,7 +37,7 @@ function Sprite_layout:ctor(_owner)
 	self.CCLabelTTF = ttf_2
 
 	local sprite_3 = display.newSprite("daxingxing_1.png")
-	CCBNodeExtend.addTouchListener(sprite_3, handler(_owner, assert(_owner.onBtnClick,"onBtnClick")))
+	CCBNodeExtend.addTouchListener(sprite_3, handler(_owner, _owner.onBtnClick))
 	sprite_3:setPosition(CCBNodeExtend.ccb_pos(80,50,4,self))
 	sprite_3:setAnchorPoint(cc.p(0.5,0.5))
 	sprite_3:ignoreAnchorPointForPosition(false)
@@ -63,7 +63,7 @@ function Sprite_layout:ctor(_owner)
 	self.CCLabelTTF = ttf_4
 
 	local sprite_5 = display.newSprite("daxingxing_1.png")
-	CCBNodeExtend.addTouchListenerEx(sprite_5, handler(_owner, assert(_owner.onBtnClick,"onBtnClick")))
+	CCBNodeExtend.addTouchListenerEx(sprite_5, handler(_owner, _owner.onBtnClick))
 	sprite_5:setPosition(CCBNodeExtend.ccb_pos(50,50,4,self))
 	sprite_5:setAnchorPoint(cc.p(0.5,0.5))
 	sprite_5:ignoreAnchorPointForPosition(false)
