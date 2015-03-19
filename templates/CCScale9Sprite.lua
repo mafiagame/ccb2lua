@@ -2,12 +2,12 @@
 
 
 
--- macro rennder(data,name,parent)
+-- macro rennder(data,name,parent,define)
 	-- set frame = data.properties.spriteFrame
 	-- if data.customClass and data.customClass != "" and data.customClass != "BanTouch" and data.customClass != "ProgressBar" and data.customClass != "EditBox"
-{{'\t'}}local {{name}} = require("app.scenes.{{ data.customClass }}").new({{getDisplayFrame(frame)}})
+{{'\t'}}{{define}}{{name}} = require("app.scenes.{{ data.customClass }}").new({{getDisplayFrame(frame)}})
 	-- else
-{{'\t'}}local {{name}} = display.newScale9Sprite("{{frame[0]}}")
+{{'\t'}}{{define}}{{name}} = display.newScale9Sprite("{{frame[0]}}")
 	-- endif
 	-- if data.memberVarAssignmentName and data.memberVarAssignmentName != "" and data.customClass != "EditBox"
 		-- if data.memberVarAssignmentName == "BanTouch"

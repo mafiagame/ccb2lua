@@ -2,12 +2,12 @@
 
 
 
--- macro rennder(data,name,parent)
+-- macro rennder(data,name,parent,define)
 	-- if data.customClass and data.customClass != ""
-{{'\t'}}local {{name}} = require("app.scenes.{{ data.customClass }}").new()
+{{'\t'}}{{define}}{{name}} = require("app.scenes.{{ data.customClass }}").new()
 	-- else
 		-- set displayFrame = data.properties.displayFrame
-{{'\t'}}local {{name}} = display.newSprite("{{displayFrame[0]}}")
+{{'\t'}}{{define}}{{name}} = display.newSprite("{{displayFrame[0]}}")
 		-- set _ = nilProperty(data.properties,"displayFrame")
 	-- endif
 	-- if data.memberVarAssignmentName and data.memberVarAssignmentName != ""

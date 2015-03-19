@@ -2,8 +2,8 @@
 
 
 
--- macro rennder(data,name,parent)
-{{'\t'}}local {{name}} = display.newBMFontLabel({
+-- macro rennder(data,name,parent,define)
+{{'\t'}}{{define}}{{name}} = display.newBMFontLabel({
 {{'\t'}}{{'\t'}}text = "{{serializeString(data.properties.string)}}",
 {{'\t'}}{{'\t'}}font = "{{data.properties.fntFile}}",
 {{'\t'}}})

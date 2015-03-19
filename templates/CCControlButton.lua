@@ -1,9 +1,9 @@
 -- import 'CCNode.lua' as CCNode
 
 
--- macro rennder(data,name,parent,ccbdata)
+-- macro rennder(data,name,parent,define,ccbdata)
 
-{{'\t'}}local {{name}} = cc.ui.UIPushButton.new({
+{{'\t'}}{{define}}{{name}} = cc.ui.UIPushButton.new({
 	-- set var = data.properties["backgroundSpriteFrame|1"]
 {{'\t'}}{{'\t'}}normal = {{getDisplayFrameName(var)}},
 	-- set var = data.properties["backgroundSpriteFrame|2"]

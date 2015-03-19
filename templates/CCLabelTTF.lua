@@ -2,10 +2,10 @@
 
 
 
--- macro rennder(data,name,parent)
+-- macro rennder(data,name,parent,define)
 -- set properties = data.properties
 -- if data.customClass and data.customClass == "UIInput" 
-{{'\t'}}local {{name}} = cc.ui.UIInput.new({
+{{'\t'}}{{define}}{{name}} = cc.ui.UIInput.new({
 {{'\t'}}{{'\t'}}x=0,
 {{'\t'}}{{'\t'}}y=0,
 {{'\t'}}{{'\t'}}UIInputType = 2,
@@ -22,7 +22,7 @@
 	-- endif
 {{'\t'}}})
 -- else
-{{'\t'}}local {{name}} = display.newTTFLabel({
+{{'\t'}}{{define}}{{name}} = display.newTTFLabel({
 {{'\t'}}{{'\t'}}text = "{{serializeString(properties.string)}}",
 {{'\t'}}{{'\t'}}font = "{{properties.fontName}}",
 {{'\t'}}{{'\t'}}size = {{properties.fontSize[0]}},

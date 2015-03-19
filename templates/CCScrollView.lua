@@ -1,8 +1,8 @@
 -- import 'CCNode.lua' as CCNode
 
--- macro rennder(data,name,parent,ccbdata)
+-- macro rennder(data,name,parent,define,ccbdata)
 
-{{'\t'}}local {{name}} = cc.ScrollView:create()
+{{'\t'}}{{define}}{{name}} = cc.ScrollView:create()
 
 -- set item = data.properties.contentSize
 	-- if item and item != ""

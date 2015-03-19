@@ -1,9 +1,9 @@
 -- import 'CCNode.lua' as CCNode
 
 
--- macro rennder(data,name,parent)
+-- macro rennder(data,name,parent,define)
 	-- if data.customClass and data.customClass == "UICheckBoxButton"
-{{'\t'}}local {{name}} = cc.ui.UICheckBoxButton.new({
+{{'\t'}}{{define}}{{name}} = cc.ui.UICheckBoxButton.new({
 {{'\t'}}{{'\t'}}on = {{getDisplayFrameName(data.properties.normalSpriteFrame)}},
 {{'\t'}}{{'\t'}}off = {{getDisplayFrameName(data.properties.selectedSpriteFrame)}}
 		-- set disable = data.properties.disabledSpriteFrame
@@ -13,7 +13,7 @@
 		-- endif
 {{'\t'}}})
 	-- else
-{{'\t'}}local {{name}} = cc.ui.UIPushButton.new({
+{{'\t'}}{{define}}{{name}} = cc.ui.UIPushButton.new({
 {{'\t'}}{{'\t'}}normal = {{getDisplayFrame(data.properties.normalSpriteFrame)}},
 {{'\t'}}{{'\t'}}pressed = {{getDisplayFrame(data.properties.selectedSpriteFrame)}},
 		-- set disable = data.properties.disabledSpriteFrame

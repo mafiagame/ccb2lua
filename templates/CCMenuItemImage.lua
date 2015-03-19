@@ -1,11 +1,11 @@
 -- import 'CCNode.lua' as CCNode
 
 
--- macro rennder(data,name,parent)
+-- macro rennder(data,name,parent,define)
 	-- if data.customClass and data.customClass != "" 
-{{'\t'}}local {{name}} = require("app.views.{{ data.customClass }}").new()
+{{'\t'}}{{define}}{{name}} = require("app.views.{{ data.customClass }}").new()
 	-- else 
-{{'\t'}}local {{name}} = CCMenuItemImage:create()
+{{'\t'}}{{define}}{{name}} = CCMenuItemImage:create()
 	-- endif
 	-- set var = data.properties.block
 	-- if var and var[0]

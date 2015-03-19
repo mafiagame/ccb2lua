@@ -2,12 +2,12 @@
 
 
 
--- macro rennder(data,name,parent)
+-- macro rennder(data,name,parent,define)
 
 -- if data.customClass and data.customClass != "" 
-{{'\t'}}local {{name}} = require("app.views.{{ data.customClass }}").new()
+{{'\t'}}{{define}}{{name}} = require("app.views.{{ data.customClass }}").new()
 -- else 
-{{'\t'}}local {{name}} = display.newLayer()
+{{'\t'}}{{define}}{{name}} = display.newLayer()
 -- endif
 {{ CCNode.rennder_base_properties(name,data.properties,parent) }}
 -- endmacro 

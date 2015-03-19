@@ -11,36 +11,34 @@ function Myccb_layout:ctor(_owner)
 	self:setAnchorPoint(cc.p(0.5,0.5))
 	self:ignoreAnchorPointForPosition(false)
 
-	local ttf_1 = display.newTTFLabel({
+	self._name = display.newTTFLabel({
 		text = "第一名",
 		font = "Helvetica",
 		size = 20,
 	})
-	ttf_1:setAnchorPoint(cc.p(0.5,0.5))
-	ttf_1:setColor(cc.c3b(0,0,0))
-	ttf_1:setPosition(CCBNodeExtend.ccb_pos(50,50,4,self))
-	ttf_1:ignoreAnchorPointForPosition(false)
+	self._name:setAnchorPoint(cc.p(0.5,0.5))
+	self._name:setColor(cc.c3b(0,0,0))
+	self._name:setPosition(CCBNodeExtend.ccb_pos(50,50,4,self))
+	self._name:ignoreAnchorPointForPosition(false)
 
 
-	self:addChild(ttf_1)
+	self:addChild(self._name)
 
 
-	self._name = ttf_1
-	local ttf_2 = display.newTTFLabel({
+	self._score = display.newTTFLabel({
 		text = "500",
 		font = "Helvetica",
 		size = 20,
 	})
-	ttf_2:setAnchorPoint(cc.p(0.5,0.5))
-	ttf_2:setColor(cc.c3b(0,0,0))
-	ttf_2:setPosition(CCBNodeExtend.ccb_pos(50,34.126983642578125,4,self))
-	ttf_2:ignoreAnchorPointForPosition(false)
+	self._score:setAnchorPoint(cc.p(0.5,0.5))
+	self._score:setColor(cc.c3b(0,0,0))
+	self._score:setPosition(CCBNodeExtend.ccb_pos(50,34.126983642578125,4,self))
+	self._score:ignoreAnchorPointForPosition(false)
 
 
-	self:addChild(ttf_2)
+	self:addChild(self._score)
 
 
-	self._score = ttf_2
 
 end
 
