@@ -2,26 +2,34 @@
 
 
 -- macro rennder(data,name,parent,define)
-	-- if data.customClass and data.customClass != "" 
-{{'\t'}}{{define}}{{name}} = require("app.views.{{ data.customClass }}").new()
-	-- else 
-{{'\t'}}{{define}}{{name}} = CCMenuItemImage:create()
+	-- if data.customClass and data.customClass == "UICheckBoxButton"
+{{'\t'}}{{define}}{{name}} = cc.ui.UICheckBoxButton.new({
+{{'\t'}}{{'\t'}}on = {{getDisplayFrameName(data.properties.normalSpriteFrame)}},
+{{'\t'}}{{'\t'}}off = {{getDisplayFrameName(data.properties.selectedSpriteFrame)}}
+		-- set disable = data.properties.disabledSpriteFrame
+		-- if disable and disable != ""
+{{'\t'}}{{'\t'}}on_disabled = {{getDisplayFrame(data.properties.disabledSpriteFrame)}},
+{{'\t'}}{{'\t'}}off_disabled = {{getDisplayFrame(data.properties.disabledSpriteFrame)}},
+		-- endif
+{{'\t'}}})
+	-- else
+{{'\t'}}{{define}}{{name}} = cc.ui.UIPushButton.new({
+{{'\t'}}{{'\t'}}normal = {{getDisplayFrame(data.properties.normalSpriteFrame)}},
+{{'\t'}}{{'\t'}}pressed = {{getDisplayFrame(data.properties.selectedSpriteFrame)}},
+		-- set disable = data.properties.disabledSpriteFrame
+		-- if disable and disable != ""
+{{'\t'}}{{'\t'}}disabled = {{getDisplayFrame(data.properties.disabledSpriteFrame)}},
+		-- endif
+{{'\t'}}})
 	-- endif
-	-- set var = data.properties.block
-	-- if var and var[0]
-{{'\t'}}{{name}}:registerScriptTapHandler({{getListener(var[1] == "1", var[0])}})
+
+	-- set block = data.properties.block
+	-- if block and block[0]
+{{'\t'}}:onButtonClicked({{getListener(block[1] == "1",block[0])}})
 	-- endif
-	-- set var = data.properties.normalSpriteFrame
-	-- if var
-{{'\t'}}{{name}}:setNormalSpriteFrame({{getListener(var[1] == "1", var[0])}})
-	-- endif
-	-- set var = data.properties.selectedSpriteFrame
-	-- if var
-{{'\t'}}{{name}}:setSelectedSpriteFrame({{getListener(var[1] == "1", var[0])}})
-	-- endif
-	-- set var = data.properties.disabledSpriteFrame
-	-- if var
-{{'\t'}}{{name}}:setDisabledSpriteFrame({{getListener(var[1] == "1", var[0])}})
+
+	-- if data.properties.isEnabled == "false"
+{{'\t'}}{{name}}:setButtonEnabled(false)
 	-- endif
 {{ CCNode.rennder_base_properties(name,data.properties,parent) }}
 -- endmacro 

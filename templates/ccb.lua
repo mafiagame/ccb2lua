@@ -13,7 +13,6 @@ end)
 -- import 'CCScale9Sprite.lua' as CCScale9Sprite
 -- import 'CCMenu.lua' as CCMenu
 -- import 'CCMenuItemImage.lua' as CCMenuItemImage
--- import 'CCButton.lua' as CCButton
 -- import 'CCScrollView.lua' as CCScrollView
 -- import 'CCControlButton.lua' as CCControlButton
 
@@ -50,7 +49,7 @@ end)
         -- elif data.baseClass == "CCMenu"
 {{ CCNode.rennder(data,var_name,parent,var_def) }}
         -- elif data.baseClass == "CCMenuItemImage"
-{{ CCButton.rennder(data,var_name,parent,var_def) }}
+{{ CCMenuItemImage.rennder(data,var_name,parent,var_def) }}
         -- elif data.baseClass == "CCScrollView"
 {{ CCScrollView.rennder(data,var_name,parent,var_def,ccbdata) }}
         -- elif data.baseClass == "CCControlButton"
