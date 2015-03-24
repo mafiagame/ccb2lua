@@ -6,13 +6,7 @@ rm -rf *.spec
 
 rm -rf *.pyc
 
+cp ccb2lua ../bin/ccb2lua
 
-target=../../../client/proj.ccb/ccb2lua
+rm -rf ./ccb2lua
 
-mkdir $target
-
-cp ../templates/*.lua $target
-
-cp ccb2lua $target
-
-rm -rf ccb2lua
