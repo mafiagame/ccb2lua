@@ -3,9 +3,9 @@
 -- Date: 2014-08-17 23:40:23
 --
 
-CCBNodeExtend = {}
+ccbutils = {}
 
-function CCBNodeExtend.ccb_pos(x, y, flag, parent)
+function ccbutils.ccb_pos(x, y, flag, parent)
     if flag == 4 then
         if parent then
             return parent:getContentSize().width*(x/100), parent:getContentSize().height*(y/100)
@@ -17,7 +17,7 @@ function CCBNodeExtend.ccb_pos(x, y, flag, parent)
     end
 end
 
-function CCBNodeExtend.cap_insets(self, left, top, right, bottom)
+function ccbutils.cap_insets(self, left, top, right, bottom)
     self:setInsetLeft(left);
     self:setInsetTop(top);
     self:setInsetRight(right);
@@ -27,7 +27,7 @@ end
 local sharedSpriteFrameCache = cc.SpriteFrameCache:getInstance()
 local sharedTextureCache     = cc.Director:getInstance():getTextureCache()
 
-function CCBNodeExtend.ccb_display_frame(name, plist)
+function ccbutils.ccb_display_frame(name, plist)
     if plist then
         local img_name = string.gsub(plist,".plist$",".png")
         sharedSpriteFrameCache:addSpriteFramesWithFile(plist,img_name)
@@ -42,7 +42,7 @@ function CCBNodeExtend.ccb_display_frame(name, plist)
     return frame
 end
 
-function CCBNodeExtend.ccb_size(w, h, flag, parent)
+function ccbutils.ccb_size(w, h, flag, parent)
     if flag == 1 then
         if parent then
             return cc.size(parent:getContentSize().width*(w/100),parent:getContentSize().height*(h/100))
@@ -54,7 +54,7 @@ function CCBNodeExtend.ccb_size(w, h, flag, parent)
     end
 end
 
-function CCBNodeExtend.addTouchListenerEx(sprite, listener)
+function ccbutils.addTouchListenerEx(sprite, listener)
     sprite:setTouchEnabled(true)
     sprite:addNodeEventListener(cc.NODE_TOUCH_EVENT, function(event)
         if event.name == "began" then
@@ -70,7 +70,7 @@ function CCBNodeExtend.addTouchListenerEx(sprite, listener)
     return sprite
 end
 
-function CCBNodeExtend.addTouchListener(sprite, listener, opacity)
+function ccbutils.addTouchListener(sprite, listener, opacity)
     local src_opacity = 0
     opacity = opacity or 200
     sprite:setTouchEnabled(true)
@@ -91,7 +91,7 @@ function CCBNodeExtend.addTouchListener(sprite, listener, opacity)
     return sprite
 end
 
-function CCBNodeExtend.addTouchEventListener(sprite, listener, opacity)
+function ccbutils.addTouchEventListener(sprite, listener, opacity)
     local src_opacity = 0
     opacity = opacity or 200
     sprite:setTouchEnabled(true)
@@ -108,7 +108,7 @@ function CCBNodeExtend.addTouchEventListener(sprite, listener, opacity)
 end
 
 
-function CCBNodeExtend.banTouch(_sprite, _callfunc)
+function ccbutils.banTouch(_sprite, _callfunc)
     _sprite:setTouchEnabled(true)
     _sprite:addNodeEventListener(cc.NODE_TOUCH_EVENT, function(event,x,y)
         if event.name == "began" then

@@ -11,21 +11,21 @@
 	-- endif
 	-- if data.memberVarAssignmentName and data.memberVarAssignmentName != "" and data.customClass != "EditBox"
 		-- if data.memberVarAssignmentName == "BanTouch"
-{{'\t'}}CCBNodeExtend.banTouch({{name}})
+{{'\t'}}ccbutils.banTouch({{name}})
 		-- else
 			-- if data.memberVarAssignmentType == "0"
 {{'\t'}}{{name}}:addTouchListener({{getListener(true, data.memberVarAssignmentName)}})
 			-- elif data.memberVarAssignmentType == "1"
-{{'\t'}}CCBNodeExtend.addTouchListener({{name}}, {{getListener(data.memberVarAssignmentType == "1", data.memberVarAssignmentName)}})
+{{'\t'}}ccbutils.addTouchListener({{name}}, {{getListener(data.memberVarAssignmentType == "1", data.memberVarAssignmentName)}})
 			-- else
-{{'\t'}}CCBNodeExtend.addTouchListenerEx({{name}}, {{getListener(data.memberVarAssignmentType == "1", data.memberVarAssignmentName)}})
+{{'\t'}}ccbutils.addTouchListenerEx({{name}}, {{getListener(data.memberVarAssignmentType == "1", data.memberVarAssignmentName)}})
 			-- endif
 		-- endif
 	-- endif
 	-- if not data.properties.anchorPoint
 {{'\t'}}{{name}}:setAnchorPoint(cc.p(0,0))
 	-- endif
-{{'\t'}}CCBNodeExtend.cap_insets({{name}},{{data.properties.insetLeft}},{{data.properties.insetTop}},{{data.properties.insetRight}},{{data.properties.insetBottom}})
+{{'\t'}}ccbutils.cap_insets({{name}},{{data.properties.insetLeft}},{{data.properties.insetTop}},{{data.properties.insetRight}},{{data.properties.insetBottom}})
 	-- set size = data.properties.preferedSize
 	-- set tag = data.properties.tag
 	-- if data.customClass == "EditBox"
@@ -35,13 +35,13 @@
 {{ CCNode.rennder_base_properties(name,data.properties,parent) }}
 	-- endif
 	-- if data.customClass == "BanTouch"
-{{'\t'}}CCBNodeExtend.banTouch({{name}})
+{{'\t'}}ccbutils.banTouch({{name}})
 	-- elif data.customClass == "ProgressBar"
-{{'\t'}}{{name}} = CCBNodeExtend.newProgressBar({{name}})
+{{'\t'}}{{name}} = ccbutils.newProgressBar({{name}})
 	-- elif data.customClass == "EditBox"
 {{'\t'}}{{name}} = cc.ui.UIInput.new({
 {{'\t'}}{{'\t'}}image = {{name}},
-{{'\t'}}{{'\t'}}size = CCBNodeExtend.ccb_size({{size[0]}},{{size[1]}},{{size[2]}},{{parent}}),
+{{'\t'}}{{'\t'}}size = ccbutils.ccb_size({{size[0]}},{{size[1]}},{{size[2]}},{{parent}}),
 		-- if data.memberVarAssignmentName and data.memberVarAssignmentName != ""
 {{'\t'}}{{'\t'}}listener = {{getListener(data.memberVarAssignmentType == "1", data.memberVarAssignmentName)}},
 		-- endif

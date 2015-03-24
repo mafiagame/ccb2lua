@@ -12,14 +12,14 @@
 	-- endif
 	-- if data.memberVarAssignmentName and data.memberVarAssignmentName != ""
 		-- if data.memberVarAssignmentName == "BanTouch"
-{{'\t'}}CCBNodeExtend.banTouch({{name}})
+{{'\t'}}ccbutils.banTouch({{name}})
 		-- else
 			-- if data.memberVarAssignmentType == "0"
 {{'\t'}}{{name}}:addTouchListener({{getListener(true, data.memberVarAssignmentName)}})
 			-- elif data.memberVarAssignmentType == "1"
-{{'\t'}}CCBNodeExtend.addTouchListener({{name}}, {{getListener(data.memberVarAssignmentType == "1", data.memberVarAssignmentName)}})
+{{'\t'}}ccbutils.addTouchListener({{name}}, {{getListener(data.memberVarAssignmentType == "1", data.memberVarAssignmentName)}})
 			-- else
-{{'\t'}}CCBNodeExtend.addTouchListenerEx({{name}}, {{getListener(data.memberVarAssignmentType == "1", data.memberVarAssignmentName)}})
+{{'\t'}}ccbutils.addTouchListenerEx({{name}}, {{getListener(data.memberVarAssignmentType == "1", data.memberVarAssignmentName)}})
 			-- endif
 		-- endif
 	-- endif

@@ -6,7 +6,7 @@
             -- if key == "anchorPoint":
 {{'\t'}}{{name}}:setAnchorPoint(cc.p({{value[0]}},{{value[1]}}))
         	--elif key == "position"
-{{'\t'}}{{name}}:setPosition(CCBNodeExtend.ccb_pos({{value[0]}},{{value[1]}},{{value[2]}},{{parent}}))
+{{'\t'}}{{name}}:setPosition(ccbutils.ccb_pos({{value[0]}},{{value[1]}},{{value[2]}},{{parent}}))
         	--elif key == "scale"
                 -- if value[0] == value[1]
 {{'\t'}}{{name}}:setScale({{value[0]}})
@@ -19,9 +19,9 @@
     		--elif key == "displayFrame" and value[0] and value[0] != ""
 {{'\t'}}{{name}}:setSpriteFrame({{getDisplayFrame2(value)}})
     		--elif key == "contentSize"
-{{'\t'}}{{name}}:setContentSize(CCBNodeExtend.ccb_size({{value[0]}},{{value[1]}},{{value[2]}},{{parent}}))
+{{'\t'}}{{name}}:setContentSize(ccbutils.ccb_size({{value[0]}},{{value[1]}},{{value[2]}},{{parent}}))
             --elif key == "preferedSize"
-{{'\t'}}{{name}}:setPreferredSize(CCBNodeExtend.ccb_size({{value[0]}},{{value[1]}},{{value[2]}},{{parent}}))
+{{'\t'}}{{name}}:setPreferredSize(ccbutils.ccb_size({{value[0]}},{{value[1]}},{{value[2]}},{{parent}}))
             --elif key == "color"
 {{'\t'}}{{name}}:setColor(cc.c3b({{value[0]}},{{value[1]}},{{value[2]}}))
             --elif key == "opacity"

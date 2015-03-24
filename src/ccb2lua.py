@@ -73,9 +73,9 @@ def getDisplayFrame2(_value):
 	if count == 0:
 		return "nil"
 	elif count == 1:
-		return "CCBNodeExtend.ccb_display_frame(\""+_value[0]+"\")"
+		return "ccbutils.ccb_display_frame(\""+_value[0]+"\")"
 	elif count == 2:
-		return "CCBNodeExtend.ccb_display_frame(\""+_value[1]+"\",\""+_value[0]+"\")"
+		return "ccbutils.ccb_display_frame(\""+_value[1]+"\",\""+_value[0]+"\")"
 
 def getDisplayFrame(_value):
 	print(_value)
@@ -85,7 +85,7 @@ def getDisplayFrame(_value):
 	elif count == 1:
 		return "\""+_value[0]+"\""
 	elif count == 2:
-		return "CCBNodeExtend.ccb_display_frame(\""+_value[1]+"\",\""+_value[0]+"\")"
+		return "ccbutils.ccb_display_frame(\""+_value[1]+"\",\""+_value[0]+"\")"
 
 
 def checkPropertyInvalide(_name, _value):

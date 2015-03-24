@@ -8,11 +8,11 @@ end)
 function Sprite_layout:ctor(_owner)
 	 _owner = _owner or self
 	self:setAnchorPoint(cc.p(0.5,0.5))
-	self:setContentSize(CCBNodeExtend.ccb_size(100,100,1,nil))
+	self:setContentSize(ccbutils.ccb_size(100,100,1,nil))
 	self:ignoreAnchorPointForPosition(true)
 
 	local ccsprite_1 = display.newSprite("daxingxing_1.png")
-	ccsprite_1:setPosition(CCBNodeExtend.ccb_pos(20,50,4,self))
+	ccsprite_1:setPosition(ccbutils.ccb_pos(20,50,4,self))
 	ccsprite_1:setAnchorPoint(cc.p(0.5,0.5))
 	ccsprite_1:ignoreAnchorPointForPosition(false)
 
@@ -26,7 +26,7 @@ function Sprite_layout:ctor(_owner)
 		size = 20,
 	})
 	cclabelttf_2:setAnchorPoint(cc.p(0.5,0.5))
-	cclabelttf_2:setPosition(CCBNodeExtend.ccb_pos(50,-50,4,ccsprite_1))
+	cclabelttf_2:setPosition(ccbutils.ccb_pos(50,-50,4,ccsprite_1))
 	cclabelttf_2:ignoreAnchorPointForPosition(false)
 
 
@@ -35,8 +35,8 @@ function Sprite_layout:ctor(_owner)
 
 
 	local ccsprite_3 = display.newSprite("daxingxing_1.png")
-	CCBNodeExtend.addTouchListener(ccsprite_3, handler(_owner, _owner.onBtnClick))
-	ccsprite_3:setPosition(CCBNodeExtend.ccb_pos(80,50,4,self))
+	ccbutils.addTouchListener(ccsprite_3, handler(_owner, _owner.onBtnClick))
+	ccsprite_3:setPosition(ccbutils.ccb_pos(80,50,4,self))
 	ccsprite_3:setAnchorPoint(cc.p(0.5,0.5))
 	ccsprite_3:ignoreAnchorPointForPosition(false)
 
@@ -50,7 +50,7 @@ function Sprite_layout:ctor(_owner)
 		size = 20,
 	})
 	cclabelttf_4:setAnchorPoint(cc.p(0.5,0.5))
-	cclabelttf_4:setPosition(CCBNodeExtend.ccb_pos(50,-50,4,ccsprite_3))
+	cclabelttf_4:setPosition(ccbutils.ccb_pos(50,-50,4,ccsprite_3))
 	cclabelttf_4:ignoreAnchorPointForPosition(false)
 
 
@@ -59,8 +59,8 @@ function Sprite_layout:ctor(_owner)
 
 
 	local ccsprite_5 = display.newSprite("daxingxing_1.png")
-	CCBNodeExtend.addTouchListenerEx(ccsprite_5, handler(_owner, _owner.onBtnClick))
-	ccsprite_5:setPosition(CCBNodeExtend.ccb_pos(50,50,4,self))
+	ccbutils.addTouchListenerEx(ccsprite_5, handler(_owner, _owner.onBtnClick))
+	ccsprite_5:setPosition(ccbutils.ccb_pos(50,50,4,self))
 	ccsprite_5:setAnchorPoint(cc.p(0.5,0.5))
 	ccsprite_5:ignoreAnchorPointForPosition(false)
 
@@ -74,7 +74,7 @@ function Sprite_layout:ctor(_owner)
 		size = 20,
 	})
 	cclabelttf_6:setAnchorPoint(cc.p(0.5,0.5))
-	cclabelttf_6:setPosition(CCBNodeExtend.ccb_pos(50,-50,4,ccsprite_5))
+	cclabelttf_6:setPosition(ccbutils.ccb_pos(50,-50,4,ccsprite_5))
 	cclabelttf_6:ignoreAnchorPointForPosition(false)
 
 
@@ -88,7 +88,7 @@ function Sprite_layout:ctor(_owner)
 		size = 30,
 	})
 	self._title:setAnchorPoint(cc.p(0.5,0.5))
-	self._title:setPosition(CCBNodeExtend.ccb_pos(50,80,4,self))
+	self._title:setPosition(ccbutils.ccb_pos(50,80,4,self))
 	self._title:ignoreAnchorPointForPosition(false)
 
 
