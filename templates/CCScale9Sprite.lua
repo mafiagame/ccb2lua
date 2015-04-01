@@ -7,18 +7,18 @@
 	-- if data.customClass and data.customClass != "" and data.customClass != "BanTouch" and data.customClass != "ProgressBar" and data.customClass != "EditBox"
 {{'\t'}}{{define}}{{name}} = require("app.scenes.{{ data.customClass }}").new({{getDisplayFrame(frame)}})
 	-- else
-{{'\t'}}{{define}}{{name}} = display.newScale9Sprite("{{frame[0]}}")
+{{'\t'}}{{define}}{{name}} = display.newScale9Sprite("{{frame[1]}}")
 	-- endif
 	-- if data.memberVarAssignmentName and data.memberVarAssignmentName != "" and data.customClass != "EditBox"
 		-- if data.memberVarAssignmentName == "BanTouch"
 {{'\t'}}ccbutils.banTouch({{name}})
 		-- else
-			-- if data.memberVarAssignmentType == "0"
+			-- if data.memberVarAssignmentType == 0
 {{'\t'}}{{name}}:addTouchListener({{getListener(true, data.memberVarAssignmentName)}})
-			-- elif data.memberVarAssignmentType == "1"
-{{'\t'}}ccbutils.addTouchListener({{name}}, {{getListener(data.memberVarAssignmentType == "1", data.memberVarAssignmentName)}})
+			-- elif data.memberVarAssignmentType == 1
+{{'\t'}}ccbutils.addTouchListener({{name}}, {{getListener(data.memberVarAssignmentType == 1, data.memberVarAssignmentName)}})
 			-- else
-{{'\t'}}ccbutils.addTouchListenerEx({{name}}, {{getListener(data.memberVarAssignmentType == "1", data.memberVarAssignmentName)}})
+{{'\t'}}ccbutils.addTouchListenerEx({{name}}, {{getListener(data.memberVarAssignmentType == 1, data.memberVarAssignmentName)}})
 			-- endif
 		-- endif
 	-- endif
@@ -43,7 +43,7 @@
 {{'\t'}}{{'\t'}}image = {{name}},
 {{'\t'}}{{'\t'}}size = ccbutils.ccb_size({{size[0]}},{{size[1]}},{{size[2]}},{{parent}}),
 		-- if data.memberVarAssignmentName and data.memberVarAssignmentName != ""
-{{'\t'}}{{'\t'}}listener = {{getListener(data.memberVarAssignmentType == "1", data.memberVarAssignmentName)}},
+{{'\t'}}{{'\t'}}listener = {{getListener(data.memberVarAssignmentType == 1, data.memberVarAssignmentName)}},
 		-- endif
 {{'\t'}}})
 		-- if tag and tag != -1

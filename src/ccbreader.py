@@ -1,137 +1,102 @@
 #!/usr/bin/env python  
 # coding=utf-8  
-# Python 2.7.3  
-from bs4 import BeautifulSoup
+# Python 2.7.3
+
+try:
+	import xml.etree.cElementTree as ET
+except ImportError:
+	import xml.etree.ElementTree as ET
+
 import pprint
 pp = pprint.PrettyPrinter(indent=4)
 
-# 清理字符串
-def cleanString(_s):
-	try:
-		return _s.join(_s.split()) 
-	except:
-		return ""	
 
-# 获取value（其实是这个节点的下一个兄弟节点）
-def getValue(_soup):
-	return _soup.findNextSibling()
+dependents = dict()
 
+def parseValue(_type, _value):
+	if _type == "integer":
+		return int(_value)
+	elif _type == "real":
+		try:
+			return int(_value)
+		except ValueError:
+			return round(float(_value), 4)
+	elif _type == "string":
+		return _value
+	elif _type == "true":
+		return True
+	elif _type == "false":
+		return False
 
-# 查找关键字
-def findAndGetValue(_soup, _key):
-	_ = _soup.find(True,recursive=False,text=_key)
-	return _.findNextSibling()
-
-
-def parseProperties(properties):
-	# pp.pprint(properties)
-
-	new_properties = dict()
-	for ppt in properties :
-		new_properties[ppt["name"]] = ppt["value"]
-
-	# pp.pprint(new_properties)
-
-	return new_properties
-
-
-# 解析字典
-def parseDict(_soup, _dependents):
-	_dict = dict()
-
-	for key in _soup.findAll("key",recursive=False):
-		k = cleanString(key.contents[0])
-		v = getValue(key)
-		if v.name == "array":
-			dic = parseArray(v, _dependents)
-			if k == "properties":
-				dic = parseProperties(dic)
-			_dict[k] = dic
-
-		elif v.name == "dict":
-			_dict[k] = parseDict(v, _dependents)
-		elif v.name != "":
-			if v.name == "true" or v.name == "false":
-				_dict[k] = v.name
-			else:
-				value = v.string
-				if value and value.find(".ccb") != -1 :
-					_dependents[v.string] = True
-
-				_dict[k] = v.string
-
-	return _dict
-
-
-# 解析数组
-def parseArray(_soup, _dependents):
-	_array = list()
-	for v in _soup.contents:
-		if v.name == "array":
-			_array.append(parseArray(v, _dependents))
-		elif v.name == "dict":
-			_array.append(parseDict(v, _dependents))
-		elif v.name != "":
-			if v.name == "true" or v.name == "false":
-				_array.append(v.name)
-			else:
-				value = cleanString(v.string)
-				if value and value != "\n":
-					_array.append(v.string)
-
-	return _array
-
-
-# 解析字典
-def parseBaseInfo(_soup):
-	_dict = dict()
-
-	for key in _soup.findAll("key",recursive=False):
-		k = cleanString(key.contents[0])
-		v = getValue(key)
-		if v.name == "array":
-			pass #_dict[k] = parseArray(v)
-		elif v.name == "dict":
-			pass #_dict[k] = parseDict(v)
-		elif v.name != "":
-			if v.name == "true" or v.name == "false":
-				_dict[k] = v.name
-			else:
-				_dict[k] = v.string
-
-	return _dict
-
-
-def loadCCB(_name):
-	# 打开ccb文件
-	ccbfile = open(_name,'r')
-	ccbfile_content = ccbfile.read()
-	ccbfile.close()
-
-	# 创建soup
-	return BeautifulSoup(ccbfile_content, 'xml')
+	print "======================================================>>>>>>"
+	print "Unknown Type:",_type, _value
+	print "<<<<<<======================================================"
 	
+	return _value
 
-
-# 解析ccb文件
-def parseCCB(_name, _mini):
-	soup = loadCCB(_name)
-	_ = soup.dict
-
-	# 获取跟节点
-	nodeGraph = findAndGetValue(_,"nodeGraph")
-
-	# 依赖
-	dependents = dict()
-
-	# 解析ccb
-	if _mini:
-		data = parseBaseInfo(nodeGraph)
+def parseElement(_type, _value):
+	if _type == "dict":
+		return parseDict(_value)
+	elif _type == "array":
+		return parseArray(_value)
 	else:
-		data = parseDict(nodeGraph, dependents)
-
-	# pp.pprint(data)
-
-	return data,dependents
+		return parseValue(_type, _value.text)
 
 
+def parseProperties(_element):
+	data = {}
+	for e in _element:
+		p_name  = parseValue(e[1].tag,e[1].text) 
+		p_type  = parseValue(e[3].tag,e[3].text)
+		p_value = parseElement(e[5].tag, e[5])
+
+		data[p_name] = p_value
+		# data[p_name] = {"value":p_value, "type":p_type}
+
+	return data
+
+def parseArray(_element):
+	data = []
+	
+	for e in _element:
+		data.append(parseElement(e.tag, e))
+
+	return data
+
+
+def parseDict(_element):
+	data = {}
+	
+	iterator = iter(_element)
+	while True:
+		try:
+			key = iterator.next()
+			value = iterator.next()
+			if key.text == "properties":
+				data[key.text] = parseProperties(value)
+			else:
+				data[key.text] = parseElement(value.tag, value)
+		except StopIteration:
+			break
+
+	return data
+
+def parseCCB(_pathname):
+	tree = ET.ElementTree(file=_pathname)
+	root = tree.getroot()[0]
+
+	dependents = list()
+	for e in root.findall(".//string"):
+		if e.text and e.text.find(".ccb") != -1:
+			print e.text
+			dependents.append(e.text)
+
+	return parseElement(root.tag, root)["nodeGraph"], dependents
+
+
+def main():
+	pp.pprint(parseCCB('../proj.ccb/ccb/Layer.ccb'))
+
+
+if __name__ == '__main__':
+	main()

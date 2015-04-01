@@ -30,7 +30,7 @@ function Label_layout:ctor(_owner)
 		size = 30,
 	})
 	cclabelttf_2:setAnchorPoint(cc.p(0.5,0.5))
-	cclabelttf_2:setPosition(ccbutils.ccb_pos(17.157495498657227,67.889999389648438,4,self))
+	cclabelttf_2:setPosition(ccbutils.ccb_pos(17.1575,67.89,4,self))
 	cclabelttf_2:ignoreAnchorPointForPosition(false)
 
 
@@ -42,7 +42,7 @@ function Label_layout:ctor(_owner)
 		font = "fonts/hurtnumbers.fnt",
 	})
 	cclabelbmfont_3:setAnchorPoint(cc.p(0.5,0.5))
-	cclabelbmfont_3:setPosition(ccbutils.ccb_pos(279.20004272460938,352.51202392578125,0,self))
+	cclabelbmfont_3:setPosition(ccbutils.ccb_pos(279.2,352.512,0,self))
 	cclabelbmfont_3:ignoreAnchorPointForPosition(false)
 
 

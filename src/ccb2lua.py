@@ -58,56 +58,45 @@ def getListener(_target, _name):
 
 
 def getDisplayFrameName(_value):
-	count = len(_value)
-	if count == 0:
-		return "nil"
-	elif count == 1:
-		return "\""+_value[0]+"\""
-	elif count == 2:
+	if _value[0]:
 		return "\"#"+_value[1]+"\""
+
+	return "\""+_value[1]+"\""
 
 
 def getDisplayFrame2(_value):
-	print(_value)
-	count = len(_value)
-	if count == 0:
-		return "nil"
-	elif count == 1:
-		return "ccbutils.ccb_display_frame(\""+_value[0]+"\")"
-	elif count == 2:
+	if _value[0]:
 		return "ccbutils.ccb_display_frame(\""+_value[1]+"\",\""+_value[0]+"\")"
+		
+	return "ccbutils.ccb_display_frame(\""+_value[1]+"\")"
 
 def getDisplayFrame(_value):
-	print(_value)
-	count = len(_value)
-	if count == 0:
-		return "nil"
-	elif count == 1:
-		return "\""+_value[0]+"\""
-	elif count == 2:
+	# print _value
+	if _value[0]:
 		return "ccbutils.ccb_display_frame(\""+_value[1]+"\",\""+_value[0]+"\")"
+
+	return "\""+_value[1]+"\""
 
 
 def checkPropertyInvalide(_name, _value):
-	print "_name:",_name, _value
-	pp.pprint(_value)
-	if not _value:
+	# print "_name:",_name,type(_name), _value, type(_value)
+	if _value == None:
 		return False
 
 	if _name == "scale":
-		if len(_value) == 1:
-			return _value != "1"
+		if isinstance(_value,(float,int)):
+			return _value != 1
 		else:
-			return _value[0] != "1" or _value[1] != "1"
+			return _value[0] != 1 or _value[1] != 1
 	elif _name == "opacity":
-		return _value != "255"
+		return _value != 255
 	elif _name == "color":
 		print _value
-		return _value[0] != "255" or _value[1] != "255" or _value[2] != "255"
+		return _value[0] != 255 or _value[1] != 255 or _value[2] != 255
 	# elif _name == "ignoreAnchorPointForPosition":
 	# 	return _value != "false"
 	elif _name == "tag":
-		return _value != "-1"
+		return _value != -1
 
 	return True
 
@@ -173,6 +162,7 @@ def getSuperName(_data):
 
 # 转化
 def convertccb2lua(_data, ccbdata):
+	# pp.pprint(_data)
 	# 渲染模板
 	template = env.get_template('ccb.lua')
 	content = template.render(data = _data["data"], ccbdata = ccbdata, super = _data["super"], classname = _data["class"])
@@ -212,7 +202,7 @@ def loadCCBData(_data, _name, _pathname):
 	# lua文件
 	ccb["out"] = output_path+"/"+ccb["class"]+".lua"
 	# 读取ccb文件
-	data, dependents = ccbreader.parseCCB(_pathname, False)
+	data, dependents = ccbreader.parseCCB(_pathname)
 	# 数据
 	ccb["data"] = data
 	# 依赖

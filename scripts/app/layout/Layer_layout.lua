@@ -26,7 +26,7 @@ function Layer_layout:ctor(_owner)
 
 	local cclayercolor_2 = cc.LayerColor:create(cc.c4b(255,0,0,255))
 	cclayercolor_2:setAnchorPoint(cc.p(0.5,0.5))
-	cclayercolor_2:setPosition(ccbutils.ccb_pos(222.94400024414062,411.2640380859375,0,self))
+	cclayercolor_2:setPosition(ccbutils.ccb_pos(222.944,411.264,0,self))
 	cclayercolor_2:setContentSize(ccbutils.ccb_size(200,100,0,self))
 	cclayercolor_2:ignoreAnchorPointForPosition(true)
 
@@ -40,7 +40,7 @@ function Layer_layout:ctor(_owner)
 		size = 30,
 	})
 	cclabelttf_3:setAnchorPoint(cc.p(0.5,0.5))
-	cclabelttf_3:setPosition(ccbutils.ccb_pos(324.89602661132812,362.88003540039062,0,self))
+	cclabelttf_3:setPosition(ccbutils.ccb_pos(324.896,362.88,0,self))
 	cclabelttf_3:ignoreAnchorPointForPosition(false)
 
 
@@ -53,7 +53,7 @@ function Layer_layout:ctor(_owner)
 	ccscrollview_4:setContainer(require("app.widgets.Myccb").new(_owner))
 	ccscrollview_4:setDirection(cc.SCROLLVIEW_DIRECTION_VERTICAL)
 	ccscrollview_4:setAnchorPoint(cc.p(0.5,0.5))
-	ccscrollview_4:setPosition(ccbutils.ccb_pos(459.16802978515625,419.904052734375,0,self))
+	ccscrollview_4:setPosition(ccbutils.ccb_pos(459.168,419.9041,0,self))
 	ccscrollview_4:ignoreAnchorPointForPosition(true)
 
 
@@ -66,7 +66,7 @@ function Layer_layout:ctor(_owner)
 		size = 30,
 	})
 	cclabelttf_5:setAnchorPoint(cc.p(0.5,0.5))
-	cclabelttf_5:setPosition(ccbutils.ccb_pos(544.89599609375,362.88003540039062,0,self))
+	cclabelttf_5:setPosition(ccbutils.ccb_pos(544.896,362.88,0,self))
 	cclabelttf_5:ignoreAnchorPointForPosition(false)
 
 
@@ -75,7 +75,7 @@ function Layer_layout:ctor(_owner)
 
 	local cclayer_6 = display.newLayer()
 	cclayer_6:setAnchorPoint(cc.p(0.5,0.5))
-	cclayer_6:setPosition(ccbutils.ccb_pos(11.216009140014648,381.88803100585938,0,self))
+	cclayer_6:setPosition(ccbutils.ccb_pos(11.216,381.888,0,self))
 	cclayer_6:setContentSize(ccbutils.ccb_size(200,100,0,self))
 	cclayer_6:ignoreAnchorPointForPosition(true)
 
@@ -100,7 +100,7 @@ function Layer_layout:ctor(_owner)
 		dimensions = ccbutils.ccb_size(200,200,0,self),
 	})
 	cclabelttf_8:setAnchorPoint(cc.p(0.5,1))
-	cclabelttf_8:setPosition(ccbutils.ccb_pos(124.89602661132812,362.88003540039062,0,self))
+	cclabelttf_8:setPosition(ccbutils.ccb_pos(124.896,362.88,0,self))
 	cclabelttf_8:ignoreAnchorPointForPosition(false)
 
 
@@ -116,7 +116,7 @@ function Layer_layout:ctor(_owner)
 		dimensions = ccbutils.ccb_size(200,200,0,self),
 	})
 	cclabelttf_9:setAnchorPoint(cc.p(0.5,1))
-	cclabelttf_9:setPosition(ccbutils.ccb_pos(784.89599609375,372.88003540039062,0,self))
+	cclabelttf_9:setPosition(ccbutils.ccb_pos(784.896,372.88,0,self))
 	cclabelttf_9:ignoreAnchorPointForPosition(false)
 
 

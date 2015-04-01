@@ -15,8 +15,12 @@
 {{'\t'}}{{name}}:setScaleY({{value[1]}})
                 -- endif
         	--elif key == "ignoreAnchorPointForPosition"
-{{'\t'}}{{name}}:ignoreAnchorPointForPosition({{value}})
-    		--elif key == "displayFrame" and value[0] and value[0] != ""
+                -- if value
+{{'\t'}}{{name}}:ignoreAnchorPointForPosition(true)
+                -- else
+{{'\t'}}{{name}}:ignoreAnchorPointForPosition(false)
+                -- endif
+    		--elif key == "displayFrame" and value[1] and value[1] != ""
 {{'\t'}}{{name}}:setSpriteFrame({{getDisplayFrame2(value)}})
     		--elif key == "contentSize"
 {{'\t'}}{{name}}:setContentSize(ccbutils.ccb_size({{value[0]}},{{value[1]}},{{value[2]}},{{parent}}))
@@ -31,9 +35,9 @@
             --elif key == "rotation"
 {{'\t'}}{{name}}:setRotation({{value}})
             --elif key == "skew"
-                -- if value[0] != "0.0"
+                -- if value[0] != 0
 {{'\t'}}{{name}}:setSkewX({{value[0]}})
-                -- elif value[1] != "0.0"
+                -- elif value[1] != 0
 {{'\t'}}{{name}}:setSkewY({{value[1]}})
                 -- endif
             --elif key == "visible"

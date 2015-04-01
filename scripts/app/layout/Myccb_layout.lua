@@ -32,7 +32,7 @@ function Myccb_layout:ctor(_owner)
 	})
 	self._score:setAnchorPoint(cc.p(0.5,0.5))
 	self._score:setColor(cc.c3b(0,0,0))
-	self._score:setPosition(ccbutils.ccb_pos(50,34.126983642578125,4,self))
+	self._score:setPosition(ccbutils.ccb_pos(50,34.127,4,self))
 	self._score:ignoreAnchorPointForPosition(false)
 
 

@@ -31,7 +31,7 @@
 {{'\t'}}{{'\t'}}tag = {{properties.tag}},
 	-- endif
 	-- set var = properties.dimensions
-	-- if var[0] != "0.0" or var[1] != "0.0"
+	-- if var[0] != 0 or var[1] != 0
 {{'\t'}}{{'\t'}}align = {{properties.horizontalAlignment}},
 {{'\t'}}{{'\t'}}valign = {{properties.verticalAlignment}},
 {{'\t'}}{{'\t'}}dimensions = ccbutils.ccb_size({{var[0]}},{{var[1]}},{{var[2]}},{{parent}}),

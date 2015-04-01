@@ -7,7 +7,7 @@
 {{'\t'}}{{'\t'}}on = {{getDisplayFrameName(data.properties.normalSpriteFrame)}},
 {{'\t'}}{{'\t'}}off = {{getDisplayFrameName(data.properties.selectedSpriteFrame)}}
 		-- set disable = data.properties.disabledSpriteFrame
-		-- if disable and disable != ""
+		-- if disable and disable[1]
 {{'\t'}}{{'\t'}}on_disabled = {{getDisplayFrame(data.properties.disabledSpriteFrame)}},
 {{'\t'}}{{'\t'}}off_disabled = {{getDisplayFrame(data.properties.disabledSpriteFrame)}},
 		-- endif
@@ -17,7 +17,7 @@
 {{'\t'}}{{'\t'}}normal = {{getDisplayFrame(data.properties.normalSpriteFrame)}},
 {{'\t'}}{{'\t'}}pressed = {{getDisplayFrame(data.properties.selectedSpriteFrame)}},
 		-- set disable = data.properties.disabledSpriteFrame
-		-- if disable and disable != ""
+		-- if disable and disable[1]
 {{'\t'}}{{'\t'}}disabled = {{getDisplayFrame(data.properties.disabledSpriteFrame)}},
 		-- endif
 {{'\t'}}})
@@ -25,7 +25,7 @@
 
 	-- set block = data.properties.block
 	-- if block and block[0]
-{{'\t'}}:onButtonClicked({{getListener(block[1] == "1",block[0])}})
+{{'\t'}}:onButtonClicked({{getListener(block[1] == 1,block[0])}})
 	-- endif
 
 	-- if data.properties.isEnabled == "false"

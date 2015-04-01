@@ -20,11 +20,11 @@
 	-- endif
 -- endif
 -- set direction = data.properties.direction
--- if direction == "2"
+-- if direction == 2
 {{'\t'}}{{name}}:setDirection(cc.SCROLLVIEW_DIRECTION_BOTH)
--- elif direction == "1"
+-- elif direction == 1
 {{'\t'}}{{name}}:setDirection(cc.SCROLLVIEW_DIRECTION_VERTICAL)
--- elif direction == "0"
+-- elif direction == 0
 {{'\t'}}{{name}}:setDirection(cc.SCROLLVIEW_DIRECTION_HORIZONTAL)
 -- endif
 {{ CCNode.rennder_base_properties(name,data.properties,parent) }}

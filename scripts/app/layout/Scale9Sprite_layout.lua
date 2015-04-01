@@ -41,7 +41,7 @@ function Scale9Sprite_layout:ctor(_owner)
 		size = 20,
 	})
 	cclabelttf_3:setAnchorPoint(cc.p(0.5,0.5))
-	cclabelttf_3:setPosition(ccbutils.ccb_pos(185.760009765625,439.20001220703125,0,self))
+	cclabelttf_3:setPosition(ccbutils.ccb_pos(185.76,439.2,0,self))
 	cclabelttf_3:ignoreAnchorPointForPosition(false)
 
 
@@ -66,7 +66,7 @@ function Scale9Sprite_layout:ctor(_owner)
 		size = 20,
 	})
 	cclabelttf_5:setAnchorPoint(cc.p(0.5,0.5))
-	cclabelttf_5:setPosition(ccbutils.ccb_pos(475.760009765625,439.20001220703125,0,self))
+	cclabelttf_5:setPosition(ccbutils.ccb_pos(475.76,439.2,0,self))
 	cclabelttf_5:ignoreAnchorPointForPosition(false)
 
 
@@ -91,7 +91,7 @@ function Scale9Sprite_layout:ctor(_owner)
 		size = 20,
 	})
 	cclabelttf_7:setAnchorPoint(cc.p(0.5,0.5))
-	cclabelttf_7:setPosition(ccbutils.ccb_pos(770.760009765625,439.20001220703125,0,self))
+	cclabelttf_7:setPosition(ccbutils.ccb_pos(770.76,439.2,0,self))
 	cclabelttf_7:ignoreAnchorPointForPosition(false)
 
 
@@ -119,7 +119,7 @@ function Scale9Sprite_layout:ctor(_owner)
 		size = 20,
 	})
 	cclabelttf_9:setAnchorPoint(cc.p(0.5,0.5))
-	cclabelttf_9:setPosition(ccbutils.ccb_pos(185.760009765625,289.20001220703125,0,self))
+	cclabelttf_9:setPosition(ccbutils.ccb_pos(185.76,289.2,0,self))
 	cclabelttf_9:ignoreAnchorPointForPosition(false)
 
 
