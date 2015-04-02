@@ -91,7 +91,6 @@ def checkPropertyInvalide(_name, _value):
 	elif _name == "opacity":
 		return _value != 255
 	elif _name == "color":
-		print _value
 		return _value[0] != 255 or _value[1] != 255 or _value[2] != 255
 	# elif _name == "ignoreAnchorPointForPosition":
 	# 	return _value != "false"
@@ -229,7 +228,7 @@ class MyEventHandler(FileSystemEventHandler):
 		print "\nFILE CREATED : ", event.src_path
 		path_name = event.src_path
 		path,name = os.path.split(path_name)
-		if name.find(".ccb") != -1:
+		if name.endswith(".ccb"):
 			# customClass 有无改变,有改变的话检测有无ccb依赖此ccb
 			if loadCCBData(G_DATAS, name, path_name):
 				for key in G_DATAS:
@@ -279,7 +278,7 @@ def main():
 		path_name = os.path.join(ccb_path, name) 
 		if os.path.isdir(path_name): 
 			pass
-		elif os.path.isfile(path_name) and name.find(".ccb") != -1:
+		elif os.path.isfile(path_name) and name.endswith(".ccb"):
 			loadCCBData(G_DATAS, name, path_name)
 
 	# 输出下

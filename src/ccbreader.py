@@ -88,7 +88,6 @@ def parseCCB(_pathname):
 	dependents = list()
 	for e in root.findall(".//string"):
 		if e.text and e.text.find(".ccb") != -1:
-			print e.text
 			dependents.append(e.text)
 
 	return parseElement(root.tag, root)["nodeGraph"], dependents
