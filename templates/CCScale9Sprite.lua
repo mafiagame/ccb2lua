@@ -29,9 +29,9 @@
 	-- set size = data.properties.preferedSize
 	-- set tag = data.properties.tag
 	-- if data.customClass == "EditBox"
-		-- set _ = nilProperty(data.properties,"preferedSize")
 		-- set _ = nilProperty(data.properties,"tag")
 	-- else
+{{'\t'}}{{name}}:setPreferredSize({{CCNode.rennder_size(size, parent)}})
 {{ CCNode.rennder_base_properties(name,data.properties,parent) }}
 	-- endif
 	-- if data.customClass == "BanTouch"
@@ -41,7 +41,7 @@
 	-- elif data.customClass == "EditBox"
 {{'\t'}}{{name}} = cc.ui.UIInput.new({
 {{'\t'}}{{'\t'}}image = {{name}},
-{{'\t'}}{{'\t'}}size = ccbutils.ccb_size({{size[0]}},{{size[1]}},{{size[2]}},{{parent}}),
+{{'\t'}}{{'\t'}}size = {{CCNode.rennder_size(size, parent)}},
 		-- if data.memberVarAssignmentName and data.memberVarAssignmentName != ""
 {{'\t'}}{{'\t'}}listener = {{getListener(data.memberVarAssignmentType == 1, data.memberVarAssignmentName)}},
 		-- endif

@@ -6,7 +6,7 @@
 
 -- set item = data.properties.contentSize
 	-- if item and item != ""
-{{'\t'}}{{name}}:setViewSize(ccbutils.ccb_size({{item[0]}},{{item[1]}},{{item[2]}},{{parent}}))
+{{'\t'}}{{name}}:setViewSize({{CCNode.rennder_size(item, parent)}})
 	-- endif
 -- set _ = nilProperty(data.properties,"contentSize")
 -- set container = data.properties.container

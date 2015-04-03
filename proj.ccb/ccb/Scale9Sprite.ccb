@@ -979,9 +979,9 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>200</real>
-							<real>94</real>
-							<integer>0</integer>
+							<real>20</real>
+							<real>15</real>
+							<integer>1</integer>
 						</array>
 					</dict>
 					<dict>

@@ -1,3 +1,23 @@
+{% macro rennder_size(value, parent) -%}
+cc.size({{rennder_wh(value, parent)}})
+{%- endmacro %}
+
+{% macro rennder_wh(value, parent) -%}
+    {%- set w = value[0] -%}
+    {%- set h = value[1] -%}
+    {%- if value[2] == 1 -%}
+        {%- if parent == "nil" -%}
+            {%- set parent = "display" -%}
+        {%- else -%}
+            {%- set parent = parent + ":getContentSize()" -%}
+        {%- endif -%}
+        {%- set w = parent + ".width * " + tostr(w/100) -%}
+        {%- set h = parent + ".height * " + tostr(h/100) -%}
+    {%- endif -%}
+{{w}}, {{h}}
+{%- endmacro %}
+
+
 
 -- macro rennder_base_properties(name,properties,parent)
     -- for key in properties
@@ -23,9 +43,7 @@
     		--elif key == "displayFrame" and value[1] and value[1] != ""
 {{'\t'}}{{name}}:setSpriteFrame({{getDisplayFrame2(value)}})
     		--elif key == "contentSize"
-{{'\t'}}{{name}}:setContentSize(ccbutils.ccb_size({{value[0]}},{{value[1]}},{{value[2]}},{{parent}}))
-            --elif key == "preferedSize"
-{{'\t'}}{{name}}:setPreferredSize(ccbutils.ccb_size({{value[0]}},{{value[1]}},{{value[2]}},{{parent}}))
+{{'\t'}}{{name}}:setContentSize({{rennder_size(value, parent)}})
             --elif key == "color"
 {{'\t'}}{{name}}:setColor(cc.c3b({{value[0]}},{{value[1]}},{{value[2]}}))
             --elif key == "opacity"

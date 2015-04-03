@@ -13,12 +13,7 @@
 {{'\t'}}{{'\t'}}disabled = {{getDisplayFrame(disable)}},
 	-- endif
 {{'\t'}}},{scale9 = true})
-	-- set var = data.properties.preferedSize
-	-- set _ = nilProperty(data.properties,"preferedSize")
-{{'\t'}}:setButtonSize({{var[0]}},{{var[1]}})
-	-- if var[2] != 0
-{{'\t'}}assert(false, "按钮只能设置绝对尺寸!")	
-	-- endif
+{{'\t'}}:setButtonSize({{CCNode.rennder_wh(data.properties.preferedSize, parent)}})
 	-- set block = data.properties.ccControl
 	-- if block[0] != 0
 {{'\t'}}:onButtonClicked({{getListener(block[1] == 1,block[0])}})

@@ -8,7 +8,7 @@ end)
 function Button_layout:ctor(_owner)
 	 _owner = _owner or self
 	self:setAnchorPoint(cc.p(0.5,0.5))
-	self:setContentSize(ccbutils.ccb_size(100,100,1,nil))
+	self:setContentSize(cc.size(display.width * 1.0, display.height * 1.0))
 	self:ignoreAnchorPointForPosition(true)
 
 	self._title = display.newTTFLabel({
@@ -90,7 +90,7 @@ function Button_layout:ctor(_owner)
 		normal = "Button01.png",
 		pressed = "Button01Pressed.png"
 	},{scale9 = true})
-	:setButtonSize(200,50)
+	:setButtonSize(self:getContentSize().width * 0.2, self:getContentSize().height * 0.08)
 	:onButtonClicked(handler(_owner, _owner.onBtnClick))
 	local label = cc.ui.UILabel.new({
             UILabelType = 2,

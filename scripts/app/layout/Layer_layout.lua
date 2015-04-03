@@ -8,7 +8,7 @@ end)
 function Layer_layout:ctor(_owner)
 	 _owner = _owner or self
 	self:setAnchorPoint(cc.p(0.5,0.5))
-	self:setContentSize(ccbutils.ccb_size(100,100,1,nil))
+	self:setContentSize(cc.size(display.width * 1.0, display.height * 1.0))
 	self:ignoreAnchorPointForPosition(true)
 
 	self._title = display.newTTFLabel({
@@ -27,7 +27,7 @@ function Layer_layout:ctor(_owner)
 	local cclayercolor_2 = cc.LayerColor:create(cc.c4b(255,0,0,255))
 	cclayercolor_2:setAnchorPoint(cc.p(0.5,0.5))
 	cclayercolor_2:setPosition(ccbutils.ccb_pos(222.944,411.264,0,self))
-	cclayercolor_2:setContentSize(ccbutils.ccb_size(200,100,0,self))
+	cclayercolor_2:setContentSize(cc.size(200, 100))
 	cclayercolor_2:ignoreAnchorPointForPosition(true)
 
 
@@ -49,7 +49,7 @@ function Layer_layout:ctor(_owner)
 
 	local ccscrollview_4 = cc.ScrollView:create()
 
-	ccscrollview_4:setViewSize(ccbutils.ccb_size(200,100,0,self))
+	ccscrollview_4:setViewSize(cc.size(200, 100))
 	ccscrollview_4:setContainer(require("app.widgets.Myccb").new(_owner))
 	ccscrollview_4:setDirection(cc.SCROLLVIEW_DIRECTION_VERTICAL)
 	ccscrollview_4:setAnchorPoint(cc.p(0.5,0.5))
@@ -76,7 +76,7 @@ function Layer_layout:ctor(_owner)
 	local cclayer_6 = display.newLayer()
 	cclayer_6:setAnchorPoint(cc.p(0.5,0.5))
 	cclayer_6:setPosition(ccbutils.ccb_pos(11.216,381.888,0,self))
-	cclayer_6:setContentSize(ccbutils.ccb_size(200,100,0,self))
+	cclayer_6:setContentSize(cc.size(200, 100))
 	cclayer_6:ignoreAnchorPointForPosition(true)
 
 
@@ -97,7 +97,7 @@ function Layer_layout:ctor(_owner)
 		size = 25,
 		align = 0,
 		valign = 0,
-		dimensions = ccbutils.ccb_size(200,200,0,self),
+		dimensions = cc.size(200, 200),
 	})
 	cclabelttf_8:setAnchorPoint(cc.p(0.5,1))
 	cclabelttf_8:setPosition(ccbutils.ccb_pos(124.896,362.88,0,self))
@@ -113,7 +113,7 @@ function Layer_layout:ctor(_owner)
 		size = 25,
 		align = 0,
 		valign = 0,
-		dimensions = ccbutils.ccb_size(200,200,0,self),
+		dimensions = cc.size(200, 200),
 	})
 	cclabelttf_9:setAnchorPoint(cc.p(0.5,1))
 	cclabelttf_9:setPosition(ccbutils.ccb_pos(784.896,372.88,0,self))

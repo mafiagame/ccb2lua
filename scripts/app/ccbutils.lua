@@ -42,18 +42,6 @@ function ccbutils.ccb_display_frame(name, plist)
     return frame
 end
 
-function ccbutils.ccb_size(w, h, flag, parent)
-    if flag == 1 then
-        if parent then
-            return cc.size(parent:getContentSize().width*(w/100),parent:getContentSize().height*(h/100))
-        else
-            return cc.size(display.width*(w/100),display.height*(h/100))
-        end
-    else
-        return cc.size(w,h)
-    end
-end
-
 function ccbutils.addTouchListenerEx(sprite, listener)
     sprite:setTouchEnabled(true)
     sprite:addNodeEventListener(cc.NODE_TOUCH_EVENT, function(event)

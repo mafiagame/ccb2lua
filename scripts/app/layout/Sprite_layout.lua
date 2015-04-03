@@ -8,7 +8,7 @@ end)
 function Sprite_layout:ctor(_owner)
 	 _owner = _owner or self
 	self:setAnchorPoint(cc.p(0.5,0.5))
-	self:setContentSize(ccbutils.ccb_size(100,100,1,nil))
+	self:setContentSize(cc.size(display.width * 1.0, display.height * 1.0))
 	self:ignoreAnchorPointForPosition(true)
 
 	local ccsprite_1 = display.newSprite("daxingxing_1.png")

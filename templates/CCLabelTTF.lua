@@ -34,7 +34,7 @@
 	-- if var[0] != 0 or var[1] != 0
 {{'\t'}}{{'\t'}}align = {{properties.horizontalAlignment}},
 {{'\t'}}{{'\t'}}valign = {{properties.verticalAlignment}},
-{{'\t'}}{{'\t'}}dimensions = ccbutils.ccb_size({{var[0]}},{{var[1]}},{{var[2]}},{{parent}}),
+{{'\t'}}{{'\t'}}dimensions = {{CCNode.rennder_size(var, parent)}},
 	-- endif
 {{'\t'}}})
 -- endif

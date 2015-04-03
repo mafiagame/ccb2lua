@@ -8,7 +8,7 @@ end)
 function Label_layout:ctor(_owner)
 	 _owner = _owner or self
 	self:setAnchorPoint(cc.p(0.5,0.5))
-	self:setContentSize(ccbutils.ccb_size(100,100,1,nil))
+	self:setContentSize(cc.size(display.width * 1.0, display.height * 1.0))
 	self:ignoreAnchorPointForPosition(true)
 
 	self._title = display.newTTFLabel({
@@ -72,7 +72,7 @@ function Label_layout:ctor(_owner)
 		size = 20,
 		align = 0,
 		valign = 0,
-		dimensions = ccbutils.ccb_size(300,150,0,self),
+		dimensions = cc.size(300, 150),
 	})
 	cclabelttf_5:setAnchorPoint(cc.p(0.0,1))
 	cclabelttf_5:setPosition(ccbutils.ccb_pos(4.6875,36.5625,4,self))
