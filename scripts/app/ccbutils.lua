@@ -42,23 +42,6 @@ function ccbutils.addTouchListener(sprite, listener, opacity)
     return sprite
 end
 
-function ccbutils.addTouchEventListener(sprite, listener, opacity)
-    local src_opacity = 0
-    opacity = opacity or 200
-    sprite:setTouchEnabled(true)
-    sprite:addNodeEventListener(cc.NODE_TOUCH_EVENT, function(event)
-        if event.name == "began" then
-            src_opacity = sprite:getOpacity()
-            sprite:setOpacity(150)
-        elseif event.name == "ended" then
-            sprite:setOpacity(src_opacity)
-        end
-    
-        return listener(event)
-    end)
-end
-
-
 function ccbutils.banTouch(_sprite, _callfunc)
     _sprite:setTouchEnabled(true)
     _sprite:addNodeEventListener(cc.NODE_TOUCH_EVENT, function(event,x,y)
