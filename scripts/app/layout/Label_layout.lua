@@ -5,6 +5,8 @@ end)
 
 
 
+
+
 function Label_layout:ctor(_owner)
 	 _owner = _owner or self
 	self:setAnchorPoint(cc.p(0.5,0.5))
@@ -20,9 +22,7 @@ function Label_layout:ctor(_owner)
 	self._title:setPosition(cc.p(self:getContentSize().width * 0.5, self:getContentSize().height * 0.89375))
 	self._title:ignoreAnchorPointForPosition(false)
 
-
 	self:addChild(self._title)
-
 
 	local cclabelttf_2 = display.newTTFLabel({
 		text = "这是一个普通label",
@@ -33,9 +33,7 @@ function Label_layout:ctor(_owner)
 	cclabelttf_2:setPosition(cc.p(self:getContentSize().width * 0.171575, self:getContentSize().height * 0.6789))
 	cclabelttf_2:ignoreAnchorPointForPosition(false)
 
-
 	self:addChild(cclabelttf_2)
-
 
 	local cclabelbmfont_3 = display.newBMFontLabel({
 		text = "0123456789",
@@ -45,9 +43,7 @@ function Label_layout:ctor(_owner)
 	cclabelbmfont_3:setPosition(cc.p(279.2, 352.512))
 	cclabelbmfont_3:ignoreAnchorPointForPosition(false)
 
-
 	self:addChild(cclabelbmfont_3)
-
 
 	local cclabelttf_4 = cc.ui.UIInput.new({
 		x=0,
@@ -62,9 +58,7 @@ function Label_layout:ctor(_owner)
 	cclabelttf_4:setPosition(cc.p(self:getContentSize().width * 0.05, self:getContentSize().height * 0.44375))
 	cclabelttf_4:ignoreAnchorPointForPosition(false)
 
-
 	self:addChild(cclabelttf_4)
-
 
 	local cclabelttf_5 = display.newTTFLabel({
 		text = "自动换行测试,自动换行测试,自动换行测试,自动换行测试,自动换行测试,自动换行测试,自动换行测试,自动换行测试,",
@@ -78,9 +72,7 @@ function Label_layout:ctor(_owner)
 	cclabelttf_5:setPosition(cc.p(self:getContentSize().width * 0.046875, self:getContentSize().height * 0.365625))
 	cclabelttf_5:ignoreAnchorPointForPosition(false)
 
-
 	self:addChild(cclabelttf_5)
-
 
 	local cclabelttf_6 = display.newTTFLabel({
 		text = "Costome Font!!!",
@@ -91,9 +83,7 @@ function Label_layout:ctor(_owner)
 	cclabelttf_6:setPosition(cc.p(self:getContentSize().width * 0.046875, self:getContentSize().height * 0.75625))
 	cclabelttf_6:ignoreAnchorPointForPosition(false)
 
-
 	self:addChild(cclabelttf_6)
-
 
 
 end

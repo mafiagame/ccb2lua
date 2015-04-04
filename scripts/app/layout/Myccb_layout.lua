@@ -5,6 +5,8 @@ end)
 
 
 
+
+
 function Myccb_layout:ctor(_owner)
 	 _owner = _owner or self
 	self:setSpriteFrame(ccbutils.ccb_display_frame("daxingxing_1.png"))
@@ -21,9 +23,7 @@ function Myccb_layout:ctor(_owner)
 	self._name:setPosition(cc.p(self:getContentSize().width * 0.5, self:getContentSize().height * 0.5))
 	self._name:ignoreAnchorPointForPosition(false)
 
-
 	self:addChild(self._name)
-
 
 	self._score = display.newTTFLabel({
 		text = "500",
@@ -35,9 +35,7 @@ function Myccb_layout:ctor(_owner)
 	self._score:setPosition(cc.p(self:getContentSize().width * 0.5, self:getContentSize().height * 0.34127))
 	self._score:ignoreAnchorPointForPosition(false)
 
-
 	self:addChild(self._score)
-
 
 
 end

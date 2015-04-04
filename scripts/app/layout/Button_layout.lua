@@ -5,6 +5,8 @@ end)
 
 
 
+
+
 function Button_layout:ctor(_owner)
 	 _owner = _owner or self
 	self:setAnchorPoint(cc.p(0.5,0.5))
@@ -20,18 +22,13 @@ function Button_layout:ctor(_owner)
 	self._title:setPosition(cc.p(self:getContentSize().width * 0.5, self:getContentSize().height * 0.8))
 	self._title:ignoreAnchorPointForPosition(false)
 
-
 	self:addChild(self._title)
-
 
 	local ccmenu_2 = display.newNode()
 	ccmenu_2:setAnchorPoint(cc.p(0.5,0.5))
-	ccmenu_2:setPosition(cc.p(0.0, 0.0))
 	ccmenu_2:ignoreAnchorPointForPosition(true)
 
-
 	self:addChild(ccmenu_2)
-
 
 	local ccmenuitemimage_3 = cc.ui.UIPushButton.new({
 		normal = "qianjin_1.png",
@@ -42,9 +39,7 @@ function Button_layout:ctor(_owner)
 	ccmenuitemimage_3:setPosition(cc.p(96.768, 402.6241))
 	ccmenuitemimage_3:ignoreAnchorPointForPosition(false)
 
-
 	ccmenu_2:addChild(ccmenuitemimage_3)
-
 
 	local ccmenuitemimage_4 = cc.ui.UICheckBoxButton.new({
 		on = "CheckBoxButton2On.png",
@@ -55,10 +50,7 @@ function Button_layout:ctor(_owner)
 	ccmenuitemimage_4:setPosition(cc.p(356.768, 402.6241))
 	ccmenuitemimage_4:ignoreAnchorPointForPosition(false)
 
-
 	ccmenu_2:addChild(ccmenuitemimage_4)
-
-
 
 	local cclabelttf_5 = display.newTTFLabel({
 		text = "普通两态按钮",
@@ -69,9 +61,7 @@ function Button_layout:ctor(_owner)
 	cclabelttf_5:setPosition(cc.p(self:getContentSize().width * 0.0968, self:getContentSize().height * 0.5246))
 	cclabelttf_5:ignoreAnchorPointForPosition(false)
 
-
 	self:addChild(cclabelttf_5)
-
 
 	local cclabelttf_6 = display.newTTFLabel({
 		text = "开关按钮",
@@ -82,9 +72,7 @@ function Button_layout:ctor(_owner)
 	cclabelttf_6:setPosition(cc.p(self:getContentSize().width * 0.378125, self:getContentSize().height * 0.525))
 	cclabelttf_6:ignoreAnchorPointForPosition(false)
 
-
 	self:addChild(cclabelttf_6)
-
 
 	local cccontrolbutton_7 = cc.ui.UIPushButton.new({
 		normal = "Button01.png",
@@ -105,9 +93,7 @@ function Button_layout:ctor(_owner)
 	cccontrolbutton_7:setPosition(cc.p(632.4481, 397.44))
 	cccontrolbutton_7:ignoreAnchorPointForPosition(false)
 
-
 	self:addChild(cccontrolbutton_7)
-
 
 	local cclabelttf_8 = display.newTTFLabel({
 		text = "Control按钮",
@@ -118,9 +104,7 @@ function Button_layout:ctor(_owner)
 	cclabelttf_8:setPosition(cc.p(self:getContentSize().width * 0.659375, self:getContentSize().height * 0.525))
 	cclabelttf_8:ignoreAnchorPointForPosition(false)
 
-
 	self:addChild(cclabelttf_8)
-
 
 
 end

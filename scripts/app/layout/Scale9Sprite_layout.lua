@@ -5,6 +5,8 @@ end)
 
 
 
+
+
 function Scale9Sprite_layout:ctor(_owner)
 	 _owner = _owner or self
 	self:setAnchorPoint(cc.p(0.5,0.5))
@@ -20,9 +22,7 @@ function Scale9Sprite_layout:ctor(_owner)
 	self._title:setPosition(cc.p(self:getContentSize().width * 0.5, self:getContentSize().height * 0.909375))
 	self._title:ignoreAnchorPointForPosition(false)
 
-
 	self:addChild(self._title)
-
 
 	local ccscale9sprite_2 = display.newScale9Sprite("diban.png")
 	ccscale9sprite_2:setPreferredSize(cc.size(200, 94))
@@ -31,9 +31,7 @@ function Scale9Sprite_layout:ctor(_owner)
 	ccscale9sprite_2:ignoreAnchorPointForPosition(false)
 
 	
-
 	self:addChild(ccscale9sprite_2)
-
 
 	local cclabelttf_3 = display.newTTFLabel({
 		text = "普通Scale9Sprite",
@@ -44,9 +42,7 @@ function Scale9Sprite_layout:ctor(_owner)
 	cclabelttf_3:setPosition(cc.p(185.76, 439.2))
 	cclabelttf_3:ignoreAnchorPointForPosition(false)
 
-
 	self:addChild(cclabelttf_3)
-
 
 	local ccscale9sprite_4 = display.newScale9Sprite("diban.png")
 	ccbutils.addTouchListener(ccscale9sprite_4, handler(_owner, _owner.onBtnClick))
@@ -56,9 +52,7 @@ function Scale9Sprite_layout:ctor(_owner)
 	ccscale9sprite_4:ignoreAnchorPointForPosition(false)
 
 	
-
 	self:addChild(ccscale9sprite_4)
-
 
 	local cclabelttf_5 = display.newTTFLabel({
 		text = "点按Scale9Sprite",
@@ -69,9 +63,7 @@ function Scale9Sprite_layout:ctor(_owner)
 	cclabelttf_5:setPosition(cc.p(475.76, 439.2))
 	cclabelttf_5:ignoreAnchorPointForPosition(false)
 
-
 	self:addChild(cclabelttf_5)
-
 
 	local ccscale9sprite_6 = display.newScale9Sprite("diban.png")
 	ccbutils.addTouchListenerEx(ccscale9sprite_6, handler(_owner, _owner.onBtnClick))
@@ -81,9 +73,7 @@ function Scale9Sprite_layout:ctor(_owner)
 	ccscale9sprite_6:ignoreAnchorPointForPosition(false)
 
 	
-
 	self:addChild(ccscale9sprite_6)
-
 
 	local cclabelttf_7 = display.newTTFLabel({
 		text = "点按Scale9Sprite",
@@ -94,9 +84,7 @@ function Scale9Sprite_layout:ctor(_owner)
 	cclabelttf_7:setPosition(cc.p(770.76, 439.2))
 	cclabelttf_7:ignoreAnchorPointForPosition(false)
 
-
 	self:addChild(cclabelttf_7)
-
 
 	local ccscale9sprite_8 = display.newScale9Sprite("diban.png")
 	ccscale9sprite_8:setInsetLeft(20);ccscale9sprite_8:setInsetRight(20);
@@ -109,9 +97,7 @@ function Scale9Sprite_layout:ctor(_owner)
 	ccscale9sprite_8:setPosition(cc.p(self:getContentSize().width * 0.2, self:getContentSize().height * 0.55))
 	ccscale9sprite_8:ignoreAnchorPointForPosition(false)
 
-
 	self:addChild(ccscale9sprite_8)
-
 
 	local cclabelttf_9 = display.newTTFLabel({
 		text = "输入框",
@@ -122,9 +108,7 @@ function Scale9Sprite_layout:ctor(_owner)
 	cclabelttf_9:setPosition(cc.p(185.76, 289.2))
 	cclabelttf_9:ignoreAnchorPointForPosition(false)
 
-
 	self:addChild(cclabelttf_9)
-
 
 
 end
