@@ -1,11 +1,11 @@
 {% macro rennder_size(value, parent) -%}
-cc.size({{rennder_wh(value, parent)}})
+cc.size({{rennder_wh(value, parent, 1)}})
 {%- endmacro %}
 
-{% macro rennder_wh(value, parent) -%}
+{% macro rennder_wh(value, parent, flag) -%}
     {%- set w = value[0] -%}
     {%- set h = value[1] -%}
-    {%- if value[2] == 1 -%}
+    {%- if value[2] == flag -%}
         {%- if parent == "nil" -%}
             {%- set parent = "display" -%}
         {%- else -%}
@@ -18,6 +18,11 @@ cc.size({{rennder_wh(value, parent)}})
 {%- endmacro %}
 
 
+{% macro rennder_pos(value, parent) -%}
+cc.p({{rennder_wh(value, parent, 4)}})
+{%- endmacro %}
+
+
 
 -- macro rennder_base_properties(name,properties,parent)
     -- for key in properties
@@ -26,7 +31,7 @@ cc.size({{rennder_wh(value, parent)}})
             -- if key == "anchorPoint":
 {{'\t'}}{{name}}:setAnchorPoint(cc.p({{value[0]}},{{value[1]}}))
         	--elif key == "position"
-{{'\t'}}{{name}}:setPosition(ccbutils.ccb_pos({{value[0]}},{{value[1]}},{{value[2]}},{{parent}}))
+{{'\t'}}{{name}}:setPosition({{rennder_pos(value,parent)}})
         	--elif key == "scale"
                 -- if value[0] == value[1]
 {{'\t'}}{{name}}:setScale({{value[0]}})

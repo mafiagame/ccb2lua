@@ -18,7 +18,7 @@ function Myccb_layout:ctor(_owner)
 	})
 	self._name:setAnchorPoint(cc.p(0.5,0.5))
 	self._name:setColor(cc.c3b(0,0,0))
-	self._name:setPosition(ccbutils.ccb_pos(50,50,4,self))
+	self._name:setPosition(cc.p(self:getContentSize().width * 0.5, self:getContentSize().height * 0.5))
 	self._name:ignoreAnchorPointForPosition(false)
 
 
@@ -32,7 +32,7 @@ function Myccb_layout:ctor(_owner)
 	})
 	self._score:setAnchorPoint(cc.p(0.5,0.5))
 	self._score:setColor(cc.c3b(0,0,0))
-	self._score:setPosition(ccbutils.ccb_pos(50,34.127,4,self))
+	self._score:setPosition(cc.p(self:getContentSize().width * 0.5, self:getContentSize().height * 0.34127))
 	self._score:ignoreAnchorPointForPosition(false)
 
 

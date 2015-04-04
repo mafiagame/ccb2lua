@@ -17,7 +17,7 @@ function Button_layout:ctor(_owner)
 		size = 30,
 	})
 	self._title:setAnchorPoint(cc.p(0.5,0.5))
-	self._title:setPosition(ccbutils.ccb_pos(50,80,4,self))
+	self._title:setPosition(cc.p(self:getContentSize().width * 0.5, self:getContentSize().height * 0.8))
 	self._title:ignoreAnchorPointForPosition(false)
 
 
@@ -26,7 +26,7 @@ function Button_layout:ctor(_owner)
 
 	local ccmenu_2 = display.newNode()
 	ccmenu_2:setAnchorPoint(cc.p(0.5,0.5))
-	ccmenu_2:setPosition(ccbutils.ccb_pos(0.0,0.0,0,self))
+	ccmenu_2:setPosition(cc.p(0.0, 0.0))
 	ccmenu_2:ignoreAnchorPointForPosition(true)
 
 
@@ -39,7 +39,7 @@ function Button_layout:ctor(_owner)
 	})
 	:onButtonClicked(handler(_owner, _owner.onBtnClick))
 	ccmenuitemimage_3:setAnchorPoint(cc.p(0.5,0.5))
-	ccmenuitemimage_3:setPosition(ccbutils.ccb_pos(96.768,402.6241,0,ccmenu_2))
+	ccmenuitemimage_3:setPosition(cc.p(96.768, 402.6241))
 	ccmenuitemimage_3:ignoreAnchorPointForPosition(false)
 
 
@@ -52,7 +52,7 @@ function Button_layout:ctor(_owner)
 	})
 	:onButtonClicked(handler(_owner, _owner.onBtnClick))
 	ccmenuitemimage_4:setAnchorPoint(cc.p(0.5,0.5))
-	ccmenuitemimage_4:setPosition(ccbutils.ccb_pos(356.768,402.6241,0,ccmenu_2))
+	ccmenuitemimage_4:setPosition(cc.p(356.768, 402.6241))
 	ccmenuitemimage_4:ignoreAnchorPointForPosition(false)
 
 
@@ -66,7 +66,7 @@ function Button_layout:ctor(_owner)
 		size = 30,
 	})
 	cclabelttf_5:setAnchorPoint(cc.p(0.5,0.5))
-	cclabelttf_5:setPosition(ccbutils.ccb_pos(9.68,52.46,4,self))
+	cclabelttf_5:setPosition(cc.p(self:getContentSize().width * 0.0968, self:getContentSize().height * 0.5246))
 	cclabelttf_5:ignoreAnchorPointForPosition(false)
 
 
@@ -79,7 +79,7 @@ function Button_layout:ctor(_owner)
 		size = 30,
 	})
 	cclabelttf_6:setAnchorPoint(cc.p(0.5,0.5))
-	cclabelttf_6:setPosition(ccbutils.ccb_pos(37.8125,52.5,4,self))
+	cclabelttf_6:setPosition(cc.p(self:getContentSize().width * 0.378125, self:getContentSize().height * 0.525))
 	cclabelttf_6:ignoreAnchorPointForPosition(false)
 
 
@@ -102,7 +102,7 @@ function Button_layout:ctor(_owner)
 	label:setAnchorPoint(cc.p(0.5,0.5))
 	cccontrolbutton_7:setButtonLabel("normal", label)
 	cccontrolbutton_7:setAnchorPoint(cc.p(0.5,0.5))
-	cccontrolbutton_7:setPosition(ccbutils.ccb_pos(632.4481,397.44,0,self))
+	cccontrolbutton_7:setPosition(cc.p(632.4481, 397.44))
 	cccontrolbutton_7:ignoreAnchorPointForPosition(false)
 
 
@@ -115,7 +115,7 @@ function Button_layout:ctor(_owner)
 		size = 30,
 	})
 	cclabelttf_8:setAnchorPoint(cc.p(0.5,0.5))
-	cclabelttf_8:setPosition(ccbutils.ccb_pos(65.9375,52.5,4,self))
+	cclabelttf_8:setPosition(cc.p(self:getContentSize().width * 0.659375, self:getContentSize().height * 0.525))
 	cclabelttf_8:ignoreAnchorPointForPosition(false)
 
 

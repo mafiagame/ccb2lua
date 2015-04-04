@@ -13,7 +13,7 @@
 {{'\t'}}{{'\t'}}disabled = {{getDisplayFrame(disable)}},
 	-- endif
 {{'\t'}}},{scale9 = true})
-{{'\t'}}:setButtonSize({{CCNode.rennder_wh(data.properties.preferedSize, parent)}})
+{{'\t'}}:setButtonSize({{CCNode.rennder_wh(data.properties.preferedSize, parent, 1)}})
 	-- set block = data.properties.ccControl
 	-- if block[0] != 0
 {{'\t'}}:onButtonClicked({{getListener(block[1] == 1,block[0])}})

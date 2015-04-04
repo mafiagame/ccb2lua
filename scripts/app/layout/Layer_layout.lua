@@ -17,7 +17,7 @@ function Layer_layout:ctor(_owner)
 		size = 30,
 	})
 	self._title:setAnchorPoint(cc.p(0.5,0.5))
-	self._title:setPosition(ccbutils.ccb_pos(50,90.9375,4,self))
+	self._title:setPosition(cc.p(self:getContentSize().width * 0.5, self:getContentSize().height * 0.909375))
 	self._title:ignoreAnchorPointForPosition(false)
 
 
@@ -26,7 +26,7 @@ function Layer_layout:ctor(_owner)
 
 	local cclayercolor_2 = cc.LayerColor:create(cc.c4b(255,0,0,255))
 	cclayercolor_2:setAnchorPoint(cc.p(0.5,0.5))
-	cclayercolor_2:setPosition(ccbutils.ccb_pos(222.944,411.264,0,self))
+	cclayercolor_2:setPosition(cc.p(222.944, 411.264))
 	cclayercolor_2:setContentSize(cc.size(200, 100))
 	cclayercolor_2:ignoreAnchorPointForPosition(true)
 
@@ -40,7 +40,7 @@ function Layer_layout:ctor(_owner)
 		size = 30,
 	})
 	cclabelttf_3:setAnchorPoint(cc.p(0.5,0.5))
-	cclabelttf_3:setPosition(ccbutils.ccb_pos(324.896,362.88,0,self))
+	cclabelttf_3:setPosition(cc.p(324.896, 362.88))
 	cclabelttf_3:ignoreAnchorPointForPosition(false)
 
 
@@ -53,7 +53,7 @@ function Layer_layout:ctor(_owner)
 	ccscrollview_4:setContainer(require("app.widgets.Myccb").new(_owner))
 	ccscrollview_4:setDirection(cc.SCROLLVIEW_DIRECTION_VERTICAL)
 	ccscrollview_4:setAnchorPoint(cc.p(0.5,0.5))
-	ccscrollview_4:setPosition(ccbutils.ccb_pos(459.168,419.9041,0,self))
+	ccscrollview_4:setPosition(cc.p(459.168, 419.9041))
 	ccscrollview_4:ignoreAnchorPointForPosition(true)
 
 
@@ -66,7 +66,7 @@ function Layer_layout:ctor(_owner)
 		size = 30,
 	})
 	cclabelttf_5:setAnchorPoint(cc.p(0.5,0.5))
-	cclabelttf_5:setPosition(ccbutils.ccb_pos(544.896,362.88,0,self))
+	cclabelttf_5:setPosition(cc.p(544.896, 362.88))
 	cclabelttf_5:ignoreAnchorPointForPosition(false)
 
 
@@ -75,7 +75,7 @@ function Layer_layout:ctor(_owner)
 
 	local cclayer_6 = display.newLayer()
 	cclayer_6:setAnchorPoint(cc.p(0.5,0.5))
-	cclayer_6:setPosition(ccbutils.ccb_pos(11.216,381.888,0,self))
+	cclayer_6:setPosition(cc.p(11.216, 381.888))
 	cclayer_6:setContentSize(cc.size(200, 100))
 	cclayer_6:ignoreAnchorPointForPosition(true)
 
@@ -84,7 +84,7 @@ function Layer_layout:ctor(_owner)
 
 
 	local ccbfile_7 = require("app.widgets.Myccb").new(_owner)
-	ccbfile_7:setPosition(ccbutils.ccb_pos(50,50,4,cclayer_6))
+	ccbfile_7:setPosition(cc.p(cclayer_6:getContentSize().width * 0.5, cclayer_6:getContentSize().height * 0.5))
 
 
 	cclayer_6:addChild(ccbfile_7)
@@ -100,7 +100,7 @@ function Layer_layout:ctor(_owner)
 		dimensions = cc.size(200, 200),
 	})
 	cclabelttf_8:setAnchorPoint(cc.p(0.5,1))
-	cclabelttf_8:setPosition(ccbutils.ccb_pos(124.896,362.88,0,self))
+	cclabelttf_8:setPosition(cc.p(124.896, 362.88))
 	cclabelttf_8:ignoreAnchorPointForPosition(false)
 
 
@@ -116,7 +116,7 @@ function Layer_layout:ctor(_owner)
 		dimensions = cc.size(200, 200),
 	})
 	cclabelttf_9:setAnchorPoint(cc.p(0.5,1))
-	cclabelttf_9:setPosition(ccbutils.ccb_pos(784.896,372.88,0,self))
+	cclabelttf_9:setPosition(cc.p(784.896, 372.88))
 	cclabelttf_9:ignoreAnchorPointForPosition(false)
 
 

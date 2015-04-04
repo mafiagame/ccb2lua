@@ -17,7 +17,7 @@ function Label_layout:ctor(_owner)
 		size = 30,
 	})
 	self._title:setAnchorPoint(cc.p(0.5,0.5))
-	self._title:setPosition(ccbutils.ccb_pos(50,89.375,4,self))
+	self._title:setPosition(cc.p(self:getContentSize().width * 0.5, self:getContentSize().height * 0.89375))
 	self._title:ignoreAnchorPointForPosition(false)
 
 
@@ -30,7 +30,7 @@ function Label_layout:ctor(_owner)
 		size = 30,
 	})
 	cclabelttf_2:setAnchorPoint(cc.p(0.5,0.5))
-	cclabelttf_2:setPosition(ccbutils.ccb_pos(17.1575,67.89,4,self))
+	cclabelttf_2:setPosition(cc.p(self:getContentSize().width * 0.171575, self:getContentSize().height * 0.6789))
 	cclabelttf_2:ignoreAnchorPointForPosition(false)
 
 
@@ -42,7 +42,7 @@ function Label_layout:ctor(_owner)
 		font = "fonts/hurtnumbers.fnt",
 	})
 	cclabelbmfont_3:setAnchorPoint(cc.p(0.5,0.5))
-	cclabelbmfont_3:setPosition(ccbutils.ccb_pos(279.2,352.512,0,self))
+	cclabelbmfont_3:setPosition(cc.p(279.2, 352.512))
 	cclabelbmfont_3:ignoreAnchorPointForPosition(false)
 
 
@@ -59,7 +59,7 @@ function Label_layout:ctor(_owner)
 		listener = handler(_owner, _owner.onBtnClick),
 	})
 	cclabelttf_4:setAnchorPoint(cc.p(0.0,0.5))
-	cclabelttf_4:setPosition(ccbutils.ccb_pos(5,44.375,4,self))
+	cclabelttf_4:setPosition(cc.p(self:getContentSize().width * 0.05, self:getContentSize().height * 0.44375))
 	cclabelttf_4:ignoreAnchorPointForPosition(false)
 
 
@@ -75,7 +75,7 @@ function Label_layout:ctor(_owner)
 		dimensions = cc.size(300, 150),
 	})
 	cclabelttf_5:setAnchorPoint(cc.p(0.0,1))
-	cclabelttf_5:setPosition(ccbutils.ccb_pos(4.6875,36.5625,4,self))
+	cclabelttf_5:setPosition(cc.p(self:getContentSize().width * 0.046875, self:getContentSize().height * 0.365625))
 	cclabelttf_5:ignoreAnchorPointForPosition(false)
 
 
@@ -88,7 +88,7 @@ function Label_layout:ctor(_owner)
 		size = 30,
 	})
 	cclabelttf_6:setAnchorPoint(cc.p(0.0,0.5))
-	cclabelttf_6:setPosition(ccbutils.ccb_pos(4.6875,75.625,4,self))
+	cclabelttf_6:setPosition(cc.p(self:getContentSize().width * 0.046875, self:getContentSize().height * 0.75625))
 	cclabelttf_6:ignoreAnchorPointForPosition(false)
 
 

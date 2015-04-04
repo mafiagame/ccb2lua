@@ -5,18 +5,6 @@
 
 ccbutils = {}
 
-function ccbutils.ccb_pos(x, y, flag, parent)
-    if flag == 4 then
-        if parent then
-            return parent:getContentSize().width*(x/100), parent:getContentSize().height*(y/100)
-        else
-            return display.width*x, display.height*y
-        end
-    else
-        return x,y
-    end
-end
-
 local sharedSpriteFrameCache = cc.SpriteFrameCache:getInstance()
 local sharedTextureCache     = cc.Director:getInstance():getTextureCache()
 
