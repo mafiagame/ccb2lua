@@ -67,7 +67,7 @@ end)
 -- macro rennder_function(_function)
     -- for func in _function
 function {{ classname }}:{{func}}(_tag, _sprite)
-{{'\t'}}print("You should override this methed: <{{func}}>",_tag)
+{{'\t'}}error("You should override this methed: <{{func}}>")
 end
     -- endfor
 

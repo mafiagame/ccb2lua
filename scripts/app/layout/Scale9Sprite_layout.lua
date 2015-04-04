@@ -130,7 +130,7 @@ function Scale9Sprite_layout:ctor(_owner)
 end
 
 function Scale9Sprite_layout:onBtnClick(_tag, _sprite)
-	print("You should override this methed: <onBtnClick>",_tag)
+	error("You should override this methed: <onBtnClick>")
 end
 
 

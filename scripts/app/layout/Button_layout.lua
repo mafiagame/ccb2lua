@@ -126,7 +126,7 @@ function Button_layout:ctor(_owner)
 end
 
 function Button_layout:onBtnClick(_tag, _sprite)
-	print("You should override this methed: <onBtnClick>",_tag)
+	error("You should override this methed: <onBtnClick>")
 end
 
 
