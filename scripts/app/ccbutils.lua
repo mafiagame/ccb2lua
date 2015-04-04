@@ -17,13 +17,6 @@ function ccbutils.ccb_pos(x, y, flag, parent)
     end
 end
 
-function ccbutils.cap_insets(self, left, top, right, bottom)
-    self:setInsetLeft(left);
-    self:setInsetTop(top);
-    self:setInsetRight(right);
-    self:setInsetBottom(bottom);
-end
-
 local sharedSpriteFrameCache = cc.SpriteFrameCache:getInstance()
 local sharedTextureCache     = cc.Director:getInstance():getTextureCache()
 

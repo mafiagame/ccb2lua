@@ -25,12 +25,12 @@ function Scale9Sprite_layout:ctor(_owner)
 
 
 	local ccscale9sprite_2 = display.newScale9Sprite("diban.png")
-	ccbutils.cap_insets(ccscale9sprite_2,0.0,0.0,0.0,0.0)
 	ccscale9sprite_2:setPreferredSize(cc.size(200, 94))
 	ccscale9sprite_2:setAnchorPoint(cc.p(0.5,0.5))
 	ccscale9sprite_2:setPosition(ccbutils.ccb_pos(20,78.125,4,self))
 	ccscale9sprite_2:ignoreAnchorPointForPosition(false)
 
+	
 
 	self:addChild(ccscale9sprite_2)
 
@@ -50,12 +50,12 @@ function Scale9Sprite_layout:ctor(_owner)
 
 	local ccscale9sprite_4 = display.newScale9Sprite("diban.png")
 	ccbutils.addTouchListener(ccscale9sprite_4, handler(_owner, _owner.onBtnClick))
-	ccbutils.cap_insets(ccscale9sprite_4,0.0,0.0,0.0,0.0)
 	ccscale9sprite_4:setPreferredSize(cc.size(200, 94))
 	ccscale9sprite_4:setAnchorPoint(cc.p(0.5,0.5))
 	ccscale9sprite_4:setPosition(ccbutils.ccb_pos(50,78.125,4,self))
 	ccscale9sprite_4:ignoreAnchorPointForPosition(false)
 
+	
 
 	self:addChild(ccscale9sprite_4)
 
@@ -75,12 +75,12 @@ function Scale9Sprite_layout:ctor(_owner)
 
 	local ccscale9sprite_6 = display.newScale9Sprite("diban.png")
 	ccbutils.addTouchListenerEx(ccscale9sprite_6, handler(_owner, _owner.onBtnClick))
-	ccbutils.cap_insets(ccscale9sprite_6,0.0,0.0,0.0,0.0)
 	ccscale9sprite_6:setPreferredSize(cc.size(200, 94))
 	ccscale9sprite_6:setAnchorPoint(cc.p(0.5,0.5))
 	ccscale9sprite_6:setPosition(ccbutils.ccb_pos(80,78.125,4,self))
 	ccscale9sprite_6:ignoreAnchorPointForPosition(false)
 
+	
 
 	self:addChild(ccscale9sprite_6)
 
@@ -99,7 +99,7 @@ function Scale9Sprite_layout:ctor(_owner)
 
 
 	local ccscale9sprite_8 = display.newScale9Sprite("diban.png")
-	ccbutils.cap_insets(ccscale9sprite_8,20,0.0,20,0.0)
+	ccscale9sprite_8:setInsetLeft(20);ccscale9sprite_8:setInsetRight(20);
 	ccscale9sprite_8 = cc.ui.UIInput.new({
 		image = ccscale9sprite_8,
 		size = cc.size(self:getContentSize().width * 0.2, self:getContentSize().height * 0.15),

@@ -1,5 +1,19 @@
 -- import 'CCNode.lua' as CCNode
 
+{% macro rennder_capinsets(name, value) -%}
+	{% if value.insetLeft != 0 -%}
+{{name}}:setInsetLeft({{value.insetLeft}});
+    {%- endif -%}
+	{% if value.insetTop != 0 -%}
+{{name}}:setInsetTop({{value.insetTop}});
+    {%- endif -%}
+	{% if value.insetRight != 0 -%}
+{{name}}:setInsetRight({{value.insetRight}});
+    {%- endif -%}
+	{% if value.insetBottom != 0 -%}
+{{name}}:setInsetBottom({{value.insetBottom}});
+    {%- endif -%}
+{%- endmacro %}
 
 
 -- macro rennder(data,name,parent,define)
@@ -25,7 +39,6 @@
 	-- if not data.properties.anchorPoint
 {{'\t'}}{{name}}:setAnchorPoint(cc.p(0,0))
 	-- endif
-{{'\t'}}ccbutils.cap_insets({{name}},{{data.properties.insetLeft}},{{data.properties.insetTop}},{{data.properties.insetRight}},{{data.properties.insetBottom}})
 	-- set size = data.properties.preferedSize
 	-- set tag = data.properties.tag
 	-- if data.customClass == "EditBox"
@@ -34,6 +47,7 @@
 {{'\t'}}{{name}}:setPreferredSize({{CCNode.rennder_size(size, parent)}})
 {{ CCNode.rennder_base_properties(name,data.properties,parent) }}
 	-- endif
+{{'\t'}}{{rennder_capinsets(name, data.properties)}}
 	-- if data.customClass == "BanTouch"
 {{'\t'}}ccbutils.banTouch({{name}})
 	-- elif data.customClass == "ProgressBar"
