@@ -5,6 +5,26 @@
 
 ccbutils = {}
 
+
+local sharedSpriteFrameCache = cc.SpriteFrameCache:getInstance()
+local sharedTextureCache     = cc.Director:getInstance():getTextureCache()
+
+function ccbutils.ccb_display_frame(name, plist)
+    if plist then
+        local img_name = string.gsub(plist,".plist$",".png")
+        sharedSpriteFrameCache:addSpriteFramesWithFile(plist,img_name)
+    end
+    local frame = sharedSpriteFrameCache:getSpriteFrame(name)
+    if not frame then
+        local texture = sharedTextureCache:addImage(name)
+        if texture then
+            frame = cc.SpriteFrame:createWithTexture(texture, cc.rect(0, 0, texture:getContentSize().width, texture:getContentSize().height))
+        end
+    end
+    return frame
+end
+
+
 function ccbutils.addTouchListenerEx(sprite, listener)
     sprite:setTouchEnabled(true)
     sprite:addNodeEventListener(cc.NODE_TOUCH_EVENT, function(event)
