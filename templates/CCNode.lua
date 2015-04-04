@@ -1,7 +1,3 @@
-{% macro rennder_size(value, parent) -%}
-cc.size({{rennder_wh(value, parent, 1)}})
-{%- endmacro %}
-
 {% macro rennder_wh(value, parent, flag) -%}
     {%- set w = value[0] -%}
     {%- set h = value[1] -%}
@@ -17,10 +13,29 @@ cc.size({{rennder_wh(value, parent, 1)}})
 {{w}}, {{h}}
 {%- endmacro %}
 
+{% macro rennder_size(value, parent) -%}
+cc.size({{rennder_wh(value, parent, 1)}})
+{%- endmacro %}
 
 {% macro rennder_pos(value, parent) -%}
 cc.p({{rennder_wh(value, parent, 4)}})
 {%- endmacro %}
+
+
+{% macro rennder_memberVarAssignment(name, data) -%}
+        {%- if data.memberVarAssignmentName == "BanTouch" -%}
+ccbutils.banTouch({{name}})
+        {%- else -%}
+            {%- if data.memberVarAssignmentType == 0 -%}
+{{name}}:addTouchListener({{getListener(true, data.memberVarAssignmentName)}})
+            {%- elif data.memberVarAssignmentType == 1 -%}
+ccbutils.addTouchListener({{name}}, {{getListener(data.memberVarAssignmentType == 1, data.memberVarAssignmentName)}})
+            {%- else -%}
+ccbutils.addTouchListenerEx({{name}}, {{getListener(data.memberVarAssignmentType == 1, data.memberVarAssignmentName)}})
+            {%- endif -%}
+        {%- endif -%}
+{%- endmacro %}
+
 
 
 

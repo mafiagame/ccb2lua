@@ -24,17 +24,7 @@
 {{'\t'}}{{define}}{{name}} = display.newScale9Sprite("{{frame[1]}}")
 	-- endif
 	-- if data.memberVarAssignmentName and data.memberVarAssignmentName != "" and data.customClass != "EditBox"
-		-- if data.memberVarAssignmentName == "BanTouch"
-{{'\t'}}ccbutils.banTouch({{name}})
-		-- else
-			-- if data.memberVarAssignmentType == 0
-{{'\t'}}{{name}}:addTouchListener({{getListener(true, data.memberVarAssignmentName)}})
-			-- elif data.memberVarAssignmentType == 1
-{{'\t'}}ccbutils.addTouchListener({{name}}, {{getListener(data.memberVarAssignmentType == 1, data.memberVarAssignmentName)}})
-			-- else
-{{'\t'}}ccbutils.addTouchListenerEx({{name}}, {{getListener(data.memberVarAssignmentType == 1, data.memberVarAssignmentName)}})
-			-- endif
-		-- endif
+{{'\t'}}{{CCNode.rennder_memberVarAssignment(name, data)}}
 	-- endif
 	-- if not data.properties.anchorPoint
 {{'\t'}}{{name}}:setAnchorPoint(cc.p(0,0))
@@ -48,11 +38,7 @@
 {{ CCNode.rennder_base_properties(name,data.properties,parent) }}
 	-- endif
 {{'\t'}}{{rennder_capinsets(name, data.properties)}}
-	-- if data.customClass == "BanTouch"
-{{'\t'}}ccbutils.banTouch({{name}})
-	-- elif data.customClass == "ProgressBar"
-{{'\t'}}{{name}} = ccbutils.newProgressBar({{name}})
-	-- elif data.customClass == "EditBox"
+	-- if data.customClass == "EditBox"
 {{'\t'}}{{name}} = cc.ui.UIInput.new({
 {{'\t'}}{{'\t'}}image = {{name}},
 {{'\t'}}{{'\t'}}size = {{CCNode.rennder_size(size, parent)}},

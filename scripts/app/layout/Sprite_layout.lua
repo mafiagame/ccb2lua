@@ -35,7 +35,7 @@ function Sprite_layout:ctor(_owner)
 
 
 	local ccsprite_3 = display.newSprite("daxingxing_1.png")
-	ccbutils.addTouchListener(ccsprite_3, handler(_owner, _owner.onBtnClick))
+	ccbutils.addTouchListener(ccsprite_3, handler(_owner, _owner.onBtnClick))	
 	ccsprite_3:setPosition(cc.p(self:getContentSize().width * 0.8, self:getContentSize().height * 0.5))
 	ccsprite_3:setAnchorPoint(cc.p(0.5,0.5))
 	ccsprite_3:ignoreAnchorPointForPosition(false)
@@ -59,7 +59,7 @@ function Sprite_layout:ctor(_owner)
 
 
 	local ccsprite_5 = display.newSprite("daxingxing_1.png")
-	ccbutils.addTouchListenerEx(ccsprite_5, handler(_owner, _owner.onBtnClick))
+	ccbutils.addTouchListenerEx(ccsprite_5, handler(_owner, _owner.onBtnClick))	
 	ccsprite_5:setPosition(cc.p(self:getContentSize().width * 0.5, self:getContentSize().height * 0.5))
 	ccsprite_5:setAnchorPoint(cc.p(0.5,0.5))
 	ccsprite_5:ignoreAnchorPointForPosition(false)
