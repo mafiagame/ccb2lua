@@ -51,7 +51,7 @@ cc.p({{rennder_wh(value, parent)}})
 ccbutils.banTouch({{name}})
         {%- else -%}
             {%- if data.memberVarAssignmentType == 0 -%}
-{{name}}:addTouchListener({{getListener(true, data.memberVarAssignmentName)}})
+{{name}}:addNodeEventListener(cc.NODE_EVENT,{{getListener(true, data.memberVarAssignmentName)}})
             {%- elif data.memberVarAssignmentType == 1 -%}
 ccbutils.addTouchListener({{name}}, {{getListener(data.memberVarAssignmentType == 1, data.memberVarAssignmentName)}})
             {%- else -%}
