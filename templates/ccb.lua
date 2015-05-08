@@ -1,5 +1,5 @@
 
-local {{ classname }} = class("{{ classname }}",function()
+local {{ classname|replace("/","_") }} = class("{{ classname|replace("/","_") }}",function()
     return display.new{{ super }}()
 end)
 
@@ -66,7 +66,7 @@ end)
 
 -- macro rennder_function(_function)
     -- for func in _function
-function {{ classname }}:{{func}}(_tag, _sprite)
+function {{ classname|replace("/","_") }}:{{func}}(_tag, _sprite)
 {{'\t'}}error("You should override this methed: <{{func}}>")
 end
     -- endfor
@@ -74,7 +74,7 @@ end
 -- endmacro
 
 {{'\n'}}
-function {{ classname }}:ctor(_owner)
+function {{ classname|replace("/","_") }}:ctor(_owner)
 {{'\t'}} _owner = _owner or self
 {{CCNode.rennder_base_properties("self",data.properties,"nil") }}
 {{rennder_tree(data,"self") }}

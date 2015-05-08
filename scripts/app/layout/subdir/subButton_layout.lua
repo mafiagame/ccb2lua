@@ -1,5 +1,5 @@
 
-local subdir/subButton_layout = class("subdir/subButton_layout",function()
+local subdir_subButton_layout = class("subdir_subButton_layout",function()
     return display.newLayer()
 end)
 
@@ -7,7 +7,7 @@ end)
 
 
 
-function subdir/subButton_layout:ctor(_owner)
+function subdir_subButton_layout:ctor(_owner)
 	 _owner = _owner or self
 	self:setAnchorPoint(cc.p(0.5,0.5))
 	self:setContentSize(cc.size(display.width * 1.0, display.height * 1.0))
@@ -109,7 +109,7 @@ function subdir/subButton_layout:ctor(_owner)
 
 end
 
-function subdir/subButton_layout:onBtnClick(_tag, _sprite)
+function subdir_subButton_layout:onBtnClick(_tag, _sprite)
 	error("You should override this methed: <onBtnClick>")
 end
 
