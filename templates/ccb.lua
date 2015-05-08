@@ -82,4 +82,4 @@ end
 
 {{rennder_function(getFunction())}}
 
-return {{ classname }}
+return {{ classname|replace("/","_") }}
