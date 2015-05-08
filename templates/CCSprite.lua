@@ -4,7 +4,7 @@
 
 -- macro rennder(data,name,parent,define)
 	-- if data.customClass and data.customClass != ""
-{{'\t'}}{{define}}{{name}} = require("app.scenes.{{ data.customClass }}").new()
+{{'\t'}}{{define}}{{name}} = require("app.scenes.{{ data.customClass|replace("/","_") }}").new()
 	-- else
 		-- set displayFrame = data.properties.displayFrame
 {{'\t'}}{{define}}{{name}} = display.newSprite("{{displayFrame[1]}}")

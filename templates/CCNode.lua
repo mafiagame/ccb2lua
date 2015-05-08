@@ -1,7 +1,7 @@
-{% macro rennder_wh(value, parent, flag) -%}
-    {%- set w = value[0] -%}
-    {%- set h = value[1] -%}
-    {%- if value[2] == flag -%}
+{% macro rennder_wh(value, parent) -%}
+    {%- set w = value[0]|int -%}
+    {%- set h = value[1]|int -%}
+    {%- if value[2]|int == 4 -%}
         {%- if parent == "nil" -%}
             {%- set parent = "display" -%}
         {%- else -%}
@@ -9,16 +9,40 @@
         {%- endif -%}
         {%- set w = parent + ".width * " + tostr(w/100) -%}
         {%- set h = parent + ".height * " + tostr(h/100) -%}
+    
+    {%- elif value[2]|int == 1 -%}
+        {%- set h = "display.top - " + tostr(h) -%} 
+    {%- elif value[2]|int == 0 -%}{%- else -%}
+        FUCKYOU ! CAN NOT RUN hahahahahah
     {%- endif -%}
-{{w}}, {{h}}
+    {{w}}, {{h}}
+{%- endmacro %}
+
+{% macro rennder_wh_size(value, parent) -%}
+    {%- set w = value[0]|int -%}
+    {%- set h = value[1]|int -%}
+    {%- if value[2]|int == 1 -%}
+        {%- if parent == "nil" -%}
+            {%- set parent = "display" -%}
+        {%- else -%}
+            {%- set parent = parent + ":getContentSize()" -%}
+        {%- endif -%}
+        {%- set w = parent + ".width * " + tostr(w/100) -%}
+        {%- set h = parent + ".height * " + tostr(h/100) -%}
+    {%- elif value[2]|int != 0 -%}
+    FUCKED CODE!FUCKED CODE!FUCKED CODE!FUCKED CODE!FUCKED CODE!FUCKED CODE!FUCKED CODE!
+    THIS IS A FUCKED CODE:
+    YOU SUCK BITCH
+    {%- endif -%}
+    {{w}}, {{h}}
 {%- endmacro %}
 
 {% macro rennder_size(value, parent) -%}
-cc.size({{rennder_wh(value, parent, 1)}})
+cc.size({{rennder_wh_size(value, parent)}})
 {%- endmacro %}
 
 {% macro rennder_pos(value, parent) -%}
-cc.p({{rennder_wh(value, parent, 4)}})
+cc.p({{rennder_wh(value, parent)}})
 {%- endmacro %}
 
 

@@ -32,7 +32,7 @@ function subdir_layout:ctor(_owner)
 	})
 	self._score:setAnchorPoint(cc.p(0.5,0.5))
 	self._score:setColor(cc.c3b(0,0,0))
-	self._score:setPosition(cc.p(self:getContentSize().width * 0.5, self:getContentSize().height * 0.34127))
+	self._score:setPosition(cc.p(self:getContentSize().width * 0.5, self:getContentSize().height * 0.34))
 	self._score:ignoreAnchorPointForPosition(false)
 
 	self:addChild(self._score)

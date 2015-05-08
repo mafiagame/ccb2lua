@@ -19,7 +19,7 @@ function Scale9Sprite_layout:ctor(_owner)
 		size = 30,
 	})
 	self._title:setAnchorPoint(cc.p(0.5,0.5))
-	self._title:setPosition(cc.p(self:getContentSize().width * 0.5, self:getContentSize().height * 0.909375))
+	self._title:setPosition(cc.p(self:getContentSize().width * 0.5, self:getContentSize().height * 0.9))
 	self._title:ignoreAnchorPointForPosition(false)
 
 	self:addChild(self._title)
@@ -27,7 +27,7 @@ function Scale9Sprite_layout:ctor(_owner)
 	local ccscale9sprite_2 = display.newScale9Sprite("diban.png")
 	ccscale9sprite_2:setPreferredSize(cc.size(200, 94))
 	ccscale9sprite_2:setAnchorPoint(cc.p(0.5,0.5))
-	ccscale9sprite_2:setPosition(cc.p(self:getContentSize().width * 0.2, self:getContentSize().height * 0.78125))
+	ccscale9sprite_2:setPosition(cc.p(self:getContentSize().width * 0.2, self:getContentSize().height * 0.78))
 	ccscale9sprite_2:ignoreAnchorPointForPosition(false)
 
 	
@@ -39,7 +39,7 @@ function Scale9Sprite_layout:ctor(_owner)
 		size = 20,
 	})
 	cclabelttf_3:setAnchorPoint(cc.p(0.5,0.5))
-	cclabelttf_3:setPosition(cc.p(185.76, 439.2))
+	cclabelttf_3:setPosition(cc.p(185, 439))
 	cclabelttf_3:ignoreAnchorPointForPosition(false)
 
 	self:addChild(cclabelttf_3)
@@ -48,7 +48,7 @@ function Scale9Sprite_layout:ctor(_owner)
 	ccbutils.addTouchListener(ccscale9sprite_4, handler(_owner, _owner.onBtnClick))
 	ccscale9sprite_4:setPreferredSize(cc.size(200, 94))
 	ccscale9sprite_4:setAnchorPoint(cc.p(0.5,0.5))
-	ccscale9sprite_4:setPosition(cc.p(self:getContentSize().width * 0.5, self:getContentSize().height * 0.78125))
+	ccscale9sprite_4:setPosition(cc.p(self:getContentSize().width * 0.5, self:getContentSize().height * 0.78))
 	ccscale9sprite_4:ignoreAnchorPointForPosition(false)
 
 	
@@ -60,7 +60,7 @@ function Scale9Sprite_layout:ctor(_owner)
 		size = 20,
 	})
 	cclabelttf_5:setAnchorPoint(cc.p(0.5,0.5))
-	cclabelttf_5:setPosition(cc.p(475.76, 439.2))
+	cclabelttf_5:setPosition(cc.p(475, 439))
 	cclabelttf_5:ignoreAnchorPointForPosition(false)
 
 	self:addChild(cclabelttf_5)
@@ -69,7 +69,7 @@ function Scale9Sprite_layout:ctor(_owner)
 	ccbutils.addTouchListenerEx(ccscale9sprite_6, handler(_owner, _owner.onBtnClick))
 	ccscale9sprite_6:setPreferredSize(cc.size(200, 94))
 	ccscale9sprite_6:setAnchorPoint(cc.p(0.5,0.5))
-	ccscale9sprite_6:setPosition(cc.p(self:getContentSize().width * 0.8, self:getContentSize().height * 0.78125))
+	ccscale9sprite_6:setPosition(cc.p(self:getContentSize().width * 0.8, self:getContentSize().height * 0.78))
 	ccscale9sprite_6:ignoreAnchorPointForPosition(false)
 
 	
@@ -81,7 +81,7 @@ function Scale9Sprite_layout:ctor(_owner)
 		size = 20,
 	})
 	cclabelttf_7:setAnchorPoint(cc.p(0.5,0.5))
-	cclabelttf_7:setPosition(cc.p(770.76, 439.2))
+	cclabelttf_7:setPosition(cc.p(770, 439))
 	cclabelttf_7:ignoreAnchorPointForPosition(false)
 
 	self:addChild(cclabelttf_7)
@@ -105,7 +105,7 @@ function Scale9Sprite_layout:ctor(_owner)
 		size = 20,
 	})
 	cclabelttf_9:setAnchorPoint(cc.p(0.5,0.5))
-	cclabelttf_9:setPosition(cc.p(185.76, 289.2))
+	cclabelttf_9:setPosition(cc.p(185, 289))
 	cclabelttf_9:ignoreAnchorPointForPosition(false)
 
 	self:addChild(cclabelttf_9)
