@@ -171,7 +171,7 @@ def convertccb2lua(_data, ccbdata):
     # 如果目录不存在，则创建
     dir_path = _data["out"][:_data["out"].rfind('/')]
     if not os.path.isdir(dir_path):
-        os.mkdir(dir_path)
+        os.makedirs(dir_path)
 
     # 写lua文件
     lua = open(_data["out"],'w')
