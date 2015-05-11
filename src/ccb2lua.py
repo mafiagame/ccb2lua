@@ -174,6 +174,7 @@ def convertccb2lua(_data, ccbdata):
         os.makedirs(dir_path)
 
     # 写lua文件
+    print 'WRITE FILE TO : ' + _data["out"]
     lua = open(_data["out"],'w')
     lua.write(content)
     lua.close()
@@ -235,7 +236,10 @@ class MyEventHandler(FileSystemEventHandler):
 
         print "\nFILE CREATED : ", event.src_path
         path_name = event.src_path
-        path,name = os.path.split(path_name)
+        # path,name = os.path.split(path_name)
+        name = path_name.replace(ccb_path,"")
+        if name[0] == '/':
+            name = name[1:]
         if name.endswith(".ccb"):
             # customClass 有无改变,有改变的话检测有无ccb依赖此ccb
             if loadCCBData(G_DATAS, name, path_name):
@@ -260,6 +264,7 @@ def main():
     global output_path
     global G_DATAS
     global G_TEMPLATES
+    global ccb_path
     
     # 支持中文
     reload(sys)
@@ -312,7 +317,7 @@ def main():
                         datefmt='%Y-%m-%d %H:%M:%S')
     event_handler = MyEventHandler()
     observer = Observer()
-    observer.schedule(event_handler, ccb_path, recursive=False)
+    observer.schedule(event_handler, ccb_path, recursive=True)
     observer.start()
 
     print "\n"
