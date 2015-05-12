@@ -1,17 +1,18 @@
 {% macro rennder_wh(value, parent) -%}
     {%- set w = value[0]|int -%}
     {%- set h = value[1]|int -%}
+
+    {%- if parent == "nil" -%}
+        {%- set parent = "display" -%}
+    {%- else -%}
+        {%- set parent = parent + ":getContentSize()" -%}
+    {%- endif -%}
+
     {%- if value[2]|int == 4 -%}
-        {%- if parent == "nil" -%}
-            {%- set parent = "display" -%}
-        {%- else -%}
-            {%- set parent = parent + ":getContentSize()" -%}
-        {%- endif -%}
         {%- set w = parent + ".width * " + tostr(w/100) -%}
         {%- set h = parent + ".height * " + tostr(h/100) -%}
-    
     {%- elif value[2]|int == 1 -%}
-        {%- set h = "display.top - " + tostr(h) -%} 
+        {%- set h = parent + ".height - " + tostr(h) -%} 
     {%- elif value[2]|int == 0 -%}{%- else -%}
     *************************************************
     ***   STOP RUNNING PROGRAM, WRONG ARGUMENT    ***
@@ -23,12 +24,14 @@
 {% macro rennder_wh_size(value, parent) -%}
     {%- set w = value[0]|int -%}
     {%- set h = value[1]|int -%}
-    {%- if value[2]|int == 1 -%}
-        {%- if parent == "nil" -%}
-            {%- set parent = "display" -%}
-        {%- else -%}
-            {%- set parent = parent + ":getContentSize()" -%}
-        {%- endif -%}
+
+    {%- if parent == "nil" -%}
+        {%- set parent = "display" -%}
+    {%- else -%}
+        {%- set parent = parent + ":getContentSize()" -%}
+    {%- endif -%}
+
+    {%- if value[2]|int == 1 -%}        
         {%- set w = parent + ".width * " + tostr(w/100) -%}
         {%- set h = parent + ".height * " + tostr(h/100) -%}
     {%- elif value[2]|int != 0 -%}
