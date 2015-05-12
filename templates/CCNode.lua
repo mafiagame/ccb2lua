@@ -13,7 +13,9 @@
     {%- elif value[2]|int == 1 -%}
         {%- set h = "display.top - " + tostr(h) -%} 
     {%- elif value[2]|int == 0 -%}{%- else -%}
-        FUCKYOU ! CAN NOT RUN hahahahahah
+    *************************************************
+    ***   STOP RUNNING PROGRAM, WRONG ARGUMENT    ***
+    *************************************************
     {%- endif -%}
     {{w}}, {{h}}
 {%- endmacro %}
@@ -30,9 +32,9 @@
         {%- set w = parent + ".width * " + tostr(w/100) -%}
         {%- set h = parent + ".height * " + tostr(h/100) -%}
     {%- elif value[2]|int != 0 -%}
-    FUCKED CODE!FUCKED CODE!FUCKED CODE!FUCKED CODE!FUCKED CODE!FUCKED CODE!FUCKED CODE!
-    THIS IS A FUCKED CODE:
-    YOU SUCK BITCH
+    *************************************************
+    ***   STOP RUNNING PROGRAM, WRONG ARGUMENT    ***
+    *************************************************
     {%- endif -%}
     {{w}}, {{h}}
 {%- endmacro %}
