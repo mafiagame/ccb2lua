@@ -19,7 +19,7 @@ function Layer_layout:ctor(_owner)
 		size = 30,
 	})
 	self._title:setAnchorPoint(cc.p(0.5,0.5))
-	self._title:setPosition(cc.p(self:getContentSize().width * 0.5, self:getContentSize().height * 0.909375))
+	self._title:setPosition(cc.p(self:getContentSize().width * 0.5, self:getContentSize().height * 0.9))
 	self._title:ignoreAnchorPointForPosition(false)
 
 	self:addChild(self._title)
@@ -27,7 +27,7 @@ function Layer_layout:ctor(_owner)
 	local cclayercolor_2 = cc.LayerColor:create(cc.c4b(255,0,0,255))
 	cclayercolor_2:setBlendFunc(770, 771)
 	cclayercolor_2:setAnchorPoint(cc.p(0.5,0.5))
-	cclayercolor_2:setPosition(cc.p(222.944, 411.264))
+	cclayercolor_2:setPosition(cc.p(222, 411))
 	cclayercolor_2:setContentSize(cc.size(200, 100))
 	cclayercolor_2:ignoreAnchorPointForPosition(true)
 
@@ -39,7 +39,7 @@ function Layer_layout:ctor(_owner)
 		size = 30,
 	})
 	cclabelttf_3:setAnchorPoint(cc.p(0.5,0.5))
-	cclabelttf_3:setPosition(cc.p(324.896, 362.88))
+	cclabelttf_3:setPosition(cc.p(324, 362))
 	cclabelttf_3:ignoreAnchorPointForPosition(false)
 
 	self:addChild(cclabelttf_3)
@@ -47,10 +47,10 @@ function Layer_layout:ctor(_owner)
 	local ccscrollview_4 = cc.ScrollView:create()
 
 	ccscrollview_4:setViewSize(cc.size(200, 100))
-	ccscrollview_4:setContainer(require("app.widgets.Myccb").new(_owner))
+	ccscrollview_4:setContainer(require("app.scenes.package.Myccb").new(_owner))
 	ccscrollview_4:setDirection(cc.SCROLLVIEW_DIRECTION_VERTICAL)
 	ccscrollview_4:setAnchorPoint(cc.p(0.5,0.5))
-	ccscrollview_4:setPosition(cc.p(459.168, 419.9041))
+	ccscrollview_4:setPosition(cc.p(459, 419))
 	ccscrollview_4:ignoreAnchorPointForPosition(true)
 
 	self:addChild(ccscrollview_4)
@@ -61,20 +61,20 @@ function Layer_layout:ctor(_owner)
 		size = 30,
 	})
 	cclabelttf_5:setAnchorPoint(cc.p(0.5,0.5))
-	cclabelttf_5:setPosition(cc.p(544.896, 362.88))
+	cclabelttf_5:setPosition(cc.p(544, 362))
 	cclabelttf_5:ignoreAnchorPointForPosition(false)
 
 	self:addChild(cclabelttf_5)
 
 	local cclayer_6 = display.newLayer()
 	cclayer_6:setAnchorPoint(cc.p(0.5,0.5))
-	cclayer_6:setPosition(cc.p(11.216, 381.888))
+	cclayer_6:setPosition(cc.p(11, 381))
 	cclayer_6:setContentSize(cc.size(200, 100))
 	cclayer_6:ignoreAnchorPointForPosition(true)
 
 	self:addChild(cclayer_6)
 
-	local ccbfile_7 = require("app.widgets.Myccb").new(_owner)
+	local ccbfile_7 = require("app.scenes.package.Myccb").new()
 	ccbfile_7:setPosition(cc.p(cclayer_6:getContentSize().width * 0.5, cclayer_6:getContentSize().height * 0.5))
 
 	cclayer_6:addChild(ccbfile_7)
@@ -88,7 +88,7 @@ function Layer_layout:ctor(_owner)
 		dimensions = cc.size(200, 200),
 	})
 	cclabelttf_8:setAnchorPoint(cc.p(0.5,1))
-	cclabelttf_8:setPosition(cc.p(124.896, 362.88))
+	cclabelttf_8:setPosition(cc.p(124, 362))
 	cclabelttf_8:ignoreAnchorPointForPosition(false)
 
 	self:addChild(cclabelttf_8)
@@ -102,7 +102,7 @@ function Layer_layout:ctor(_owner)
 		dimensions = cc.size(200, 200),
 	})
 	cclabelttf_9:setAnchorPoint(cc.p(0.5,1))
-	cclabelttf_9:setPosition(cc.p(784.896, 372.88))
+	cclabelttf_9:setPosition(cc.p(784, 372))
 	cclabelttf_9:ignoreAnchorPointForPosition(false)
 
 	self:addChild(cclabelttf_9)

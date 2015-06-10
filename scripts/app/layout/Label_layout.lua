@@ -19,7 +19,7 @@ function Label_layout:ctor(_owner)
 		size = 30,
 	})
 	self._title:setAnchorPoint(cc.p(0.5,0.5))
-	self._title:setPosition(cc.p(self:getContentSize().width * 0.5, self:getContentSize().height * 0.89375))
+	self._title:setPosition(cc.p(self:getContentSize().width * 0.5, self:getContentSize().height * 0.89))
 	self._title:ignoreAnchorPointForPosition(false)
 
 	self:addChild(self._title)
@@ -30,7 +30,7 @@ function Label_layout:ctor(_owner)
 		size = 30,
 	})
 	cclabelttf_2:setAnchorPoint(cc.p(0.5,0.5))
-	cclabelttf_2:setPosition(cc.p(self:getContentSize().width * 0.171575, self:getContentSize().height * 0.6789))
+	cclabelttf_2:setPosition(cc.p(self:getContentSize().width * 0.17, self:getContentSize().height * 0.67))
 	cclabelttf_2:ignoreAnchorPointForPosition(false)
 
 	self:addChild(cclabelttf_2)
@@ -40,7 +40,7 @@ function Label_layout:ctor(_owner)
 		font = "fonts/hurtnumbers.fnt",
 	})
 	cclabelbmfont_3:setAnchorPoint(cc.p(0.5,0.5))
-	cclabelbmfont_3:setPosition(cc.p(279.2, 352.512))
+	cclabelbmfont_3:setPosition(cc.p(279, 352))
 	cclabelbmfont_3:ignoreAnchorPointForPosition(false)
 
 	self:addChild(cclabelbmfont_3)
@@ -55,7 +55,7 @@ function Label_layout:ctor(_owner)
 		listener = handler(_owner, _owner.onBtnClick),
 	})
 	cclabelttf_4:setAnchorPoint(cc.p(0.0,0.5))
-	cclabelttf_4:setPosition(cc.p(self:getContentSize().width * 0.05, self:getContentSize().height * 0.44375))
+	cclabelttf_4:setPosition(cc.p(self:getContentSize().width * 0.05, self:getContentSize().height * 0.44))
 	cclabelttf_4:ignoreAnchorPointForPosition(false)
 
 	self:addChild(cclabelttf_4)
@@ -69,7 +69,7 @@ function Label_layout:ctor(_owner)
 		dimensions = cc.size(300, 150),
 	})
 	cclabelttf_5:setAnchorPoint(cc.p(0.0,1))
-	cclabelttf_5:setPosition(cc.p(self:getContentSize().width * 0.046875, self:getContentSize().height * 0.365625))
+	cclabelttf_5:setPosition(cc.p(self:getContentSize().width * 0.04, self:getContentSize().height * 0.36))
 	cclabelttf_5:ignoreAnchorPointForPosition(false)
 
 	self:addChild(cclabelttf_5)
@@ -80,7 +80,7 @@ function Label_layout:ctor(_owner)
 		size = 30,
 	})
 	cclabelttf_6:setAnchorPoint(cc.p(0.0,0.5))
-	cclabelttf_6:setPosition(cc.p(self:getContentSize().width * 0.046875, self:getContentSize().height * 0.75625))
+	cclabelttf_6:setPosition(cc.p(self:getContentSize().width * 0.04, self:getContentSize().height * 0.75))
 	cclabelttf_6:ignoreAnchorPointForPosition(false)
 
 	self:addChild(cclabelttf_6)

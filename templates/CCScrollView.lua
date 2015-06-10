@@ -16,7 +16,7 @@
 	-- if classname == ""
 {{'\t'}}{{name}}:setContainer(require("app.layout.{{prototype.class}}").new(_owner))
 	-- else
-{{'\t'}}{{name}}:setContainer(require("app.widgets.{{classname}}").new(_owner))
+{{'\t'}}{{name}}:setContainer(require("app.scenes.package.{{classname}}").new(_owner))
 	-- endif
 -- endif
 -- set direction = data.properties.direction
