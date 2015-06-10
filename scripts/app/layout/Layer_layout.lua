@@ -25,6 +25,7 @@ function Layer_layout:ctor(_owner)
 	self:addChild(self._title)
 
 	local cclayercolor_2 = cc.LayerColor:create(cc.c4b(255,0,0,255))
+	cclayercolor_2:setBlendFunc(770, 771)
 	cclayercolor_2:setAnchorPoint(cc.p(0.5,0.5))
 	cclayercolor_2:setPosition(cc.p(222.944, 411.264))
 	cclayercolor_2:setContentSize(cc.size(200, 100))

@@ -15,6 +15,7 @@ end)
 -- import 'CCMenuItemImage.lua' as CCMenuItemImage
 -- import 'CCScrollView.lua' as CCScrollView
 -- import 'CCControlButton.lua' as CCControlButton
+-- import 'CCParticleSystemQuad.lua' as CCParticleSystemQuad
 
 
 {% macro rennder_tree(data,parent) -%}
@@ -54,6 +55,8 @@ end)
 {{ CCScrollView.rennder(data,var_name,parent,var_def,ccbdata) }}
         {%- elif data.baseClass == "CCControlButton" -%}
 {{ CCControlButton.rennder(data,var_name,parent,var_def,ccbdata) }}
+        {%- elif data.baseClass == "CCParticleSystemQuad" -%}
+{{ CCParticleSystemQuad.rennder(data,var_name,parent,var_def) }}
         {%- endif -%}
 {{'\t'}}{{parent}}:addChild({{var_name}})
 {{'\n'}}

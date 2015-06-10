@@ -11,6 +11,7 @@ function MainScene:ctor()
         "ButtonLayer",
         "Scale9SpriteLayer",
         "SpriteLayer",
+        "ParticleSystemLayer",
     }, function(v)
         local scene = display.newScene()
         require("app.scenes."..v).new()
