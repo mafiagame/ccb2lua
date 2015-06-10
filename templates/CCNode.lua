@@ -21,6 +21,18 @@ cc.size({{rennder_wh(value, parent, 1)}})
 cc.p({{rennder_wh(value, parent, 4)}})
 {%- endmacro %}
 
+{% macro rennder_p2(value) -%}
+cc.p({{value[0]}},{{value[0]}})
+{%- endmacro %}
+
+{% macro rennder_c4f(value) -%}
+cc.c4f({{value[0]}},{{value[1]}},{{value[2]}},{{value[3]}})
+{%- endmacro %}
+
+{% macro rennder_texture(value) -%}
+cc.Director:getInstance():getTextureCache():addImage("{{value}}")
+{%- endmacro %}
+
 
 {% macro rennder_memberVarAssignment(name, data) -%}
         {%- if data.memberVarAssignmentName == "BanTouch" -%}
@@ -80,6 +92,8 @@ ccbutils.addTouchListenerEx({{name}}, {{getListener(data.memberVarAssignmentType
                 -- endif
             --elif key == "visible"
 {{'\t'}}{{name}}:setVisible({{value}})
+            --elif key == "blendFunc"
+{{'\t'}}{{name}}:setBlendFunc({{value[0]}}, {{value[1]}})
             --endif
         -- endif
     -- endfor
