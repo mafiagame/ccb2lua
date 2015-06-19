@@ -58,7 +58,10 @@ def getListener(_target, _name):
 
 
 def getDisplayFrameName(_value):
+    # print _value
     if _value[0]:
+        if _value[1] == None:
+            return "nil"
         return "\"#"+_value[1]+"\""
 
     return "\""+_value[1]+"\""
