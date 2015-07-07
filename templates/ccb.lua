@@ -16,6 +16,7 @@ end)
 -- import 'CCScrollView.lua' as CCScrollView
 -- import 'CCControlButton.lua' as CCControlButton
 -- import 'CCParticleSystemQuad.lua' as CCParticleSystemQuad
+-- import 'AutoLayout.lua' as AutoLayout
 
 
 {% macro rennder_tree(data,parent) -%}
@@ -31,7 +32,9 @@ end)
             {%- set var_name = data.baseClass.lower() + "_" + tostr(item_count) -%}
         {%- endif -%}
 
-        {%- if data.baseClass == "CCNode" -%}
+        {%- if data.customClass == "AutoLayout" -%}
+{{ AutoLayout.rennder(data,var_name,parent,var_def,ccbdata) }}
+        {%- elif data.baseClass == "CCNode" -%}
 {{ CCNode.rennder(data,var_name,parent,var_def) }}
         {%- elif data.baseClass == "CCSprite" -%}
 {{ CCSprite.rennder(data,var_name,parent,var_def) }}
