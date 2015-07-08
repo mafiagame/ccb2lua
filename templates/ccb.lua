@@ -17,6 +17,7 @@ end)
 -- import 'CCControlButton.lua' as CCControlButton
 -- import 'CCParticleSystemQuad.lua' as CCParticleSystemQuad
 -- import 'AutoLayout.lua' as AutoLayout
+-- import 'RichLabel.lua' as RichLabel
 
 
 {% macro rennder_tree(data,parent) -%}
@@ -34,6 +35,8 @@ end)
 
         {%- if data.customClass == "AutoLayout" -%}
 {{ AutoLayout.rennder(data,var_name,parent,var_def,ccbdata) }}
+        {%- elif data.customClass == "RichLabel" -%}
+{{ RichLabel.rennder(data,var_name,parent,var_def) }}
         {%- elif data.baseClass == "CCNode" -%}
 {{ CCNode.rennder(data,var_name,parent,var_def) }}
         {%- elif data.baseClass == "CCSprite" -%}
