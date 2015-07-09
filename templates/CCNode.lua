@@ -77,6 +77,20 @@ ccbutils.addTouchListenerEx({{name}}, {{getListener(data.memberVarAssignmentType
         {%- endif -%}
 {%- endmacro %}
 
+{% macro rennder_capinsets(name, value) -%}
+    {% if value.insetLeft != 0 -%}
+{{name}}:setInsetLeft({{value.insetLeft}});
+    {%- endif -%}
+    {% if value.insetTop != 0 -%}
+{{name}}:setInsetTop({{value.insetTop}});
+    {%- endif -%}
+    {% if value.insetRight != 0 -%}
+{{name}}:setInsetRight({{value.insetRight}});
+    {%- endif -%}
+    {% if value.insetBottom != 0 -%}
+{{name}}:setInsetBottom({{value.insetBottom}});
+    {%- endif -%}
+{%- endmacro %}
 
 
 

@@ -18,6 +18,7 @@ end)
 -- import 'CCParticleSystemQuad.lua' as CCParticleSystemQuad
 -- import 'AutoLayout.lua' as AutoLayout
 -- import 'RichLabel.lua' as RichLabel
+-- import 'Progress9.lua' as Progress9
 
 
 {% macro rennder_tree(data,parent) -%}
@@ -35,6 +36,8 @@ end)
 
         {%- if data.customClass == "AutoLayout" -%}
 {{ AutoLayout.rennder(data,var_name,parent,var_def,ccbdata) }}
+        {%- elif data.customClass == "Progress9" -%}
+{{ Progress9.rennder(data,var_name,parent,var_def) }}
         {%- elif data.customClass == "RichLabel" -%}
 {{ RichLabel.rennder(data,var_name,parent,var_def) }}
         {%- elif data.baseClass == "CCNode" -%}

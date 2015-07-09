@@ -1,21 +1,5 @@
 -- import 'CCNode.lua' as CCNode
 
-{% macro rennder_capinsets(name, value) -%}
-	{% if value.insetLeft != 0 -%}
-{{name}}:setInsetLeft({{value.insetLeft}});
-    {%- endif -%}
-	{% if value.insetTop != 0 -%}
-{{name}}:setInsetTop({{value.insetTop}});
-    {%- endif -%}
-	{% if value.insetRight != 0 -%}
-{{name}}:setInsetRight({{value.insetRight}});
-    {%- endif -%}
-	{% if value.insetBottom != 0 -%}
-{{name}}:setInsetBottom({{value.insetBottom}});
-    {%- endif -%}
-{%- endmacro %}
-
-
 -- macro rennder(data,name,parent,define)
 	-- set frame = data.properties.spriteFrame
 	-- if data.customClass and data.customClass != "" and data.customClass != "BanTouch" and data.customClass != "ProgressBar" and data.customClass != "EditBox"
@@ -37,7 +21,7 @@
 {{'\t'}}{{name}}:setPreferredSize({{CCNode.rennder_size(size, parent)}})
 {{ CCNode.rennder_base_properties(name,data.properties,parent) }}
 	-- endif
-{{'\t'}}{{rennder_capinsets(name, data.properties)}}
+{{'\t'}}{{CCNode.rennder_capinsets(name, data.properties)}}
 	-- if data.customClass == "EditBox"
 {{'\t'}}{{name}} = cc.ui.UIInput.new({
 {{'\t'}}{{'\t'}}image = {{name}},
