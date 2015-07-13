@@ -19,6 +19,7 @@
 -- elif direction == 0
 {{'\t'}}{{'\t'}}direction = cc.ui.UIScrollView.DIRECTION_HORIZONTAL,
 -- endif
+{{'\t'}}{{'\t'}}async = true,
 {{'\t'}}})
 -- if data.memberVarAssignmentName and data.memberVarAssignmentName != ""
 {{'\t'}}:onTouch({{getListener(true, data.memberVarAssignmentName)}})
