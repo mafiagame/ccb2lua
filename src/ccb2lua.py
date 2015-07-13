@@ -260,7 +260,7 @@ def listdir_recursive(target_dir, result, root_dir):
     for i in os.listdir(target_dir):
         print target_dir + i
         result.append( (target_dir + i).replace(root_dir,'') )
-        if os.path.isdir(target_dir+i):
+        if os.path.isdir(target_dir+i) and i != "temp":
             listdir_recursive(target_dir +i, result, root_dir)
 
 def main():
