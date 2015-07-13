@@ -36,7 +36,7 @@ end)
 
         {%- if data.customClass == "AutoLayout" -%}
 {{ AutoLayout.rennder(data,var_name,parent,var_def,ccbdata) }}
-        {%- elif data.customClass == "Progress9" -%}
+        {%- elif data.customClass == "Progress9" and data.baseClass == "CCScale9Sprite" -%}
 {{ Progress9.rennder(data,var_name,parent,var_def) }}
         {%- elif data.customClass == "RichLabel" -%}
 {{ RichLabel.rennder(data,var_name,parent,var_def) }}

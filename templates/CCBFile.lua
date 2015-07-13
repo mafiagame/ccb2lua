@@ -4,11 +4,13 @@
 
 -- macro rennder(data,name,parent,define,ccbdata)
 	-- set prototype = ccbdata[data.properties.ccbFile]
-	-- set classname = getCustomClass(prototype)
-	-- if classname and classname != ""
+	-- if prototype
+		-- set classname = getCustomClass(prototype)
+		-- if classname and classname != ""
 {{'\t'}}{{define}}{{name}} = require("app.scenes.package.{{classname}}").new()
-	-- else
+		-- else
 {{'\t'}}{{define}}{{name}} = require("app.layout.{{prototype.class|replace("/",".")}}").new(_owner)
-	-- endif
+		-- endif
 {{ CCNode.rennder_base_properties(name,data.properties,parent) }}
+	-- endif
 -- endmacro 
