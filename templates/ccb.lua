@@ -19,6 +19,7 @@ end)
 -- import 'AutoLayout.lua' as AutoLayout
 -- import 'RichLabel.lua' as RichLabel
 -- import 'Progress9.lua' as Progress9
+-- import 'UIListView.lua' as UIListView
 
 
 {% macro rennder_tree(data,parent) -%}
@@ -34,7 +35,9 @@ end)
             {%- set var_name = data.baseClass.lower() + "_" + tostr(item_count) -%}
         {%- endif -%}
 
-        {%- if data.customClass == "AutoLayout" -%}
+        {%- if data.customClass == "UIListView" -%}
+{{ UIListView.rennder(data,var_name,parent,var_def,ccbdata) }}
+        {%- elif data.customClass == "AutoLayout" -%}
 {{ AutoLayout.rennder(data,var_name,parent,var_def,ccbdata) }}
         {%- elif data.customClass == "Progress9" and data.baseClass == "CCScale9Sprite" -%}
 {{ Progress9.rennder(data,var_name,parent,var_def) }}
