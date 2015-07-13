@@ -4,7 +4,7 @@
 -- if data.properties.position
 {{'\t'}}local pos = {{CCNode.rennder_pos(data.properties.position,parent)}}
 -- else
-{{'\t'}}local pos = ccp(0,0)
+{{'\t'}}local pos = cc.p(0,0)
 -- endif
 -- set _ = nilProperty(data.properties,"position")
 {{'\t'}}local size = {{CCNode.rennder_size(data.properties.contentSize,parent)}}
@@ -13,11 +13,11 @@
 {{'\t'}}{{'\t'}}viewRect = cc.rect(pos.x, pos.y, size.width, size.height),
 -- set direction = data.properties.direction
 -- if direction == 2
-{{'\t'}}{{'\t'}}direction = cc.ui.UIScrollVIew.DIRECTION_BOTH,
+{{'\t'}}{{'\t'}}direction = cc.ui.UIScrollView.DIRECTION_BOTH,
 -- elif direction == 1
-{{'\t'}}{{'\t'}}direction = cc.ui.UIScrollVIew.DIRECTION_VERTICAL,
+{{'\t'}}{{'\t'}}direction = cc.ui.UIScrollView.DIRECTION_VERTICAL,
 -- elif direction == 0
-{{'\t'}}{{'\t'}}direction = cc.ui.UIScrollVIew.DIRECTION_HORIZONTAL,
+{{'\t'}}{{'\t'}}direction = cc.ui.UIScrollView.DIRECTION_HORIZONTAL,
 -- endif
 {{'\t'}}})
 -- if data.memberVarAssignmentName and data.memberVarAssignmentName != ""
