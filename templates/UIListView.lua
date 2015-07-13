@@ -1,7 +1,11 @@
 -- import 'CCNode.lua' as CCNode
 
 -- macro rennder(data,name,parent,define,ccbdata)
+-- if data.properties.position
 {{'\t'}}local pos = {{CCNode.rennder_pos(data.properties.position,parent)}}
+-- else
+{{'\t'}}local pos = ccp(0,0)
+-- endif
 -- set _ = nilProperty(data.properties,"position")
 {{'\t'}}local size = {{CCNode.rennder_size(data.properties.contentSize,parent)}}
 -- set _ = nilProperty(data.properties,"contentSize")
