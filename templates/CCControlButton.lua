@@ -2,15 +2,15 @@
 
 
 -- macro rennder(data,name,parent,define,ccbdata)
-
+-- set _= debug(data.properties)
 {{'\t'}}{{define}}{{name}} = cc.ui.UIPushButton.new({
 	-- set var = data.properties["backgroundSpriteFrame|1"]
 {{'\t'}}{{'\t'}}normal = {{getDisplayFrameName(var)}},
 	-- set var = data.properties["backgroundSpriteFrame|2"]
-{{'\t'}}{{'\t'}}pressed = {{getDisplayFrameName(var)}}
-	-- set disable = data.properties.disabledSpriteFrame
-	-- if disable and disable[0] != "ccbResources/ccbDefaultImages.plist"
-{{'\t'}}{{'\t'}}disabled = {{getDisplayFrame(disable)}},
+{{'\t'}}{{'\t'}}pressed = {{getDisplayFrameName(var)}},
+	-- set var = data.properties["backgroundSpriteFrame|3"]
+	-- if var and var[0] != "ccbResources/ccbDefaultImages.plist"
+{{'\t'}}{{'\t'}}disabled = {{getDisplayFrame(var)}},
 	-- endif
 {{'\t'}}},{scale9 = true})
 {{'\t'}}:setButtonSize({{CCNode.rennder_wh_size(data.properties.preferedSize, parent)}})
