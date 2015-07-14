@@ -23,7 +23,7 @@ from watchdog.events import FileSystemEventHandler
 import ccbreader
 
 def debug(text):
-    print(text)
+    pp.pprint(text)
     return text
 
 
