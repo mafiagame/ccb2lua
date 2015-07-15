@@ -2,7 +2,6 @@
 
 
 -- macro rennder(data,name,parent,define,ccbdata)
--- set _= debug(data.properties)
 {{'\t'}}{{define}}{{name}} = cc.ui.UIPushButton.new({
 	-- set var = data.properties["backgroundSpriteFrame|1"]
 {{'\t'}}{{'\t'}}normal = {{getDisplayFrameName(var)}},

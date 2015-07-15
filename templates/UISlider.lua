@@ -19,6 +19,6 @@
 {{'\t'}}:setSliderValue(50)
 {{'\t'}}:setSliderSize(size.width, size.height)
 {{'\t'}}:align(display.LEFT_BOTTOM, pos.x, pos.y)
--- set _ = nilProperty(data,"children")
+-- set _ = markIgnoreRenderChilden(data)
 {{ CCNode.rennder_base_properties(name,data.properties,parent) }}
 -- endmacro

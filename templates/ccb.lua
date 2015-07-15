@@ -75,7 +75,7 @@ end)
         {%- endif -%}
 {{'\t'}}{{parent}}:addChild({{var_name}})
 {{'\n'}}
-        {%- if data.children -%}
+        {%- if data.children and not data.ignoreRenderChilden -%}
 {{ rennder_tree(data,var_name) }}
         {%- endif -%}
     {%- endfor -%}

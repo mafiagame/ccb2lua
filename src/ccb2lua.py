@@ -109,6 +109,9 @@ def isDefaultVarName(_name):
     global G_TEMPLATES
     return _name in G_TEMPLATES
 
+def markIgnoreRenderChilden(_data):
+    _data["ignoreRenderChilden"] = True
+
 def nilProperty(_data, _key):
     if _data.has_key(_key):
         _data[_key] = None
@@ -145,19 +148,20 @@ def getCustomClass(prototype):
  # 所有模板
 env = Environment(trim_blocks = True, line_statement_prefix = '--', line_comment_prefix = '#')
 
-env.globals['debug']                 = debug
-env.globals['nilProperty']           = nilProperty
-env.globals['tostr']                 = tostr
-env.globals['getIndex']              = getIndex
-env.globals['getCustomClass']        = getCustomClass
-env.globals['serializeString']       = serializeString
-env.globals['isDefaultVarName']      = isDefaultVarName
-env.globals['checkPropertyInvalide'] = checkPropertyInvalide
-env.globals['getDisplayFrame']       = getDisplayFrame
-env.globals['getDisplayFrame2']       = getDisplayFrame2
-env.globals['getDisplayFrameName']   = getDisplayFrameName
-env.globals['getListener']           = getListener
-env.globals['getFunction']           = getFunction
+env.globals['debug']                   = debug
+env.globals['nilProperty']             = nilProperty
+env.globals['tostr']                   = tostr
+env.globals['getIndex']                = getIndex
+env.globals['getCustomClass']          = getCustomClass
+env.globals['serializeString']         = serializeString
+env.globals['isDefaultVarName']        = isDefaultVarName
+env.globals['checkPropertyInvalide']   = checkPropertyInvalide
+env.globals['getDisplayFrame']         = getDisplayFrame
+env.globals['getDisplayFrame2']        = getDisplayFrame2
+env.globals['getDisplayFrameName']     = getDisplayFrameName
+env.globals['getListener']             = getListener
+env.globals['getFunction']             = getFunction
+env.globals['markIgnoreRenderChilden'] = markIgnoreRenderChilden
 
 
 # 获取父类名字
