@@ -1,8 +1,3 @@
-
-local {{ classname|replace("/","_") }} = class("{{ classname|replace("/","_") }}",function()
-    return display.new{{ super }}()
-end)
-
 -- import 'CCNode.lua' as CCNode
 -- import 'CCSprite.lua' as CCSprite
 -- import 'CCLayerColor.lua' as CCLayerColor
@@ -81,18 +76,27 @@ end)
     {%- endfor -%}
 {%- endmacro %}
 
-
 -- macro rennder_function(_function)
     -- for func in _function
-function {{ classname|replace("/","_") }}:{{func}}(_tag, _sprite)
-{{'\t'}}error("You should override this methed: <{{func}}>")
+function {{ real_classname }}:{{func}}(_tag, _sprite)
+{{'\t'}}print("You should override this methed: <{{ real_classname }}:{{func}}>")
 end
     -- endfor
-
 -- endmacro
 
+-- set real_classname = classname|replace("/","_")
+local {{ real_classname }} = class("{{ real_classname }}",function()
+    return display.new{{ super }}()
+end)
+
+-- set size = data.properties.contentSize
+-- if size
+{{real_classname}}.designSize = {{CCNode.rennder_size(size,"nil")}}
+-- endif
+
+
 {{'\n'}}
-function {{ classname|replace("/","_") }}:ctor(_owner)
+function {{ real_classname }}:ctor(_owner)
 {{'\t'}} _owner = _owner or self
 {{CCNode.rennder_base_properties("self",data.properties,"nil") }}
 {{rennder_tree(data,"self") }}
@@ -100,4 +104,4 @@ end
 
 {{rennder_function(getFunction())}}
 
-return {{ classname|replace("/","_") }}
+return {{ real_classname }}
