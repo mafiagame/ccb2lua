@@ -145,7 +145,7 @@ ccbutils.addTouchListenerEx({{name}}, {{getListener(data.memberVarAssignmentType
 
 -- macro rennder(data,name,parent,define) 
     -- if data.customClass and data.customClass != ""
-{{'\t'}}{{define}}{{name}} = require("app.views.{{ data.customClass }}").new()
+{{'\t'}}{{define}}{{name}} = {{data.customClass}}.new()
     -- else
 {{'\t'}}{{define}}{{name}} = display.newNode()
     -- endif
