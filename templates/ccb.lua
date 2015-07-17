@@ -16,6 +16,7 @@
 -- import 'Progress9.lua' as Progress9
 -- import 'UIListView.lua' as UIListView
 -- import 'UISlider.lua' as UISlider
+-- import 'UICheckBoxButton.lua' as UICheckBoxButton
 
 
 {% macro rennder_tree(data,parent) -%}
@@ -31,7 +32,9 @@
             {%- set var_name = data.baseClass.lower() + "_" + tostr(item_count) -%}
         {%- endif -%}
 
-        {%- if data.customClass == "UISlider" -%}
+        {%- if data.customClass == "UICheckBoxButton" -%}
+{{ UICheckBoxButton.rennder(data,var_name,parent,var_def,ccbdata) }}
+        {%- elif data.customClass == "UISlider" -%}
 {{ UISlider.rennder(data,var_name,parent,var_def) }}
         {%- elif data.customClass == "UIListView" -%}
 {{ UIListView.rennder(data,var_name,parent,var_def,ccbdata) }}
