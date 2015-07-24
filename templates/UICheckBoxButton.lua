@@ -3,9 +3,9 @@
 
 -- macro rennder(data,name,parent,define,ccbdata)
 {{'\t'}}{{define}}{{name}} = cc.ui.UICheckBoxButton.new({
-	-- set var = data.properties["backgroundSpriteFrame|1"]
-{{'\t'}}{{'\t'}}on = {{getDisplayFrameName(var)}},
 	-- set var = data.properties["backgroundSpriteFrame|2"]
+{{'\t'}}{{'\t'}}on = {{getDisplayFrameName(var)}},
+	-- set var = data.properties["backgroundSpriteFrame|1"]
 {{'\t'}}{{'\t'}}off = {{getDisplayFrameName(var)}},
 {{'\t'}}},{scale9 = true})
 {{'\t'}}:setButtonSize({{CCNode.rennder_wh_size(data.properties.preferedSize, parent)}})

@@ -34,7 +34,7 @@
 	-- if var[0] != 0 or var[1] != 0
 {{'\t'}}{{'\t'}}align = {{properties.horizontalAlignment}},
 {{'\t'}}{{'\t'}}valign = {{properties.verticalAlignment}},
-{{'\t'}}{{'\t'}}dimensions = {{CCNode.rennder_size(var, parent)}},
+{{'\t'}}{{'\t'}}dimensions = cc.size({{CCNode.rennder_size(var, parent)}}.width,0),
 	-- endif
 {{'\t'}}})
 -- endif
