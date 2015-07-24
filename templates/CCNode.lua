@@ -149,5 +149,8 @@ ccbutils.addTouchListenerEx({{name}}, {{getListener(data.memberVarAssignmentType
     -- else
 {{'\t'}}{{define}}{{name}} = display.newNode()
     -- endif
+    -- if data.memberVarAssignmentName and data.memberVarAssignmentName != ""
+{{'\t'}}{{rennder_memberVarAssignment(name, data)}}	
+	-- endif
 {{ rennder_base_properties(name,data.properties,parent) }}
 -- endmacro
