@@ -81,8 +81,8 @@
 
 -- macro rennder_function(_function)
     -- for func in _function
-function {{ real_classname }}:{{func}}(_tag, _sprite)
-{{'\t'}}print("You should override this methed: <{{ real_classname }}:{{func}}>")
+function {{ real_classname }}:{{func}}(_params)
+{{'\t'}}print("You should override this methed: <{{ real_classname }}:{{func}}>",_params.tag, _params.target)
 end
     -- endfor
 -- endmacro
