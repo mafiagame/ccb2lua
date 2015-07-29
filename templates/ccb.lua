@@ -102,6 +102,10 @@ end)
 function {{ real_classname }}:ctor(_owner)
 {{'\t'}} _owner = _owner or self
 {{CCNode.rennder_base_properties("self",data.properties,"nil") }}
+    {%- if data.memberVarAssignmentName and data.memberVarAssignmentName != "" -%}
+{{'\t'}}{{CCNode.rennder_memberVarAssignment("self", data)}} 
+    {%- endif -%}
+{{'\n'}}   
 {{rennder_tree(data,"self") }}
 end
 
