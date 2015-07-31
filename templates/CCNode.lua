@@ -134,7 +134,11 @@ ccbutils.addTouchListenerEx({{name}}, {{getListener(data.memberVarAssignmentType
 {{'\t'}}{{name}}:setSkewY({{value[1]}})
                 -- endif
             --elif key == "visible"
-{{'\t'}}{{name}}:setVisible({{value}})
+            -- if value
+{{'\t'}}{{name}}:setVisible(true)
+            -- else
+{{'\t'}}{{name}}:setVisible(false)
+            -- endif
             --elif key == "blendFunc"
 {{'\t'}}{{name}}:setBlendFunc({{value[0]}}, {{value[1]}})
             --endif
