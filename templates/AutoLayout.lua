@@ -1,12 +1,26 @@
 -- import 'CCNode.lua' as CCNode
 
+
+{% macro rennder_auto_size(size, pos) -%}
+    {%- set w = size[0]|int -%}
+    {%- set h = size[1]|int -%}
+    {%- set y = pos[1]|int -%}
+    {%- set height = 1334 -%}
+    {%- set h = height - h - y -%}
+cc.size({{w}}, display.height - {{h}} - {{y}})
+{%- endmacro %}
+
 -- macro rennder(data,name,parent,define,ccbdata)
 
 {{'\t'}}{{define}}{{name}} = AutoLayout.new()
 
 -- set item = data.properties.contentSize
 	-- if item and item != ""
+		-- if data.memberVarAssignmentName == "AutoSize"
+{{'\t'}}{{name}}:setViewSize({{rennder_auto_size(item, data.properties.position)}})
+		-- else
 {{'\t'}}{{name}}:setViewSize({{CCNode.rennder_size(item, parent)}})
+		-- endif
 	-- endif
 -- set _ = nilProperty(data.properties,"contentSize")
 -- set container = data.properties.container
