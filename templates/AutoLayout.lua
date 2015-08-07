@@ -11,8 +11,11 @@ cc.size({{w}}, display.height - {{h}} - {{y}})
 {%- endmacro %}
 
 -- macro rennder(data,name,parent,define,ccbdata)
+-- if data.customProperties
+	-- set _=debug(data)
+-- endif
 
-{% if data.memberVarAssignmentName == "DropRefresh" -%}
+{% if data.customProperties and data.customProperties.DropRefresh == "1" -%}
 {{'\t'}}{{define}}{{name}} = DropRefreshLayout.new()
 {% else -%}
 {{'\t'}}{{define}}{{name}} = AutoLayout.new()
@@ -20,7 +23,7 @@ cc.size({{w}}, display.height - {{h}} - {{y}})
 
 -- set item = data.properties.contentSize
 	-- if item and item != ""
-		-- if data.memberVarAssignmentName == "AutoSize"
+		-- if data.customProperties and data.customProperties.AutoSize == "1"
 {{'\t'}}{{name}}:setViewSize({{rennder_auto_size(item, data.properties.position)}})
 		-- else
 {{'\t'}}{{name}}:setViewSize({{CCNode.rennder_size(item, parent)}})
@@ -44,6 +47,9 @@ cc.size({{w}}, display.height - {{h}} - {{y}})
 {{'\t'}}{{name}}:setDirection(cc.SCROLLVIEW_DIRECTION_VERTICAL)
 -- elif direction == 0
 {{'\t'}}{{name}}:setDirection(cc.SCROLLVIEW_DIRECTION_HORIZONTAL)
+-- endif
+-- if data.customProperties and data.customProperties.SizeSuit == "1"
+{{'\t'}}{{name}}:setSizeSuitEnable(true)
 -- endif
 
 {{ CCNode.rennder_base_properties(name,data.properties,parent) }}
