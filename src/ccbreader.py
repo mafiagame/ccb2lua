@@ -55,6 +55,19 @@ def parseProperties(_element):
 
 	return data
 
+def parseCustomProperties(_element):
+	data = {}
+	for e in _element:
+		p_name      = parseValue(e[1].tag,e[1].text) 
+		p_optimized = parseValue(e[3].tag,e[3].text)
+		p_type      = parseValue(e[5].tag,e[5].text)
+		p_value     = parseElement(e[7].tag, e[7])
+
+		data[p_name] = p_value
+		# data[p_name] = {"value":p_value, "type":p_type}
+
+	return data
+
 def parseArray(_element):
 	data = []
 	
@@ -74,6 +87,8 @@ def parseDict(_element):
 			value = iterator.next()
 			if key.text == "properties":
 				data[key.text] = parseProperties(value)
+			elif key.text == "customProperties":
+				data[key.text] = parseCustomProperties(value)
 			else:
 				data[key.text] = parseElement(value.tag, value)
 		except StopIteration:
