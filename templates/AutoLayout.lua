@@ -12,7 +12,11 @@ cc.size({{w}}, display.height - {{h}} - {{y}})
 
 -- macro rennder(data,name,parent,define,ccbdata)
 
+{% if data.memberVarAssignmentName == "DropRefresh" -%}
+{{'\t'}}{{define}}{{name}} = DropRefreshLayout.new()
+{% else -%}
 {{'\t'}}{{define}}{{name}} = AutoLayout.new()
+{% endif -%}
 
 -- set item = data.properties.contentSize
 	-- if item and item != ""
