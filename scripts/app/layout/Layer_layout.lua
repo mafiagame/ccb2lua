@@ -48,7 +48,7 @@ function Layer_layout:ctor(_owner)
 
 	ccscrollview_4:setViewSize(cc.size(200, 100))
 	ccscrollview_4:setContainer(require("app.scenes.package.Myccb").new(_owner))
-	ccscrollview_4:setDirection(cc.SCROLLVIEW_DIRECTION_VERTICAL)
+	ccscrollview_4:setDirection(cc.ui.UIScrollView.DIRECTION_VERTICAL)
 	ccscrollview_4:setAnchorPoint(cc.p(0.5,0.5))
 	ccscrollview_4:setPosition(cc.p(459, 419))
 	ccscrollview_4:ignoreAnchorPointForPosition(true)

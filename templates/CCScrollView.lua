@@ -21,11 +21,11 @@
 -- endif
 -- set direction = data.properties.direction
 -- if direction == 2
-{{'\t'}}{{name}}:setDirection(cc.SCROLLVIEW_DIRECTION_BOTH)
+{{'\t'}}{{name}}:setDirection(cc.ui.UIScrollView.DIRECTION_BOTH)
 -- elif direction == 1
-{{'\t'}}{{name}}:setDirection(cc.SCROLLVIEW_DIRECTION_VERTICAL)
+{{'\t'}}{{name}}:setDirection(cc.ui.UIScrollView.DIRECTION_VERTICAL)
 -- elif direction == 0
-{{'\t'}}{{name}}:setDirection(cc.SCROLLVIEW_DIRECTION_HORIZONTAL)
+{{'\t'}}{{name}}:setDirection(cc.ui.UIScrollView.DIRECTION_HORIZONTAL)
 -- endif
 {{ CCNode.rennder_base_properties(name,data.properties,parent) }}
 -- endmacro 
