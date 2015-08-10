@@ -17,6 +17,8 @@ cc.size({{w}}, display.height - {{h}} - {{y}})
 
 {% if data.customProperties and data.customProperties.DropRefresh == "1" -%}
 {{'\t'}}{{define}}{{name}} = DropRefreshLayout.new()
+{% elif data.customProperties and data.customProperties.PageLayout == "1" -%}
+{{'\t'}}{{define}}{{name}} = PageLayout.new()
 {% else -%}
 {{'\t'}}{{define}}{{name}} = AutoLayout.new()
 {% endif -%}
