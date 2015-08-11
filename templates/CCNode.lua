@@ -149,7 +149,11 @@ ccbutils.addTouchListenerEx({{name}}, {{getListener(data.memberVarAssignmentType
 
 -- macro rennder(data,name,parent,define) 
     -- if data.customClass and data.customClass != ""
-{{'\t'}}{{define}}{{name}} = {{data.customClass}}.new()
+        -- if data.customClass == "BoxLayout"
+{{'\t'}}{{define}}{{name}} = BoxLayout.new()
+        -- else
+{{'\t'}}{{define}}{{name}} = require("app.scenes.package.{{data.customClass}}").new()
+        -- endif
     -- else
 {{'\t'}}{{define}}{{name}} = display.newNode()
     -- endif

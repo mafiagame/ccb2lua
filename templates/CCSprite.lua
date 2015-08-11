@@ -4,16 +4,16 @@
 
 -- macro rennder(data,name,parent,define)
 
+	-- set displayFrame = data.properties.displayFrame
+	-- set _ = nilProperty(data.properties,"displayFrame")
 	-- if data.customClass and data.customClass != ""
-{{'\t'}}{{define}}{{name}} = require("app.scenes.{{ data.customClass|replace("/","_") }}").new()
+{{'\t'}}{{define}}{{name}} = require("app.scenes.package.{{data.customClass}}").new("{{displayFrame[1]}}")
 	-- else
-		-- set displayFrame = data.properties.displayFrame
         -- if displayFrame[0] == None
 {{'\t'}}{{define}}{{name}} = display.newSprite("{{displayFrame[1]}}")
         -- else
 {{'\t'}}{{define}}{{name}} = display.newSprite("{{"#"}}{{displayFrame[1]}}")
         -- endif
-		-- set _ = nilProperty(data.properties,"displayFrame")
 	-- endif
 	-- if data.memberVarAssignmentName and data.memberVarAssignmentName != ""
 {{'\t'}}{{CCNode.rennder_memberVarAssignment(name, data)}}	
