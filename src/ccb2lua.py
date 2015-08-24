@@ -49,7 +49,8 @@ def resetFunction():
 
 def getFunction():
     global G_FUNCTION
-    return G_FUNCTION
+    function = sorted(G_FUNCTION.keys())
+    return function
 
 def getListener(_target, _name):
     global G_INDEX
