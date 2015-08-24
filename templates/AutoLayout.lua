@@ -53,6 +53,9 @@ cc.size({{w}}, display.height - {{h}} - {{y}})
 -- if data.customProperties and data.customProperties.SizeSuit == "1"
 {{'\t'}}{{name}}:setSizeSuitEnable(true)
 -- endif
+-- if data.customProperties and data.customProperties.CallBack
+{{'\t'}}{{name}}:setCallBack({{getListener(true, data.customProperties.CallBack)}})
+-- endif
 
 {{ CCNode.rennder_base_properties(name,data.properties,parent) }}
 -- endmacro 
