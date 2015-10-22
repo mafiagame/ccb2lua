@@ -95,7 +95,7 @@ def checkPropertyInvalide(_name, _value):
     # elif _name == "ignoreAnchorPointForPosition":
     #   return _value != "false"
     elif _name == "position":
-        return _value[0] != 0 or _value[1] != 0
+        return _value[0] != 0 or _value[1] != 0 or _value[2] != 0
     elif _name == "tag":
         return _value != -1
 
