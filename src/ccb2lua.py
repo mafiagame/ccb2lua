@@ -1,4 +1,4 @@
-    #!/usr/bin/env python  
+#!/usr/bin/env python  
 # coding=utf-8  
 # Python 2.7.3  
 
@@ -23,7 +23,7 @@ from watchdog.events import FileSystemEventHandler
 import ccbreader
 
 def debug(text):
-    print(text)
+    pp.pprint(text)
     return text
 
 
@@ -49,7 +49,8 @@ def resetFunction():
 
 def getFunction():
     global G_FUNCTION
-    return G_FUNCTION
+    function = sorted(G_FUNCTION.keys())
+    return function
 
 def getListener(_target, _name):
     global G_INDEX
@@ -58,7 +59,10 @@ def getListener(_target, _name):
 
 
 def getDisplayFrameName(_value):
+    # print _value
     if _value[0]:
+        if _value[1] == None:
+            return "nil"
         return "\"#"+_value[1]+"\""
 
     return "\""+_value[1]+"\""
@@ -94,8 +98,8 @@ def checkPropertyInvalide(_name, _value):
         return _value[0] != 255 or _value[1] != 255 or _value[2] != 255
     # elif _name == "ignoreAnchorPointForPosition":
     #   return _value != "false"
-    elif _name == "position":
-        return _value[0] != 0 or _value[1] != 0 or _value[2] != 0
+    # elif _name == "position":
+    #     return _value[0] != 0 or _value[1] != 0
     elif _name == "tag":
         return _value != -1
 
@@ -105,6 +109,9 @@ def checkPropertyInvalide(_name, _value):
 def isDefaultVarName(_name):
     global G_TEMPLATES
     return _name in G_TEMPLATES
+
+def markIgnoreRenderChilden(_data):
+    _data["ignoreRenderChilden"] = True
 
 def nilProperty(_data, _key):
     if _data.has_key(_key):
@@ -142,19 +149,20 @@ def getCustomClass(prototype):
  # 所有模板
 env = Environment(trim_blocks = True, line_statement_prefix = '--', line_comment_prefix = '#')
 
-env.globals['debug']                 = debug
-env.globals['nilProperty']           = nilProperty
-env.globals['tostr']                 = tostr
-env.globals['getIndex']              = getIndex
-env.globals['getCustomClass']        = getCustomClass
-env.globals['serializeString']       = serializeString
-env.globals['isDefaultVarName']      = isDefaultVarName
-env.globals['checkPropertyInvalide'] = checkPropertyInvalide
-env.globals['getDisplayFrame']       = getDisplayFrame
-env.globals['getDisplayFrame2']       = getDisplayFrame2
-env.globals['getDisplayFrameName']   = getDisplayFrameName
-env.globals['getListener']           = getListener
-env.globals['getFunction']           = getFunction
+env.globals['debug']                   = debug
+env.globals['nilProperty']             = nilProperty
+env.globals['tostr']                   = tostr
+env.globals['getIndex']                = getIndex
+env.globals['getCustomClass']          = getCustomClass
+env.globals['serializeString']         = serializeString
+env.globals['isDefaultVarName']        = isDefaultVarName
+env.globals['checkPropertyInvalide']   = checkPropertyInvalide
+env.globals['getDisplayFrame']         = getDisplayFrame
+env.globals['getDisplayFrame2']        = getDisplayFrame2
+env.globals['getDisplayFrameName']     = getDisplayFrameName
+env.globals['getListener']             = getListener
+env.globals['getFunction']             = getFunction
+env.globals['markIgnoreRenderChilden'] = markIgnoreRenderChilden
 
 
 # 获取父类名字
@@ -174,6 +182,7 @@ def convertccb2lua(_data, ccbdata):
         os.makedirs(dir_path)
 
     # 写lua文件
+    print 'WRITE FILE TO : ' + _data["out"]
     lua = open(_data["out"],'w')
     lua.write(content)
     lua.close()
@@ -235,7 +244,10 @@ class MyEventHandler(FileSystemEventHandler):
 
         print "\nFILE CREATED : ", event.src_path
         path_name = event.src_path
-        path,name = os.path.split(path_name)
+        # path,name = os.path.split(path_name)
+        name = path_name.replace(ccb_path,"")
+        if name[0] == '/':
+            name = name[1:]
         if name.endswith(".ccb"):
             # customClass 有无改变,有改变的话检测有无ccb依赖此ccb
             if loadCCBData(G_DATAS, name, path_name):
@@ -253,13 +265,14 @@ def listdir_recursive(target_dir, result, root_dir):
     for i in os.listdir(target_dir):
         print target_dir + i
         result.append( (target_dir + i).replace(root_dir,'') )
-        if os.path.isdir(target_dir+i):
+        if os.path.isdir(target_dir+i) and i != "temp":
             listdir_recursive(target_dir +i, result, root_dir)
 
 def main():
     global output_path
     global G_DATAS
     global G_TEMPLATES
+    global ccb_path
     
     # 支持中文
     reload(sys)
@@ -312,7 +325,7 @@ def main():
                         datefmt='%Y-%m-%d %H:%M:%S')
     event_handler = MyEventHandler()
     observer = Observer()
-    observer.schedule(event_handler, ccb_path, recursive=False)
+    observer.schedule(event_handler, ccb_path, recursive=True)
     observer.start()
 
     print "\n"
