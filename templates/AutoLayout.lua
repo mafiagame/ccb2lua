@@ -11,9 +11,6 @@ cc.size({{w}}, display.height - {{h}} - {{y}})
 {%- endmacro %}
 
 -- macro rennder(data,name,parent,define,ccbdata)
--- if data.customProperties
-	-- set _=debug(data)
--- endif
 
 {% if data.customProperties and data.customProperties.DropRefresh == "1" -%}
 {{'\t'}}{{define}}{{name}} = DropRefreshLayout.new()

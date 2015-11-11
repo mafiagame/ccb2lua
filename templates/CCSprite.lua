@@ -12,7 +12,7 @@
         -- if displayFrame[0] == None
 {{'\t'}}{{define}}{{name}} = display.newSprite("{{displayFrame[1]}}")
         -- else
-{{'\t'}}{{define}}{{name}} = display.newSprite("{{"#"}}{{displayFrame[1]}}")
+{{'\t'}}{{define}}{{name}} = display.newSprite(ccbutils.ccb_display_frame("{{displayFrame[1]}}", "{{displayFrame[0]}}"))
         -- endif
 	-- endif
 	-- if data.memberVarAssignmentName and data.memberVarAssignmentName != ""
