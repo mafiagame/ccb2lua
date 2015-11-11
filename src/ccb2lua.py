@@ -131,6 +131,12 @@ def serializeString(_string):
 def tostr(text):
     return str(text)
 
+def get_position(_data):
+    if "position" in _data:
+        return _data["position"]
+
+    return [0,0]
+
 def getCustomClass(prototype):
     prototype_data = prototype["data"]
     classname = ""
@@ -163,6 +169,7 @@ env.globals['getDisplayFrameName']     = getDisplayFrameName
 env.globals['getListener']             = getListener
 env.globals['getFunction']             = getFunction
 env.globals['markIgnoreRenderChilden'] = markIgnoreRenderChilden
+env.globals['get_position']            = get_position
 
 
 # 获取父类名字
