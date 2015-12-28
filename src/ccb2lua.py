@@ -141,7 +141,16 @@ def get_position(_data):
 
 def get_text(_text):
     if G_TEXT and _text in G_TEXT:
-        return "tr(\""+G_TEXT[_text]+"\")"
+        return "tr(\"{0}\")--[[{1}]]".format(G_TEXT[_text], _text)
+
+    contain_chinese = False
+    for c in _text:
+        if u'\u4e00' <= c <= u'\u9fff':
+            contain_chinese = True
+            break
+    if contain_chinese :
+        return "\"<auto generate>:{0}\"".format(_text)
+
     return "\""+_text+"\""
 
 def getCustomClass(prototype):
