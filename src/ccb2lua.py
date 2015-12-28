@@ -5,6 +5,7 @@
 import os
 import sys
 import time
+import json
 
 # jinja2
 from jinja2.environment import Environment
@@ -31,6 +32,7 @@ G_INDEX = 0
 G_FUNCTION = dict()
 G_DATAS = dict()
 G_TEMPLATES = list()
+G_TEXT = dict()
 
 
 def getIndex():
@@ -137,6 +139,11 @@ def get_position(_data):
 
     return [0,0]
 
+def get_text(_text):
+    if G_TEXT and _text in G_TEXT:
+        return "tr(\""+G_TEXT[_text]+"\")"
+    return "\""+_text+"\""
+
 def getCustomClass(prototype):
     prototype_data = prototype["data"]
     classname = ""
@@ -170,6 +177,7 @@ env.globals['getListener']             = getListener
 env.globals['getFunction']             = getFunction
 env.globals['markIgnoreRenderChilden'] = markIgnoreRenderChilden
 env.globals['get_position']            = get_position
+env.globals['get_text']                = get_text
 
 
 # 获取父类名字
@@ -280,6 +288,7 @@ def main():
     global G_DATAS
     global G_TEMPLATES
     global ccb_path
+    global G_TEXT
     
     # 支持中文
     reload(sys)
@@ -287,7 +296,7 @@ def main():
 
     # 读取参数
     if len(sys.argv) < 4:
-        print "Invalide args! <ccb_path, output_path, template_path>"
+        print "Invalide args! <ccb_path, output_path, template_path[, language_file]>"
         return
 
     ccb_path = sys.argv[1]
@@ -297,6 +306,11 @@ def main():
     print "ccb_path      : ",ccb_path
     print "output_path   : ",output_path
     print "template_path : ",template_path
+    if len(sys.argv) == 5:
+        language_file = sys.argv[4]
+        text = json.loads(open(language_file, 'r').read())
+        G_TEXT = dict((v,k) for k,v in text.iteritems())
+        print "language_file : ",language_file
     print "---------------------------------------------------------------"
 
     # 加载所有模板
