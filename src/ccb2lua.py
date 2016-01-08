@@ -149,7 +149,7 @@ def get_text(_text):
             contain_chinese = True
             break
     if contain_chinese :
-        return "\"<auto generate>:{0}\"".format(_text)
+        return "tr(\"<auto generate>:{0}\")".format(_text)
 
     return "\""+_text+"\""
 
