@@ -141,7 +141,7 @@ def get_position(_data):
 
 def get_text(_text):
     if G_TEXT and _text in G_TEXT:
-        return "tr(\"{0}\")--[[{1}]]".format(G_TEXT[_text], _text)
+        return "tr(\"{0}\")--[[{1}]]".format(G_TEXT[_text], _text.replace("["," [").replace("]","] "))
 
     contain_chinese = False
     for c in _text:
