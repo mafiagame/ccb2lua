@@ -6,6 +6,7 @@ import os
 import sys
 import time
 import json
+import re
 
 # jinja2
 from jinja2.environment import Environment
@@ -33,7 +34,31 @@ G_FUNCTION = dict()
 G_DATAS = dict()
 G_TEMPLATES = list()
 G_TEXT = dict()
+G_VAR_NAME = dict()
 
+pattern = re.compile(r"(.*)\[(.*)\]")
+def getVarName(_name):
+    global G_VAR_NAME
+
+    var_name = _name
+    var_str = _name
+    re = pattern.findall(_name)
+    if len(re) == 1 and len(re[0]) == 2:
+        var_name = re[0][0]
+        try:
+            var_str = "%s[%d]" %(var_name,int(re[0][1]))
+        except Exception, e:
+            var_str = "%s.%s" %(var_name,re[0][1])
+
+    if var_name not in G_VAR_NAME:
+        G_VAR_NAME[var_name] = True
+        return var_str, var_name
+
+    return var_str, False
+
+def resetVarName():
+    global G_VAR_NAME
+    G_VAR_NAME = dict()
 
 def getIndex():
     global G_INDEX
@@ -187,6 +212,7 @@ env.globals['getFunction']             = getFunction
 env.globals['markIgnoreRenderChilden'] = markIgnoreRenderChilden
 env.globals['get_position']            = get_position
 env.globals['get_text']                = get_text
+env.globals['getVarName']              = getVarName
 
 
 # 获取父类名字
@@ -221,6 +247,7 @@ def output(_data):
 def output_single(_data, _name):
     print "OUTPUT: ",_name," begin!"
     resetIndex()
+    resetVarName()
     resetFunction()
     ccb = _data[_name]
     convertccb2lua(ccb, _data)
