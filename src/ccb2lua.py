@@ -220,11 +220,11 @@ def getSuperName(_data):
     return _data["baseClass"].replace("CC","")
 
 # 转化
-def convertccb2lua(_data, ccbdata):
+def convertccb2lua(_data, ccbdata, filename):
     # pp.pprint(_data)
     # 渲染模板
     template = env.get_template('ccb.lua')
-    content = template.render(data = _data["data"], ccbdata = ccbdata, super = _data["super"], classname = _data["class"])
+    content = template.render(data = _data["data"], ccbdata = ccbdata, super = _data["super"], classname = _data["class"], filename = filename)
 
     # 如果目录不存在，则创建
     dir_path = _data["out"][:_data["out"].rfind('/')]
@@ -250,7 +250,7 @@ def output_single(_data, _name):
     resetVarName()
     resetFunction()
     ccb = _data[_name]
-    convertccb2lua(ccb, _data)
+    convertccb2lua(ccb, _data, _name)
     print "OUTPUT: ",_name,"done!"
 
 
