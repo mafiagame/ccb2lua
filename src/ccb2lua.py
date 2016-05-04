@@ -95,20 +95,6 @@ def getDisplayFrameName(_value):
     return "\""+_value[1]+"\""
 
 
-def getDisplayFrame2(_value):
-    if _value[0]:
-        return "ccbutils.ccb_display_frame(\""+_value[1]+"\",\""+_value[0]+"\")"
-        
-    return "ccbutils.ccb_display_frame(\""+_value[1]+"\")"
-
-def getDisplayFrame(_value):
-    # print _value
-    if _value[0]:
-        return "ccbutils.ccb_display_frame(\""+_value[1]+"\",\""+_value[0]+"\")"
-
-    return "\""+_value[1]+"\""
-
-
 def checkPropertyInvalide(_name, _value):
     # print "_name:",_name,type(_name), _value, type(_value)
     if _value == None:
@@ -204,8 +190,6 @@ env.globals['getCustomClass']          = getCustomClass
 env.globals['serializeString']         = serializeString
 env.globals['isDefaultVarName']        = isDefaultVarName
 env.globals['checkPropertyInvalide']   = checkPropertyInvalide
-env.globals['getDisplayFrame']         = getDisplayFrame
-env.globals['getDisplayFrame2']        = getDisplayFrame2
 env.globals['getDisplayFrameName']     = getDisplayFrameName
 env.globals['getListener']             = getListener
 env.globals['getFunction']             = getFunction
